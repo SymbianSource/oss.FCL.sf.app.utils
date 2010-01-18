@@ -1,0 +1,52 @@
+/*
+* Copyright (c) 2002 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0""
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  
+*	  This is the project definition file. It defines the application UIDs,
+*     source code, paths and libraries needed.
+*
+*/
+
+
+#include <platform_paths.hrh>
+
+LANGUAGE_IDS
+TARGET		converterengine.dll
+TARGETTYPE	dll
+UID		0x1000008d 0x101f4669
+
+VENDORID	VID_DEFAULT
+
+CAPABILITY 	CAP_GENERAL_DLL
+
+SOURCEPATH	../engine/Src
+SOURCE		DllMain.cpp CCnvConverter.cpp CCnvCategory.cpp
+SOURCE		TCnvCategory.cpp TCnvUnit.cpp
+ 
+USERINCLUDE	../engine/Inc  
+
+APP_LAYER_SYSTEMINCLUDE
+
+LIBRARY		euser.lib bafl.lib estor.lib avkon.lib
+
+
+     #if defined(ARMCC)
+         DEFFILE ../eabi/ConverterEngine_EKA2.def
+     #elif defined( WINSCW )
+         DEFFILE ../BWinsCw/ConverterEngine_EKA2.def
+     #elif defined( WINS )
+         DEFFILE ../BWins/ConverterEngine_EKA2.def
+     #else
+         DEFFILE ../BMarm/ConverterEngine_EKA2.def
+     #endif
+

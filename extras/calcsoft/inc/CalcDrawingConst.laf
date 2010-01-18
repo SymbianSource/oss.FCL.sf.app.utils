@@ -1,0 +1,181 @@
+/*
+* ============================================================================
+*  Name        : CalcDrawingConst.laf
+*  Part of     : Calcsoft / Calcsoft.app
+*  Interface   : ?Interface_category, ?Interface_name
+*  Description : This file contains constants for drawing.
+*  Version     :
+*
+*  Copyright © 2002 Nokia Corporation.
+*  This material, including documentation and any related 
+*  computer programs, is protected by copyright controlled by 
+*  Nokia Corporation. All rights are reserved. Copying, 
+*  including reproducing, storing, adapting or translating, any 
+*  or all of this material requires the prior written consent of 
+*  Nokia Corporation. This material also contains confidential 
+*  information which may not be disclosed to others without the 
+*  prior written consent of Nokia Corporation.
+* ============================================================================
+*/
+
+#ifndef     CALCDRAWINGCONST_HRH
+#define     CALCDRAWINGCONST_HRH
+
+//  CONSTANTS
+
+// ==============================
+// Following is constants for drawing.
+// ==============================
+//
+
+//d:Whole rectangle of Editor SubPane.
+//l:main_pane_1
+//
+#define CALC_DRAWCONST_EDITOR_TOPLEFT_X      3
+#define CALC_DRAWCONST_EDITOR_TOPLEFT_Y      146
+#define CALC_DRAWCONST_EDITOR_WIDTH          170
+#define CALC_DRAWCONST_EDITOR_HEIGHT         32
+
+//d:Whole rectangle of Output Sheet.
+//l:main_pane_2
+//
+#define CALC_DRAWCONST_OSHEET_TOPLEFT_X      3 
+#define CALC_DRAWCONST_OSHEET_TOPLEFT_Y      8
+#define CALC_DRAWCONST_OSHEET_WIDTH          108
+#define CALC_DRAWCONST_OSHEET_HEIGHT         130
+
+//d:Whole rectangle of FunctionMap SubPane.
+//l:main_pane_4
+//
+#define CALC_DRAWCONST_FUNCMAP_TOPLEFT_X     113 
+#define CALC_DRAWCONST_FUNCMAP_TOPLEFT_Y     5 
+#define CALC_DRAWCONST_FUNCMAP_WIDTH         60 
+#define CALC_DRAWCONST_FUNCMAP_HEIGHT        134 
+
+//d:LAF data for drawing number shadow of editor.
+//l:main_pane_1
+//
+#define CALC_DRAWCONST_EDITOR_NUMBER_SHADOW_FONTID       KScreenFontUidAcalc21
+#define CALC_DRAWCONST_EDITOR_NUMBER_SHADOW_CUSTOMFONT   EFontCustom         
+#define CALC_DRAWCONST_EDITOR_NUMBER_SHADOW_COLOR        219
+#define CALC_DRAWCONST_EDITOR_NUMBER_SHADOW_LMARGIN      47 
+#define CALC_DRAWCONST_EDITOR_NUMBER_SHADOW_RMARGIN      8
+#define CALC_DRAWCONST_EDITOR_NUMBER_SHADOW_BASELINE     172
+#define CALC_DRAWCONST_EDITOR_NUMBER_SHADOW_WIDTH        121
+#define CALC_DRAWCONST_EDITOR_NUMBER_SHADOW_J            ELayoutAlignRight
+
+//d:LAF data for drawing number of editor.
+//l:main_pane_2
+//
+#define CALC_DRAWCONST_EDITOR_NUMBER_FONTID            KScreenFontUidAcalc21 
+#define CALC_DRAWCONST_EDITOR_NUMBER_CUSTOMFONT        EFontCustom         
+#define CALC_DRAWCONST_EDITOR_NUMBER_COLOR             210
+#define CALC_DRAWCONST_EDITOR_NUMBER_LMARGIN           46 
+#define CALC_DRAWCONST_EDITOR_NUMBER_RMARGIN           9
+#define CALC_DRAWCONST_EDITOR_NUMBER_BASELINE          171
+#define CALC_DRAWCONST_EDITOR_NUMBER_WIDTH             121
+#define CALC_DRAWCONST_EDITOR_NUMBER_J                 ELayoutAlignRight
+
+//d:LAF data for drawing operator shadow of editor.
+//l:main_pane_3
+//
+#define CALC_DRAWCONST_EDITOR_OPERATOR_SHADOW_FONTID        KScreenFontUidAco21
+#define CALC_DRAWCONST_EDITOR_OPERATOR_SHADOW_CUSTOMFONT    EFontCustom         
+#define CALC_DRAWCONST_EDITOR_OPERATOR_SHADOW_COLOR         219
+#define CALC_DRAWCONST_EDITOR_OPERATOR_SHADOW_LMARGIN       21 
+#define CALC_DRAWCONST_EDITOR_OPERATOR_SHADOW_RMARGIN       142
+#define CALC_DRAWCONST_EDITOR_OPERATOR_SHADOW_BASELINE      172
+#define CALC_DRAWCONST_EDITOR_OPERATOR_SHADOW_WIDTH         13  
+#define CALC_DRAWCONST_EDITOR_OPERATOR_SHADOW_J             ELayoutAlignLeft
+
+//d:LAF data for drawing operator of editor.
+//l:main_pane_4
+//
+#define CALC_DRAWCONST_EDITOR_OPERATOR_FONTID            KScreenFontUidAco21
+#define CALC_DRAWCONST_EDITOR_OPERATOR_CUSTOMFONT        EFontCustom         
+#define CALC_DRAWCONST_EDITOR_OPERATOR_COLOR             215
+#define CALC_DRAWCONST_EDITOR_OPERATOR_LMARGIN           20 
+#define CALC_DRAWCONST_EDITOR_OPERATOR_RMARGIN           143
+#define CALC_DRAWCONST_EDITOR_OPERATOR_BASELINE          171
+#define CALC_DRAWCONST_EDITOR_OPERATOR_WIDTH             13  
+#define CALC_DRAWCONST_EDITOR_OPERATOR_J                 ELayoutAlignLeft
+    
+//d:LAF data for drawing memory indicator shadow of editor.
+//l:main_pane_5
+//
+#define CALC_DRAWCONST_EDITOR_M_INDI_SHADOW_FONTID    ELatinBold12
+#define CALC_DRAWCONST_EDITOR_M_INDI_SHADOW_COLOR     219  
+#define CALC_DRAWCONST_EDITOR_M_INDI_SHADOW_LMARGIN   8
+#define CALC_DRAWCONST_EDITOR_M_INDI_SHADOW_RMARGIN   156 
+#define CALC_DRAWCONST_EDITOR_M_INDI_SHADOW_BASELINE  160
+#define CALC_DRAWCONST_EDITOR_M_INDI_SHADOW_WIDTH     12 
+#define CALC_DRAWCONST_EDITOR_M_INDI_SHADOW_J         ELayoutAlignLeft
+
+//d:LAF data for drawing memory indicator of editor.
+//l:main_pane_6
+//
+#define CALC_DRAWCONST_EDITOR_M_INDI_FONTID         ELatinBold12
+#define CALC_DRAWCONST_EDITOR_M_INDI_COLOR          35  
+#define CALC_DRAWCONST_EDITOR_M_INDI_LMARGIN        7
+#define CALC_DRAWCONST_EDITOR_M_INDI_RMARGIN        157 
+#define CALC_DRAWCONST_EDITOR_M_INDI_BASELINE       159
+#define CALC_DRAWCONST_EDITOR_M_INDI_WIDTH          12
+#define CALC_DRAWCONST_EDITOR_M_INDI_J              ELayoutAlignLeft
+
+//d:LAF data for drawing operand of OutputSheet.
+//l:main_pane_7
+//
+#define CALC_DRAWCONST_OSHEET_OPERAND_FONTID           ELatinBold13
+#define CALC_DRAWCONST_OSHEET_OPERAND_COLOR            215
+#define CALC_DRAWCONST_OSHEET_OPERAND_LMARGIN          19
+#define CALC_DRAWCONST_OSHEET_OPERAND_RMARGIN          71
+#define CALC_DRAWCONST_OSHEET_OPERAND_BTMLINE_BASELINE 126
+#define CALC_DRAWCONST_OSHEET_OPERAND_LINE_HEIGHT      17
+#define CALC_DRAWCONST_OSHEET_OPERAND_WIDTH            86 
+#define CALC_DRAWCONST_OSHEET_OPERAND_J                ELayoutAlignRight
+
+//d:LAF data for drawing operator of OutputSheet.
+//l:main_pane_8
+//
+#define CALC_DRAWCONST_OSHEET_OPERATOR_FONTID           KScreenFontUidAco13
+#define CALC_DRAWCONST_OSHEET_OPERATOR_CUSTOMFONT       EFontCustom         
+#define CALC_DRAWCONST_OSHEET_OPERATOR_COLOR            215  
+#define CALC_DRAWCONST_OSHEET_OPERATOR_LMARGIN          11
+#define CALC_DRAWCONST_OSHEET_OPERATOR_RMARGIN          157 
+#define CALC_DRAWCONST_OSHEET_OPERATOR_BTMLINE_BASELINE 126
+#define CALC_DRAWCONST_OSHEET_OPERATOR_LINE_HEIGHT      17
+#define CALC_DRAWCONST_OSHEET_OPERATOR_WIDTH            8
+#define CALC_DRAWCONST_OSHEET_OPERATOR_J                ELayoutAlignCenter
+
+//d:LAF data for drawing eqaul line of OutputSheet.
+//l:main_pane_3
+//
+#define CALC_DRAWCONST_OSHEET_EQUALLINE_COLOR          107
+#define CALC_DRAWCONST_OSHEET_EQUALLINE_TOPLEFT_X      9
+#define CALC_DRAWCONST_OSHEET_EQUALLINE_BTM_TOPLEFT_Y  112
+#define CALC_DRAWCONST_OSHEET_EQUALLINE_LINE_HEIGHT    17 
+#define CALC_DRAWCONST_OSHEET_EQUALLINE_WIDTH          96
+#define CALC_DRAWCONST_OSHEET_EQUALLINE_HEIGHT         1
+
+//d:Whole rectangle of Functionmap button.
+//l:cell_calc_pane_4
+//
+#define CALC_DRAWCONST_FUNCMAP_LEFT_BUTTON_TOPLEFT_X    0
+#define CALC_DRAWCONST_FUNCMAP_RIGHT_BUTTON_TOPLEFT_X   30
+#define CALC_DRAWCONST_FUNCMAP_TOP_BUTTON_TOPLEFT_Y     0
+#define CALC_DRAWCONST_FUNCMAP_BUTTON_OFFSET            27
+#define CALC_DRAWCONST_FUNCMAP_BUTTON_WIDTH             30
+#define CALC_DRAWCONST_FUNCMAP_BUTTON_HEIGHT            26 
+
+//d:LAF data for drawing cursor of FunctionMap.
+//l:cell_calc_pane_4
+//
+#define CALC_DRAWCONST_FUNCMAP_CURSOR_COLOR      215
+#define CALC_DRAWCONST_FUNCMAP_CURSOR_TOPLEFT_X  0
+#define CALC_DRAWCONST_FUNCMAP_CURSOR_TOPLEFT_Y  0
+#define CALC_DRAWCONST_FUNCMAP_CURSOR_WIDTH      30
+#define CALC_DRAWCONST_FUNCMAP_CURSOR_HEIGHT     26
+
+#endif      //  CALCDRAWINGCONST_HRH
+            
+// End of File

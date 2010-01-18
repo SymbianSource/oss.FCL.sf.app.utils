@@ -1,0 +1,32 @@
+/*
+* Copyright (c) 2002 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0""
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  Image description file for Converter
+*     
+*
+*/
+
+
+
+#ifndef __CONVERTER_RESOURCES_IBY__
+#define __CONVERTER_RESOURCES_IBY__
+
+//Resource file(s) for CONVERTER application
+#ifndef NO_PIMS_IN_ROM
+S60_APP_CAPTION(Converter)
+S60_APP_RESOURCE(Converter)
+#endif
+//Resource file(s) for CONVERTERENGINE application
+//data=ABI_DIR\BUILD_DIR\ConverterEngine.rsc                            System\Data\Converterengine.rsc
+
+#endif

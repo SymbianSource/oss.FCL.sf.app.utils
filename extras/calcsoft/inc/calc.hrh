@@ -1,0 +1,68 @@
+/*
+* Copyright (c) 2002 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0""
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  This file contains declarations for resources of Calculator.
+*                The file can be included in C++ or resource file.
+*                Constants for drawing is defined in CalcDrawingConst.laf.
+*
+*/
+
+
+#ifndef     CALC_HRH
+#define     CALC_HRH
+
+//  CONSTANTS
+
+//
+// Define command ID for menu
+//
+enum TCalcPopupMenuOption
+    {
+    ECalcCmdResult = 6200,
+    ECalcCmdAdd,
+    ECalcCmdSubtract,
+    ECalcCmdMultiply,
+    ECalcCmdDivide,
+    ECalcCmdChangeSign,
+    ECalcCmdLastResult,  
+    ECalcCmdMemory,
+    ECalcCmdMemorySave,
+    ECalcCmdMemoryRecall,
+    ECalcCmdMemoryClear,
+    ECalcCmdScrollUp,
+    ECalcCmdScrollDown,
+    ECalcCmdClearCalcAndHistory,
+	ECalcCmdPercent,
+	ECalcCmdSqrt,
+	ECalcCmdCancel,          // +
+    ECalcCmdSeven,          // +
+    ECalcCmdFour,          // +
+    ECalcCmdOne,          // +
+    ECalcCmdZero,          // +
+    ECalcCmdEight,          // +
+    ECalcCmdFive,          // +
+    ECalcCmdTwo,          // +
+    ECalcCmdSeparator,          // +
+    ECalcCmdNine,          // +
+    ECalcCmdSix,          // +
+    ECalcCmdThree,          // +
+    ECmdAiwPlaceHolder,
+	ECmdLast,
+	ECalcCmdHelp,
+	EAiwCmdHelp = 11,
+	ECmdAiwPlaceHolderShowHelp
+    };
+
+#endif      //  CALC_HRH
+            
+// End of File

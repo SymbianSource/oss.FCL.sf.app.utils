@@ -1,0 +1,74 @@
+/*
+* Copyright (c) 2002 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0""
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  
+*	  This is the project definition file. It defines the application UIDs,
+*     source code, paths, bitmaps and libraries needed.
+*
+*/
+
+
+
+
+#include <data_caging_paths.hrh>
+#include <platform_paths.hrh>
+
+EPOCSTACKSIZE 0X5000
+
+TARGET 			converter.exe
+TARGETTYPE 		exe
+
+UID			0x100039ce 0x101f4668
+
+VENDORID	VID_DEFAULT
+
+CAPABILITY 	CAP_APPLICATION
+
+APP_LAYER_SYSTEMINCLUDE
+
+START RESOURCE ../group/Converter.rss
+HEADER
+
+TARGETPATH    APP_RESOURCE_DIR
+
+LANGUAGE_IDS
+END 
+
+START RESOURCE ../group/converter_reg.rss
+DEPENDS converter.rsg
+// Do not change the UID below.
+TARGETPATH /private/10003a3f/apps
+END
+
+
+SOURCEPATH	../Ui/Src
+SOURCE		CCnvApplication.cpp CCnvDocument.cpp CCnvAppUi.cpp
+SOURCE		CCnvMainForm.cpp CCnvRatesForm.cpp
+
+USERINCLUDE	 ../group ../Ui/Src  
+ 
+
+SYSTEMINCLUDE	../engine/Inc
+
+LIBRARY		euser.lib apparc.lib cone.lib eikcore.lib
+LIBRARY		eikcoctl.lib avkon.lib eikdlg.lib
+LIBRARY		eikctl.lib	// CEikFloatingPointEditor
+LIBRARY		commonengine.lib // StringLoader
+LIBRARY		estor.lib // RFileWriteStream, RFileReadStream
+LIBRARY		commonui.lib // CErrorUI
+LIBRARY		featmgr.lib // Feature Manager
+LIBRARY		converterengine.lib
+LIBRARY		hlplch.lib // HlpLauncher
+LIBRARY		efsrv.lib
+
+

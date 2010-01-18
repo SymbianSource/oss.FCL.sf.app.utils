@@ -1,0 +1,139 @@
+/*
+* Copyright (c) 2007 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0""
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  Resource file for aboutgsplugin
+*
+*/
+
+
+
+//  RESOURCE IDENTIFIER
+NAME    ABUT // 4 letter ID
+
+//  System Includes
+#include <avkon.loc> 
+#include <avkon.mbg>
+#include <avkon.rsg>
+#include <eikcore.rsg>
+#include <uikon.rh>
+#include <eikon.rh>
+#include <eikon.rsg>
+#include <avkon.rh>
+#include <avkon.hrh>
+
+
+
+// User includes
+#include <aboutgsplugin.loc>
+
+//  RESOURCE DEFINITIONS 
+
+RESOURCE RSS_SIGNATURE
+    {
+    }
+
+//----------------------------------------------------
+//  r_about_gs_view_caption
+// About view caption for plugin
+//----------------------------------------------------
+//
+RESOURCE TBUF r_about_gs_view_caption
+    {
+	    buf = qtn_cp_folder_about;
+    }
+
+//----------------------------------------------------
+//    r_about_gs_view_title
+//    About view title
+//----------------------------------------------------
+//
+
+RESOURCE TITLE_PANE r_about_gs_view_title
+    {
+	    txt = qtn_set_title_settings_About;        
+    }
+
+//----------------------------------------------------
+//    r_about_gs_view
+//    About view's menu
+//----------------------------------------------------
+//
+RESOURCE AVKON_VIEW r_about_gs_view 
+    {
+  	  menubar = r_about_gs_menubar_view; 
+ 	  cba = r_about_gs_softkeys;
+    }
+
+//----------------------------------------------------
+//    r_about_gs_menubar_view
+//    About view's menu items
+//----------------------------------------------------
+//
+RESOURCE MENU_BAR r_about_gs_menubar_view 
+    {
+    titles=
+        {
+        MENU_TITLE { menu_pane = r_about_gs_menu_item_exit;},
+        MENU_TITLE { menu_pane = r_about_gs_view_menu;}
+        };
+    }
+
+// -----------------------------------------------------------------------------
+// r_about_gs_menu_item_exit
+// About view menu's EXIT item
+// -----------------------------------------------------------------------------
+//
+RESOURCE MENU_PANE r_about_gs_menu_item_exit
+    {
+    items =
+        {
+        MENU_ITEM
+            {
+            command = EAknCmdExit;
+            txt = qtn_options_exit;
+            }
+        };
+    }
+
+//----------------------------------------------------
+//    r_about_gs_view_menu
+//    About view menu's OPEN item
+//----------------------------------------------------
+//
+RESOURCE MENU_PANE r_about_gs_view_menu
+    {
+    items=
+        {
+        MENU_ITEM 
+            {
+            command = EAknSoftkeyOpen;
+            txt = qtn_options_open;
+            }
+        };
+    }
+
+//----------------------------------------------------
+//    r_about_gs_softkeys
+//    About gs plugin's softkeys
+//----------------------------------------------------
+//
+RESOURCE CBA r_about_gs_softkeys
+	{
+	buttons =
+		{
+		CBA_BUTTON { id = EAknSoftkeyOptions; txt = text_softkey_option;},
+		CBA_BUTTON { id = EAknSoftkeyBack; txt = text_softkey_exit; },
+		CBA_BUTTON { id = EAknSoftkeyOpen; txt = text_softkey_open;}
+		};
+	}
+//End of File

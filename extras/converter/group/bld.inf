@@ -1,0 +1,57 @@
+/*
+* Copyright (c) 2002 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0""
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  This file provides the information required for building Converter
+*
+*/
+
+
+
+#include <platform_paths.hrh>
+
+PRJ_PLATFORMS
+DEFAULT
+
+//  Help exports
+#include "../help/group/bld.inf"
+
+PRJ_EXPORTS
+./backup_registration.xml /epoc32/data/z/private/101f4668/backup_registration.xml
+./backup_registration.xml /epoc32/release/winscw/udeb/z/private/101f4668/backup_registration.xml
+./backup_registration.xml /epoc32/release/winscw/urel/z/private/101f4668/backup_registration.xml
+// export localised loc file
+../loc/Converter.loc   APP_LAYER_LOC_EXPORT_PATH(converter.loc)
+../loc/ConverterEngine.loc   APP_LAYER_LOC_EXPORT_PATH(converterengine.loc)
+
+// export IBY files
+../rom/Converter.iby            CORE_APP_LAYER_IBY_EXPORT_PATH(converter.iby)
+../rom/Converterengine.iby      CORE_APP_LAYER_IBY_EXPORT_PATH(converterengine.iby)
+../rom/ConverterResources.iby   LANGUAGE_APP_LAYER_IBY_EXPORT_PATH(converterresources.iby)
+
+PRJ_MMPFILES
+
+//	#ifdef __SCALABLE_ICONS
+//		gnumakefile converter_icons_aif_scalable_dc.mk
+//	#else
+//		gnumakefile converter_icons_aif_bitmaps_dc.mk
+//	#endif
+
+engine.mmp
+ui.mmp
+
+PRJ_EXTENSIONS
+
+START EXTENSION s60/mifconv
+OPTION TARGETFILE converter_aif.mif
+OPTION SOURCES -c8,8 qgn_menu_cnv
+END

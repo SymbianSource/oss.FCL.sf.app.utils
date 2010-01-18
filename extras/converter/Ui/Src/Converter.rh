@@ -1,0 +1,67 @@
+/*
+* Copyright (c) 2002 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0""
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  
+*     Defines resource structures for unit data storage.
+*     The file can be included in a resource file only.
+*
+*/
+
+
+
+#ifndef __CONVERTER_RH__
+#define __CONVERTER_RH__
+
+STRUCT CNV_MODEL
+	{
+	WORD modelVersion = 0;			// version number of this model 
+	WORD currencycategory = 0;		// id of the currency category
+	STRUCT categories[];			// CNV_CATEGORY array
+	}
+
+STRUCT CNV_CATEGORY
+	{
+	LTEXT name;				// textual name of this category
+	BYTE ischineseorder = 0;// is order of src/dest default or chinese special	
+	BYTE baseunit = 0;		// id of base unit (on which all unit factors are based)
+	BYTE unit1 = 0;			// id of default source unit (for conversion)
+	BYTE unit2 = 0;			// id of default destination unit (for conversion)
+	BYTE istemperature = 0;	// is this category temperatures (1 if yes) ?
+	STRUCT units[];			// CNV_UNIT array
+	}
+
+STRUCT CNV_UNIT
+	{
+	LTEXT name;				// textual name of this unit
+	DOUBLE factor = 0.0;	// factor for conversion (all units)
+	WORD id;				// id of the unit
+	}
+
+STRUCT CNV_UNIT_CURRENCY
+	{
+	LTEXT name;				// textual name of this unit
+	DOUBLE factor = 0.0;	// factor for conversion (all units)
+	WORD id;				// id of the unit
+	BYTE type = 0;	
+	}
+	
+STRUCT CNV_UNIT_TEMPERATURE
+	{
+	LTEXT name;				// textual name of this unit
+	DOUBLE factor = 0.0;	// factor for conversion (all units)
+	WORD id;
+	DOUBLE offset = 0.0;	// offset for conversion (temperature units)
+	DOUBLE min = 0.0;		// minimum acceptable value (all units)
+	}
+
+#endif	// __CONVERTER_RH__

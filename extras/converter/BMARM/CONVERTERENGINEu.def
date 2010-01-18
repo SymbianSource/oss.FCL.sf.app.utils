@@ -1,0 +1,25 @@
+EXPORTS
+	__12TCnvCategory @ 1 NONAME R3UNUSED ; TCnvCategory::TCnvCategory(void)
+	BaseUnit__C12TCnvCategory @ 2 NONAME R3UNUSED ; TCnvCategory::BaseUnit(void) const
+	Convert__C12TCnvCategoryUiUiRCdUi @ 3 NONAME ; TCnvCategory::Convert(unsigned int, unsigned int, double const &, unsigned int) const
+	CurrencyCategoryId__C13CCnvConverter @ 4 NONAME R3UNUSED ; CCnvConverter::CurrencyCategoryId(void) const
+	CurrentValueIndex__C12TCnvCategory @ 5 NONAME R3UNUSED ; TCnvCategory::CurrentValueIndex(void) const
+	CurrentValueTextLC__12TCnvCategory @ 6 NONAME R3UNUSED ; TCnvCategory::CurrentValueTextLC(void)
+	DeleteCurrencyL__12TCnvCategoryi @ 7 NONAME R3UNUSED ; TCnvCategory::DeleteCurrencyL(int)
+	ExternalizeL__C13CCnvConverterR12RWriteStream @ 8 NONAME R3UNUSED ; CCnvConverter::ExternalizeL(RWriteStream &) const
+	GetCategoryAccessor__13CCnvConverterR12TCnvCategoryUi @ 9 NONAME R3UNUSED ; CCnvConverter::GetCategoryAccessor(TCnvCategory &, unsigned int)
+	GetCategorylistAccessor__13CCnvConverterR12TCnvCategory @ 10 NONAME R3UNUSED ; CCnvConverter::GetCategorylistAccessor(TCnvCategory &)
+	GetDefaultUnits__C12TCnvCategoryRUiT1 @ 11 NONAME R3UNUSED ; TCnvCategory::GetDefaultUnits(unsigned int &, unsigned int &) const
+	InternalizeL__13CCnvConverterR11RReadStream @ 12 NONAME R3UNUSED ; CCnvConverter::InternalizeL(RReadStream &)
+	MdcArray__C12TCnvCategory @ 13 NONAME R3UNUSED ; TCnvCategory::MdcArray(void) const
+	NewL__13CCnvConverterR15TResourceReader @ 14 NONAME R3UNUSED ; CCnvConverter::NewL(TResourceReader &)
+	SetBaseUnit__12TCnvCategoryUi @ 15 NONAME R3UNUSED ; TCnvCategory::SetBaseUnit(unsigned int)
+	SetCurrentValueIndex__12TCnvCategoryi @ 16 NONAME R3UNUSED ; TCnvCategory::SetCurrentValueIndex(int)
+	SetDefaultUnits__12TCnvCategoryUiUi @ 17 NONAME R3UNUSED ; TCnvCategory::SetDefaultUnits(unsigned int, unsigned int)
+	SetUnitFactor__12TCnvCategoryUiRCd @ 18 NONAME R3UNUSED ; TCnvCategory::SetUnitFactor(unsigned int, double const &)
+	SetUnitName__12TCnvCategoryUiRC7TDesC16 @ 19 NONAME R3UNUSED ; TCnvCategory::SetUnitName(unsigned int, TDesC16 const &)
+	UnitFactor__C12TCnvCategoryUi @ 20 NONAME R3UNUSED ; TCnvCategory::UnitFactor(unsigned int) const
+	UnitMinimum__C12TCnvCategoryUi @ 21 NONAME R3UNUSED ; TCnvCategory::UnitMinimum(unsigned int) const
+	"_._13CCnvConverter" @ 22 NONAME R3UNUSED ; CCnvConverter::~CCnvConverter(void)
+	AddNewCurrencyL__12TCnvCategoryiR7TDesC16Rd @ 23 NONAME ; TCnvCategory::AddNewCurrencyL(int, TDesC16 &, double &)
+
