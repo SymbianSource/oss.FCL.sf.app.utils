@@ -46,7 +46,7 @@ CCnvAppUi::~CCnvAppUi()
 void CCnvAppUi::ConstructL()
 	{
 	// Construct softkeys and menubar using the base class
-    BaseConstructL( CAknAppUi::EAknEnableSkin | EAknEnableMSK);
+    BaseConstructL( CAknAppUi::EAknEnableSkin | EAknEnableMSK | EAknSingleClickCompatible);
 
 	// Construct and show our main form
 	iMainForm = new( ELeave ) CCnvMainForm( iFormDeleted );
