@@ -269,6 +269,15 @@ void CCnvMainForm::DynInitMenuPaneL( TInt aResourceId,
 				break;
 				}
 			}
+		if ( iTypePopupCtrl->SelectionMode() ==  CAknPopupField::EAknPopupFieldSelectionListMode ||
+				iUnit1PopupCtrl->SelectionMode() == CAknPopupField::EAknPopupFieldSelectionListMode ||
+				iUnit2PopupCtrl->SelectionMode() == CAknPopupField::EAknPopupFieldSelectionListMode)
+			{
+			aMenuPane->SetItemDimmed( ECmdSetCurrency, ETrue );
+			aMenuPane->SetItemDimmed( ECmdSetType, ETrue );
+			aMenuPane->SetItemDimmed( ECmdSetUnit, ETrue );
+			aMenuPane->SetItemDimmed( ECmdRates, ETrue );
+			}
 		}
 	}
 
