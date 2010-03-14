@@ -780,20 +780,20 @@ void CCalcOutputSheet::HandleResourceChangeOutSheetL(TInt aType)
   
     if ( aType == KEikDynamicLayoutVariantSwitch )
         {
-        if ( AknLayoutUtils::PenEnabled() )
-            {
-            ScrollToBottomL();
-            }
-        }
-	if(aType == KAknsMessageSkinChange)
-	{
-		if( AknLayoutUtils::PenEnabled()  )
-        {
-        	delete(iSBFrame);
-    		iSBFrame = NULL;
-	
-		    UpdateScrollIndicatorL();
-        }
-	}
+        if (AknLayoutUtils::PenEnabled())
+			{
+			ScrollToBottomL();
+			}
+		}
+	if ( aType == KAknsMessageSkinChange || aType == KEikMessageUnfadeWindows )
+		{
+		if (AknLayoutUtils::PenEnabled())
+			{
+			delete (iSBFrame);
+			iSBFrame = NULL;
+
+			UpdateScrollIndicatorL();
+			}
+		}
 }
 //  End of File  
