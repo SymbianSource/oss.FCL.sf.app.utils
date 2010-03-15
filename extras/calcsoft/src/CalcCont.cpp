@@ -800,9 +800,9 @@ void CCalcContainer::HandleResourceChangeCalSoftL(TInt aType)
         if ( Layout_Meta_Data::IsLandscapeOrientation() )
             {
             // when calculator is in Landscape layout, the statuspane displays     
-            iEikonEnv->AppUiFactory()->StatusPane()
-                ->SwitchLayoutL( R_AVKON_STATUS_PANE_LAYOUT_USUAL );
             AknLayoutUtils::LayoutMetricsRect( AknLayoutUtils::EMainPane, mainPaneRect );
+            AknLayoutUtils::LayoutMetricsRect( AknLayoutUtils::EStatusPane, statusPaneRect );
+            mainPaneRect.iTl = statusPaneRect.iTl;
             }
         else
             {

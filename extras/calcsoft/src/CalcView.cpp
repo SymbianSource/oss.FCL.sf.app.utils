@@ -565,6 +565,8 @@ void CCalcView::CreateContainerL()
       {
       
         AknLayoutUtils::LayoutMetricsRect(AknLayoutUtils::EMainPane,mainPaneRect);
+        AknLayoutUtils::LayoutMetricsRect(AknLayoutUtils::EStatusPane,statusPaneRect);
+        mainPaneRect.iTl= statusPaneRect.iTl;
       	
       }
       
