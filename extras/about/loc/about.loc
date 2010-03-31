@@ -43,7 +43,7 @@
 // d: Starts from a new line.
 // l: none
 //
-#define qtn_about_legal_text_2 "Copyright 2009 Nokia. All rights reserved."
+#define qtn_about_legal_text_2 "Copyright %N Nokia. All rights reserved."
 
 // d: Nokia legal text
 // d: Starts from a new line.

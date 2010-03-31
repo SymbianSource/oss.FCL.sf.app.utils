@@ -105,7 +105,8 @@ RESOURCE ABOUT_ITEM_LIST r_about_main_text
 			},
 		ABOUT_TEXT
 			{
-			txt = r_about_legal_text_2;
+            updatetimeflag = EAboutUpdateTime;
+            txt = r_about_legal_text_2;
 			},
 		ABOUT_TEXT
 			{

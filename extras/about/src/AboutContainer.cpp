@@ -752,7 +752,7 @@ switch ( aType )
        DrawNow();
        }
        break;
-        
+  case KEikMessageUnfadeWindows :
   case KAknsMessageSkinChange :
        {
        TRAP_IGNORE(iSBFrame->CreateDoubleSpanScrollBarsL(ETrue, EFalse)); // window owning scrollbar            
