@@ -244,42 +244,60 @@ void CCnvMainForm::DynInitMenuPaneL( TInt aResourceId,
 			aMenuPane->SetItemDimmed(EAknCmdHelp, ETrue);
 			}
 
-		if( currentType == iCurrencyCategoryId )
-			{
-			aMenuPane->SetItemDimmed( ECmdRates, EFalse ) ;
-			}
+         switch( IdOfFocusControl() )
+            {
+            case EConverterUnit1Popup:
+            case EConverterUnit2Popup:
+            case EConverterTypePopup:
+                {
+                if( currentType == iCurrencyCategoryId )
+                    {
+                    aMenuPane->SetItemDimmed( ECmdRates, EFalse ) ;
+                    aMenuPane->SetItemDimmed( ECmdSetType, ETrue ) ;
+                    aMenuPane->SetItemDimmed( ECmdSetUnit, ETrue ) ;
+                    }
+                else
+	            {
+                    aMenuPane->SetItemDimmed( ECmdSetCurrency, ETrue ) ;
+                    aMenuPane->SetItemDimmed( ECmdSetType, ETrue ) ;
+                    aMenuPane->SetItemDimmed( ECmdSetUnit, ETrue ) ;
+                    aMenuPane->SetItemDimmed( ECmdRates, ETrue ) ;
+                    }
+                break;
+                }
+            case EConverterEditor1:
+            case EConverterEditor2:
+                {
+                if( currentType == iCurrencyCategoryId )
+                    {
+                    aMenuPane->SetItemDimmed( ECmdSetType, ETrue ) ;
+                    aMenuPane->SetItemDimmed( ECmdSetUnit, ETrue ) ;
+                    aMenuPane->SetItemDimmed( ECmdRates, EFalse );
+                    }
+                else
+                    {
+                    aMenuPane->SetItemDimmed( ECmdSetType, ETrue );
+                    aMenuPane->SetItemDimmed( ECmdRates, ETrue );
+                    }
+		        break;
+                }
+                default:
+                {
+                break;
+                }
+            }
 
-		switch( IdOfFocusControl() )
-			{
-			case EConverterUnit1Popup:
-			case EConverterUnit2Popup:
-				{
-				if( currentType == iCurrencyCategoryId )
-					{
-					aMenuPane->SetItemDimmed( ECmdSetCurrency, EFalse ) ;
-					}
-				else
-					{
-					aMenuPane->SetItemDimmed( ECmdSetUnit, EFalse ) ;
-					}
-				break;
-				}
-			default:
-				{
-				break;
-				}
-			}
-		if ( iTypePopupCtrl->SelectionMode() ==  CAknPopupField::EAknPopupFieldSelectionListMode ||
-				iUnit1PopupCtrl->SelectionMode() == CAknPopupField::EAknPopupFieldSelectionListMode ||
-				iUnit2PopupCtrl->SelectionMode() == CAknPopupField::EAknPopupFieldSelectionListMode)
-			{
-			aMenuPane->SetItemDimmed( ECmdSetCurrency, ETrue );
-			aMenuPane->SetItemDimmed( ECmdSetType, ETrue );
-			aMenuPane->SetItemDimmed( ECmdSetUnit, ETrue );
-			aMenuPane->SetItemDimmed( ECmdRates, ETrue );
-			}
-		}
-	}
+        if ( iTypePopupCtrl->SelectionMode() ==  CAknPopupField::EAknPopupFieldSelectionListMode ||
+                iUnit1PopupCtrl->SelectionMode() == CAknPopupField::EAknPopupFieldSelectionListMode ||
+                iUnit2PopupCtrl->SelectionMode() == CAknPopupField::EAknPopupFieldSelectionListMode)
+            {
+            aMenuPane->SetItemDimmed( ECmdSetCurrency, ETrue );
+            aMenuPane->SetItemDimmed( ECmdSetType, ETrue );
+            aMenuPane->SetItemDimmed( ECmdSetUnit, ETrue );
+            aMenuPane->SetItemDimmed( ECmdRates, ETrue );
+            }
+        }
+    }
 
 // Handles events to the three pop lists
 void CCnvMainForm::HandleControlEventL( CCoeControl* /*aControl*/,

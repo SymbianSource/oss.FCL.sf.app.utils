@@ -27,7 +27,7 @@
 #include <AknIconUtils.h>
 #include    <AknsDrawUtils.h>
 #include  <aknlayoutscalable_avkon.cdl.h>  
-#include <AknLayoutScalable_Avkon.cdl.common.h>
+#include <aknLayoutscalable_avkon.cdl.common.h>
 #include <AknLayout2ScalableDef.h>
 #include <AvkonInternalCRKeys.h>
 #include    <aknlayoutscalable_apps.cdl.h>
