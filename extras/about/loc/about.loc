@@ -49,7 +49,7 @@
 // d: Starts from a new line.
 // l: none
 //
-#define qtn_about_legal_text_3 "This product is based on Symbian OS S60 5th Edition software."
+#define qtn_about_legal_text_3 "This product is based on Symbian^3 Edition software."
 
 // d: Nokia legal text
 // d: Starts from a new line.

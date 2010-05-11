@@ -21,7 +21,6 @@ DEFAULT
 // extras subsystem
 #include "../about/group/bld.inf"
 #include "../calcsoft/group/bld.inf"
-#include "../converter/group/bld.inf"
 
 
 
