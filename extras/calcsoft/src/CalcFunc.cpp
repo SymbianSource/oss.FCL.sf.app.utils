@@ -1150,9 +1150,12 @@ void CCalcFuncmapSubPane::RedrawHighlight
         TRAP_IGNORE(button->OfferKeyEventL(aKeyEvent,aType));
 	    state->SetFlags(EnNormal);
      	}
-    button->SetFocus( EFalse, EDrawNow );      
-    button = iButtons[aNewId];        
-    button->SetFocus( ETrue, EDrawNow );
+    if( aOldId != aNewId )
+    	{
+        button->SetFocus( EFalse, EDrawNow );      
+        button = iButtons[aNewId];        
+        button->SetFocus( ETrue, EDrawNow );
+    	}
     }
 
 // ---------------------------------------------------------

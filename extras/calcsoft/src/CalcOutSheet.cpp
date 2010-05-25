@@ -785,7 +785,7 @@ void CCalcOutputSheet::HandleResourceChangeOutSheetL(TInt aType)
 			ScrollToBottomL();
 			}
 		}
-	if ( aType == KAknsMessageSkinChange || aType == KEikMessageUnfadeWindows )
+	if ( aType == KAknsMessageSkinChange )
 		{
 		if (AknLayoutUtils::PenEnabled())
 			{
