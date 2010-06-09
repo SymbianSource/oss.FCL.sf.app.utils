@@ -586,8 +586,19 @@ void CAboutContainer::CalculateL(const TRect& aRect)
     TInt bottomMargin = mainPaneHeight * 3 / 100;
     iLinesPerScreen =
         ( mainPaneHeight - topMargin - bottomMargin ) / iBaseLineDelta;
+    
+    TInt uiLanguage = User::Language();
+    
+    if( uiLanguage == ELangArabic || uiLanguage == ELangFarsi || 
+        uiLanguage == ELangHebrew || uiLanguage == ELangUrdu )
+    	{
+        iTextAlign = CGraphicsContext::ERight;
+    	}
+    else
+    	{
+        iTextAlign = CGraphicsContext::ELeft;
+    	}
 
-    iTextAlign = CGraphicsContext::ELeft;
    
     if ( iText )
         {
