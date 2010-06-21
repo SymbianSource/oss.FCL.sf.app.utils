@@ -46,7 +46,7 @@
 #include <AknFepInternalCRKeys.h>
 #include <aknbutton.h>
 #include <AknsDrawUtils.h>
-
+#include <aknnotewrappers.h> 
 #include <featmgr.h>      // Feature Manager
 
 //enum to hold the values of button states
@@ -68,14 +68,14 @@ const TInt KButtonsIdTblTouch[] =         // The command ID of a button in Touch
                ECalcCmdSeven,          // 7
                ECalcCmdFour,          // 4
                ECalcCmdOne,          // 1
-			   ECalcCmdZero,          // 0
-			   ECalcCmdSqrt, 		 // Sqrt
+               ECalcCmdZero,          // 0
+               ECalcCmdSqrt,          // Sqrt
                ECalcCmdEight,          // 8
                ECalcCmdFive,          // 5
                ECalcCmdTwo,          // 2
-			   ECalcCmdSeparator,          // .
-			   ECalcCmdPercent,		 // %	
-			   ECalcCmdNine,          // 9
+               ECalcCmdSeparator,          // .
+               ECalcCmdPercent,         // %    
+               ECalcCmdNine,          // 9
                ECalcCmdSix,          // 6
                ECalcCmdThree,          // 3
                ECalcCmdChangeSign,   // +/- 
@@ -84,8 +84,8 @@ const TInt KButtonsIdTblTouch[] =         // The command ID of a button in Touch
                ECalcCmdSubtract,     // -
                ECalcCmdAdd,          // +
                ECalcCmdResult       // =
-				};
-				
+                };
+                
 const TInt KButtonsIdTbl[] =         // The command ID of a button in non Touch Layout
                { 
                ECalcCmdAdd,          // +
@@ -94,11 +94,11 @@ const TInt KButtonsIdTbl[] =         // The command ID of a button in non Touch 
                ECalcCmdDivide,       // /
                ECalcCmdChangeSign,   // +/- 
                ECalcCmdResult,       // =
-			   ECalcCmdSqrt, 		 // Sqrt
-			   ECalcCmdPercent,		 // %
+               ECalcCmdSqrt,          // Sqrt
+               ECalcCmdPercent,         // %
                ECalcCmdScrollUp,     // Scroll-up
                ECalcCmdScrollDown    // Scroll-down
-				};
+                };
 
 
 // If const TChar is used, complie error occurs in THUMB build.
@@ -163,8 +163,8 @@ void CCalcFuncmapSubPane::SetChangeSignEnable
                             (TBool aEnable)
     {
 
-				/*Get the selected pointer 
-				button -> different layouts, different values*/
+                /*Get the selected pointer 
+                button -> different layouts, different values*/
         CAknButton* button = NULL;
         if( AknLayoutUtils::PenEnabled() )
         {
@@ -213,28 +213,28 @@ void CCalcFuncmapSubPane::SetClearKeyEnable( TBool aEnable )
 void CCalcFuncmapSubPane::NotifyTimeoutL()
     {
 
-	  /*Get the selected pointer 
-		button -> different layouts, different values*/
+      /*Get the selected pointer 
+        button -> different layouts, different values*/
     CAknButton* button = iButtons[iSelected];    
     if( !AknLayoutUtils::PenEnabled() )
         {
 #ifdef RD_INTELLIGENT_TEXT_INPUT  
         if ( iKeyboardType == EPtiKeyboardHalfQwerty )
-        	{
+            {
             if( ( iLastKeyCode == EStdKeyLeftShift && iDecimalPoint ) || ( iLastKeyCode == EStdKeyLeftFunc && iDecimalPoint ))
-    	        {
+                {
                 iContainer->SetSeparatorFromTouchL();
-        	    }
+                }
             else
                 {
                 iContainer->View()->HandleCommandL( KButtonsIdTbl[iSelected] );
                 }
-        	}
+            }
         else
 #endif
-        	{
+            {
             iContainer->View()->HandleCommandL( KButtonsIdTbl[iSelected] );
-        	}
+            }
         }
     else
         {
@@ -243,9 +243,9 @@ void CCalcFuncmapSubPane::NotifyTimeoutL()
    
 #ifdef RD_INTELLIGENT_TEXT_INPUT  
     if ( iKeyboardType == EPtiKeyboardHalfQwerty )
-    	{
+        {
         iLastKeyCode = 0;
-    	}
+        }
 #endif
     
     //Set to dimmed state
@@ -262,10 +262,10 @@ void CCalcFuncmapSubPane::NotifyTimeoutL()
 //
 void CCalcFuncmapSubPane::NotifyReleaseKeyL()
     {
-				/*Get the selected pointer 
-				button -> different layouts, different values*/
+                /*Get the selected pointer 
+                button -> different layouts, different values*/
         CAknButton* button = iButtons[iSelected];
-        CAknButtonState* state = button->State(EnNormal);      	
+        CAknButtonState* state = button->State(EnNormal);          
         
         if(state->Flags() == EnPressed)
         {
@@ -274,12 +274,12 @@ void CCalcFuncmapSubPane::NotifyReleaseKeyL()
           TEventCode aType = EEventKeyUp;
           //trigger offerkeyeventl to this button
           button->OfferKeyEventL(aKeyEvent,aType);
-	      state->SetFlags(EnNormal);    
-	      button->DrawNow();
+          state->SetFlags(EnNormal);    
+          button->DrawNow();
         }
       if( !AknLayoutUtils::PenEnabled() )
-       	{
-       	  if(iSelected == EScrollUp)
+           {
+             if(iSelected == EScrollUp)
             {
                 CCalcOutputSheet* outputSheet = iContainer->OutputSheet();
                 if(!outputSheet->CanUp())
@@ -299,9 +299,9 @@ void CCalcFuncmapSubPane::NotifyReleaseKeyL()
                 }
             }
             
-       	}
+           }
 
-	   }
+       }
 
 // ---------------------------------------------------------
 // CCalcFuncmapSubPane::NotifyOtherThanOkKeyPressed
@@ -348,7 +348,7 @@ void CCalcFuncmapSubPane::NotifyLangChange()
 //
  TInt CCalcFuncmapSubPane::IsQwertyKeypadActive()
   {
- 	TInt value = 0;
+     TInt value = 0;
     
     iQwertyModeStatusProperty.Get(value);
     
@@ -388,7 +388,7 @@ void CCalcFuncmapSubPane::HandleControlEventL(CCoeControl* aControl,TCoeEvent aE
     
     if ( !button->IsDimmed() )
         {
-        		//handles all the commands for the buttons
+                //handles all the commands for the buttons
             if( !AknLayoutUtils::PenEnabled() )
             {
             iContainer->View()->HandleCommandL(KButtonsIdTbl[iSelected]);
@@ -413,10 +413,18 @@ void CCalcFuncmapSubPane::HandleControlEventL(CCoeControl* aControl,TCoeEvent aE
             }
             else
             {
-            iContainer->View()->HandleCommandL(KButtonsIdTblTouch[iSelected]);
+             if ( iIsKeyLongPress )
+                {
+                iContainer->View()->HandleCommandL(KButtonsIdTblTouch[iSelected]);
+                }
             }   
 
-        }    
+        } 
+    if( iErrorCode != KErrNone )
+        {
+        ErrorMsgL( iErrorCode );
+        iErrorCode = KErrNone;
+        }
     }
 
 // ---------------------------------------------------------
@@ -435,7 +443,7 @@ TKeyResponse CCalcFuncmapSubPane::OfferKeyEventL(const TKeyEvent& aKeyEvent, TEv
         {
 #ifdef RD_INTELLIGENT_TEXT_INPUT  
         if ( iKeyboardType == EPtiKeyboardHalfQwerty )
-        	{
+            {
             TBuf<KMaxNumCharsPerCase> keys;
             TInt firstoperator(-1);
             TInt secondoperator(-1);
@@ -448,7 +456,7 @@ TKeyResponse CCalcFuncmapSubPane::OfferKeyEventL(const TKeyEvent& aKeyEvent, TEv
                  iEngine->MappingDataForKey( keyQwertyValue, keys, EPtiCaseFnLower  );
                  MapDataForChrShiftKey( keys, firstoperator, secondoperator);
                  if ( (secondoperator == -1) && (firstoperator != -1))
-                	 {
+                     {
                      if ( AknLayoutUtils::PenEnabled() )
                          {
                          iSelected = firstoperator;    
@@ -456,18 +464,18 @@ TKeyResponse CCalcFuncmapSubPane::OfferKeyEventL(const TKeyEvent& aKeyEvent, TEv
                      else
                          {
                          if ( firstoperator == ECmdTSeparator )
-                        	 {
-                        	 iDecimalPoint = ETrue;
-                        	 }
+                             {
+                             iDecimalPoint = ETrue;
+                             }
                          else
-                        	 {
-                        	 iSelected = firstoperator;
-                        	 iDecimalPoint = EFalse;
-                        	 }
-                         }                	 
-                	 }
+                             {
+                             iSelected = firstoperator;
+                             iDecimalPoint = EFalse;
+                             }
+                         }                     
+                     }
                  else if ( (firstoperator == -1) && (secondoperator != -1) )
-                	 {
+                     {
                      if ( AknLayoutUtils::PenEnabled() )
                          {
                          iSelected = secondoperator;    
@@ -475,18 +483,18 @@ TKeyResponse CCalcFuncmapSubPane::OfferKeyEventL(const TKeyEvent& aKeyEvent, TEv
                      else
                          {
                          if ( secondoperator == ECmdTSeparator )
-                        	 {
-                        	 iDecimalPoint = ETrue;
-                        	 }
+                             {
+                             iDecimalPoint = ETrue;
+                             }
                          else
-                        	 {
-                        	 iSelected = secondoperator;
-                        	 iDecimalPoint = EFalse;
-                        	 }
-                         }                	 
-                	 }
+                             {
+                             iSelected = secondoperator;
+                             iDecimalPoint = EFalse;
+                             }
+                         }                     
+                     }
                  else if ( (firstoperator != -1) && (secondoperator != -1) )
-                	 {
+                     {
                      if ( iLastKeyCode == aKeyEvent.iScanCode )
                          {
                          if ( AknLayoutUtils::PenEnabled() )
@@ -501,28 +509,28 @@ TKeyResponse CCalcFuncmapSubPane::OfferKeyEventL(const TKeyEvent& aKeyEvent, TEv
                                  }
                              }
                          else
-                        	 {
+                             {
                               if ( firstoperator == ECmdTSeparator || secondoperator == ECmdTSeparator )
-                            	  {
-                            	  if ( iDecimalPoint )
-                            		  {
-                            		  iDecimalPoint = EFalse;
-                            		  if ( firstoperator == ECmdTSeparator )
-                            			  {
-                            			  iSelected = secondoperator;
-                            			  }
-                            		  else
-                            			  {
-                            			  iSelected = firstoperator;
-                            			  }                 		  
-                            		  }
-                            	  else
-                            		  {
-                            		  iDecimalPoint = ETrue;
-                            		  }
-                            	  }
+                                  {
+                                  if ( iDecimalPoint )
+                                      {
+                                      iDecimalPoint = EFalse;
+                                      if ( firstoperator == ECmdTSeparator )
+                                          {
+                                          iSelected = secondoperator;
+                                          }
+                                      else
+                                          {
+                                          iSelected = firstoperator;
+                                          }                           
+                                      }
+                                  else
+                                      {
+                                      iDecimalPoint = ETrue;
+                                      }
+                                  }
                               else
-                            	  {
+                                  {
                                   if ( iSelected == firstoperator )
                                       {
                                       iSelected = secondoperator;
@@ -530,9 +538,9 @@ TKeyResponse CCalcFuncmapSubPane::OfferKeyEventL(const TKeyEvent& aKeyEvent, TEv
                                   else
                                       {
                                       iSelected = firstoperator;
-                                      }                	  
-                            	  }
-                        	 }
+                                      }                      
+                                  }
+                             }
                          }
                      else
                          {
@@ -543,14 +551,14 @@ TKeyResponse CCalcFuncmapSubPane::OfferKeyEventL(const TKeyEvent& aKeyEvent, TEv
                          else
                              {
                              if ( firstoperator == ECmdTSeparator )
-                            	 {
-                            	 iDecimalPoint = ETrue;
-                            	 }
+                                 {
+                                 iDecimalPoint = ETrue;
+                                 }
                              else
-                            	 {
-                            	 iSelected = firstoperator;
-                            	 iDecimalPoint = EFalse;
-                            	 }
+                                 {
+                                 iSelected = firstoperator;
+                                 iDecimalPoint = EFalse;
+                                 }
                              }
 
                          }
@@ -564,52 +572,52 @@ TKeyResponse CCalcFuncmapSubPane::OfferKeyEventL(const TKeyEvent& aKeyEvent, TEv
             }
          else
 #endif
-        	{
-        	//For Multiplication operator in Qwerty keypad
-        	if(((aKeyEvent.iScanCode == EStdKeyLeftShift) || (aKeyEvent.iScanCode == EStdKeyRightShift)) && aType == EEventKeyDown)
-        	    {
-        	     if(iShiftKeyPressed == EPtiCaseLower )
-        		     {
-        		   	 iShiftKeyPressed = EPtiCaseUpper;
-        		   	 iShiftKey = 0;
-        		   	 iValue = ETrue;
-        		     }
-        	      
-        	     else
-        	     	{
-        			iShiftKeyPressed = EPtiCaseLower;
-        	     	}
-        	    exitCode = EKeyWasConsumed; 	
-        	    
-        	    iIsShiftKeyPressed = ETrue;
-        	    }
-        	else if((aKeyEvent.iScanCode == EStdKeyLeftShift || aKeyEvent.iScanCode == EStdKeyRightShift)&& aType == EEventKeyUp)
-        		{
+            {
+            //For Multiplication operator in Qwerty keypad
+            if(((aKeyEvent.iScanCode == EStdKeyLeftShift) || (aKeyEvent.iScanCode == EStdKeyRightShift)) && aType == EEventKeyDown)
+                {
+                 if(iShiftKeyPressed == EPtiCaseLower )
+                     {
+                        iShiftKeyPressed = EPtiCaseUpper;
+                        iShiftKey = 0;
+                        iValue = ETrue;
+                     }
+                  
+                 else
+                     {
+                    iShiftKeyPressed = EPtiCaseLower;
+                     }
+                exitCode = EKeyWasConsumed;     
+                
+                iIsShiftKeyPressed = ETrue;
+                }
+            else if((aKeyEvent.iScanCode == EStdKeyLeftShift || aKeyEvent.iScanCode == EStdKeyRightShift)&& aType == EEventKeyUp)
+                {
                         /*if(((iLanguage == ELangFrench) || (iLanguage == ELangTaiwanChinese) || 
                             (iLanguage == ELangCzech) || (iLanguage == ELangSlovak))&& iShiftKey >= 1)*/
                                 if( iShiftKey >= 1 )
-        			{
-        			iShiftKeyPressed = EPtiCaseLower;
-        			}
-        		iValue = EFalse;
-        	    exitCode = EKeyWasConsumed; 
-        	    
-        	    iIsShiftKeyPressed = ETrue;
-        	    }
-        	}
-	      //else
+                    {
+                    iShiftKeyPressed = EPtiCaseLower;
+                    }
+                iValue = EFalse;
+                exitCode = EKeyWasConsumed; 
+                
+                iIsShiftKeyPressed = ETrue;
+                }
+            }
+          //else
      if ( !iIsShiftKeyPressed )
-		{
-		if (aType != EEventKey)
         {
-	        if (aType == EEventKeyDown)
-			    {
-			        iIsOfferKeyEvent = ETrue;        
-			    }
-			    else if (aType == EEventKeyUp)
-			    {
-			        iIsOfferKeyEvent = EFalse;        
-			    }
+        if (aType != EEventKey)
+        {
+            if (aType == EEventKeyDown)
+                {
+                    iIsOfferKeyEvent = ETrue;        
+                }
+                else if (aType == EEventKeyUp)
+                {
+                    iIsOfferKeyEvent = EFalse;        
+                }
             // when users press send key, EKeyWasNotConsumed is returned to system
             // to open dialer 
             if ( aKeyEvent.iScanCode == EStdKeyYes )
@@ -625,14 +633,14 @@ TKeyResponse CCalcFuncmapSubPane::OfferKeyEventL(const TKeyEvent& aKeyEvent, TEv
             iShiftKeyPressed = EPtiCaseLower;
             }
 #else
-		if(MapNumericCharL(keyQwertyValue,iShiftKeyPressed))
-			{
-			exitCode = EKeyWasConsumed;
-			iShiftKeyPressed = EPtiCaseLower;		
-			}
+        if(MapNumericCharL(keyQwertyValue,iShiftKeyPressed))
+            {
+            exitCode = EKeyWasConsumed;
+            iShiftKeyPressed = EPtiCaseLower;        
+            }
 #endif
-		else 
-			{
+        else 
+            {
 #ifdef RD_INTELLIGENT_TEXT_INPUT
             if( MapNumerics( aKeyEvent ) || aKeyEvent.iCode == EKeyBackspace )
                 {
@@ -651,34 +659,34 @@ TKeyResponse CCalcFuncmapSubPane::OfferKeyEventL(const TKeyEvent& aKeyEvent, TEv
                     }
                 }
 #else
-			if(MapNumerics(keyQwertyValue,iShiftKeyPressed) || aKeyEvent.iCode == EKeyBackspace)
-				{
-				exitCode = EKeyWasNotConsumed;
-				iShiftKeyPressed = EPtiCaseLower;
+            if(MapNumerics(keyQwertyValue,iShiftKeyPressed) || aKeyEvent.iCode == EKeyBackspace)
+                {
+                exitCode = EKeyWasNotConsumed;
+                iShiftKeyPressed = EPtiCaseLower;
 
                                 /*if((iLanguage == ELangFrench) || (iLanguage == ELangTaiwanChinese) || 
                                          (iLanguage == ELangCzech) || (iLanguage == ELangSlovak))*/
-					{
-					if(!iValue)
-					iShiftKeyPressed = EPtiCaseLower;
-					
-					else
-					iShiftKeyPressed = EPtiCaseUpper;
-					iShiftKey++;	
-					}
-				}
+                    {
+                    if(!iValue)
+                    iShiftKeyPressed = EPtiCaseLower;
+                    
+                    else
+                    iShiftKeyPressed = EPtiCaseUpper;
+                    iShiftKey++;    
+                    }
+                }
 #endif
-			else
-				{
-				exitCode = EKeyWasConsumed;	
-				iShiftKeyPressed = EPtiCaseLower;
-				}
-			
-			}
+            else
+                {
+                exitCode = EKeyWasConsumed;    
+                iShiftKeyPressed = EPtiCaseLower;
+                }
+            
+            }
 
-		}	    
+        }        
 
-    // handle Enter key event	
+    // handle Enter key event    
     if ( aKeyEvent.iCode == EKeyEnter )
         {
         exitCode = EKeyWasConsumed;
@@ -687,11 +695,11 @@ TKeyResponse CCalcFuncmapSubPane::OfferKeyEventL(const TKeyEvent& aKeyEvent, TEv
         return exitCode;
         }
     
-	iIsShiftKeyPressed = EFalse;
-		
-	}
+    iIsShiftKeyPressed = EFalse;
+        
+    }
  
-/*	if(aKeyEvent.iCode == EKeyOK)
+/*    if(aKeyEvent.iCode == EKeyOK)
     {
        
         HandleMiddleSoftKeyOREKeyOKL();
@@ -729,7 +737,7 @@ TKeyResponse CCalcFuncmapSubPane::OfferKeyEventL(const TKeyEvent& aKeyEvent, TEv
 
                 }while( iButtons[iSelected]->IsDimmed() );
                 
-                RedrawHighlight(oldSelect, iSelected);
+                RedrawHighlight( oldSelect, iSelected, ETrue );
 
                 exitCode = EKeyWasConsumed;
                 break;
@@ -757,7 +765,7 @@ TKeyResponse CCalcFuncmapSubPane::OfferKeyEventL(const TKeyEvent& aKeyEvent, TEv
 
                 }while( iButtons[iSelected]->IsDimmed() );
                 
-                RedrawHighlight(oldSelect, iSelected);
+                RedrawHighlight( oldSelect, iSelected, ETrue );
                 exitCode = EKeyWasConsumed;
                 break;
             }
@@ -767,7 +775,7 @@ TKeyResponse CCalcFuncmapSubPane::OfferKeyEventL(const TKeyEvent& aKeyEvent, TEv
                 
                 SetNextCursorPosForUpArrow(oldSelect);
 
-                RedrawHighlight(oldSelect, iSelected);
+                RedrawHighlight( oldSelect, iSelected, ETrue );
                 exitCode = EKeyWasConsumed;
                 break;
             }
@@ -777,7 +785,7 @@ TKeyResponse CCalcFuncmapSubPane::OfferKeyEventL(const TKeyEvent& aKeyEvent, TEv
                 
                 SetNextCursorPosForDownArrow(oldSelect);
  
-                RedrawHighlight(oldSelect, iSelected);
+                RedrawHighlight( oldSelect, iSelected, ETrue );
                 exitCode = EKeyWasConsumed;
                 break;
             }
@@ -837,7 +845,7 @@ TKeyResponse CCalcFuncmapSubPane::OfferKeyEventL(const TKeyEvent& aKeyEvent, TEv
                             }    
                         
                     }
-                    RedrawHighlight(oldSelect, iSelected);
+                    RedrawHighlight( oldSelect, iSelected);
                     exitCode = EKeyWasConsumed;
                 }
              }
@@ -876,7 +884,9 @@ void CCalcFuncmapSubPane::ConstructL
     iSelected = 0;    
     iContainer = aContainer;
     iIsOfferKeyEvent = EFalse;
-
+    iErrorCode = KErrNone;
+    iShowDrawHight = EFalse;
+    iInputData = EFalse;
     SetContainerWindowL(*iContainer);
     // Read character sequence tables, such as -, +.
     iCalcAppEnv = CCalcAppEnv::Static();
@@ -949,7 +959,7 @@ void CCalcFuncmapSubPane::ConstructL
     User::LeaveIfError(iQwertyModeStatusProperty.Attach(KCRUidAvkon, KAknQwertyInputModeActive));
    
     iShiftKeyPressed = EPtiCaseLower;
-    iShiftKey		 = 0;
+    iShiftKey         = 0;
 
      // Try to get the English key mappings. If those are not available, use the 
     // mappings of the current input language. The order is this because all mappings
@@ -959,7 +969,7 @@ void CCalcFuncmapSubPane::ConstructL
     iCoreLanguage = static_cast<CPtiCoreLanguage*>(iEngine->GetLanguage( iLanguage ));
 
     if( !iCoreLanguage )
-    	{
+        {
         iCRKey = CRepository::NewL(KCRUidAknFep);
         TInt ret = iCRKey->Get(KAknFepInputTxtLang,iLanguage);
         if( ret!= KErrNone )
@@ -1010,7 +1020,7 @@ void CCalcFuncmapSubPane::ConstructL
 
     }
 
-//	---------------------------------------------------------
+//    ---------------------------------------------------------
 // CCalcFuncmapSubPane::RefreshButtonIcons
 // This function is called by CCalcContainer::OfferKeyEventL
 // (other items were commented in a header).
@@ -1018,11 +1028,11 @@ void CCalcFuncmapSubPane::ConstructL
 //
 void CCalcFuncmapSubPane::RefreshButtonIcons()
 {
-	/*for (TInt count(0); count < iCountOfButtons; count++)
+    /*for (TInt count(0); count < iCountOfButtons; count++)
         {
         iButtons[count]->SetBitmapIcons(iCalcAppEnv->UnpressedButtonBmp(count),
-			iCalcAppEnv->PressedButtonBmp(count),
-			iCalcAppEnv->InactiveButtonBmp(count));
+            iCalcAppEnv->PressedButtonBmp(count),
+            iCalcAppEnv->InactiveButtonBmp(count));
         }*/
 }
 // ---------------------------------------------------------
@@ -1034,7 +1044,7 @@ void CCalcFuncmapSubPane::RefreshButtonIcons()
 void CCalcFuncmapSubPane::SetScrollupEnable
                      (TBool aEnable)  
     {
-		//Enabling/Disabling of scroll up buttons only for Non-Touch   
+        //Enabling/Disabling of scroll up buttons only for Non-Touch   
     if(!AknLayoutUtils::PenEnabled())
     {
         CAknButton* scrollUp = iButtons[EScrollUp];
@@ -1054,7 +1064,7 @@ void CCalcFuncmapSubPane::SetScrollupEnable
 void CCalcFuncmapSubPane::SetScrolldownEnable
                      (TBool aEnable) 
     {
-	//Enabling/Disabling of scroll down buttons only for Non-Touch
+    //Enabling/Disabling of scroll down buttons only for Non-Touch
     if(!AknLayoutUtils::PenEnabled())
     {       
     CAknButton* scrollDown = iButtons[EScrollDown];
@@ -1135,11 +1145,11 @@ void CCalcFuncmapSubPane::SetNextCursorPosForDownArrow(TInt aOldPos)
 //
 void CCalcFuncmapSubPane::RedrawHighlight
       (TUint aOldId,            // The button chosen before
-       TUint aNewId) const      // The button chosen newly
+       TUint aNewId)            // The button chosen newly
     {
     // The State of each button is set.
     CAknButton* button = iButtons[aOldId];
-    CAknButtonState* state = button->State(EnNormal);      	
+    CAknButtonState* state = button->State(EnNormal);          
         
     if(state->Flags() == EnPressed)
         {
@@ -1148,16 +1158,47 @@ void CCalcFuncmapSubPane::RedrawHighlight
         TEventCode aType = EEventKeyUp;
         //trigger offerkeyeventl to this button
         TRAP_IGNORE(button->OfferKeyEventL(aKeyEvent,aType));
-	    state->SetFlags(EnNormal);
-     	}
+        state->SetFlags(EnNormal);
+         }
+
     if( aOldId != aNewId )
-    	{
+        {
+        button = iButtons[aNewId];        
+        }
+    }
+
+// ---------------------------------------------------------
+// CCalcFuncmapSubPane::RedrawHighlight
+// An old highlight rectangle is erased and 
+// a new highlight rectangle is drawn.
+// (other items were commented in a header).
+// ---------------------------------------------------------
+//
+void CCalcFuncmapSubPane::RedrawHighlight
+      (TUint aOldId,            // The button chosen before
+       TUint aNewId,
+       TBool aShowHightlight)       // The button chosen newly
+    {
+    // The State of each button is set.
+    CAknButton* button = iButtons[aOldId];
+    CAknButtonState* state = button->State(EnNormal);          
+    iShowDrawHight = ETrue;
+    if( state->Flags() == EnPressed )
+        {
+        TKeyEvent aKeyEvent;
+        aKeyEvent.iScanCode = EStdKeyEnter;
+        TEventCode aType = EEventKeyUp;
+        //trigger offerkeyeventl to this button
+        TRAP_IGNORE(button->OfferKeyEventL(aKeyEvent,aType));
+        state->SetFlags(EnNormal);
+         }
+        if( aOldId != aNewId )
+        {       
         button->SetFocus( EFalse, EDrawNow );      
         button = iButtons[aNewId];        
         button->SetFocus( ETrue, EDrawNow );
-    	}
+        }
     }
-
 // ---------------------------------------------------------
 // CCalcFuncmapSubPane::SetLayout
 // Set functionmap button layout.
@@ -1170,42 +1211,42 @@ void CCalcFuncmapSubPane::SetLayout()
     {
     TRect parentRect(Rect());    
     
-	 TInt t = 0;
-	 if( AknLayoutUtils::PenEnabled()  )
-	    {
-	        for (TInt count(0); count < KButtonsInColumnTouch; count++)
+     TInt t = 0;
+     if( AknLayoutUtils::PenEnabled()  )
+        {
+            for (TInt count(0); count < KButtonsInColumnTouch; count++)
             {
             for (TInt row(0); row < 5; row++)   
-      	        { 
-      	        
-      	         TAknWindowLineLayout area;
+                  { 
+                  
+                   TAknWindowLineLayout area;
                  TAknWindowLineLayout area1;
 
                  TAknWindowLineLayout areaG2;
                  TAknWindowLineLayout areaGraphics;
-     	        
-     	            area= AknLayoutScalable_Apps::toolbar_button_pane_cp01(1).LayoutLine();
+                 
+                     area= AknLayoutScalable_Apps::toolbar_button_pane_cp01(1).LayoutLine();
                    areaG2= AknLayoutScalable_Apps::cell_calc_pane_g2(1).LayoutLine();
-    		         if (Layout_Meta_Data::IsLandscapeOrientation())
-    		            {
-    		                area1 = AknLayoutScalable_Apps::cell_calc_pane(count,row,enTouch_with_prt).LayoutLine();
-    		            }
-    		         else
-    		            {
-    		               area1 = AknLayoutScalable_Apps::cell_calc_pane(count,row,enTouch_enabled).LayoutLine();
-    		            }   
+                     if (Layout_Meta_Data::IsLandscapeOrientation())
+                        {
+                            area1 = AknLayoutScalable_Apps::cell_calc_pane(count,row,enTouch_with_prt).LayoutLine();
+                        }
+                     else
+                        {
+                           area1 = AknLayoutScalable_Apps::cell_calc_pane(count,row,enTouch_enabled).LayoutLine();
+                        }   
 
                     areaGraphics = area1;
                     areaGraphics.iW = areaGraphics.iW - areaG2.il - areaG2.ir;
                     areaGraphics.iH = areaG2.iH;
-    		    
-    		        area1.il = area1.il + area.il;
-    		        area1.ir = area1.ir - area.ir;
-    		        area1.it = area1.it + area.it;
-    		        area1.ib = area1.ib - area.ib;
-    		        area1.iW = area1.iW - area.il - area.ir;
-    		        area1.iH = area1.iH - area.it - area.ib;
-    		    
+                
+                    area1.il = area1.il + area.il;
+                    area1.ir = area1.ir - area.ir;
+                    area1.it = area1.it + area.it;
+                    area1.ib = area1.ib - area.ib;
+                    area1.iW = area1.iW - area.il - area.ir;
+                    area1.iH = area1.iH - area.it - area.ib;
+                
                  
                 //A change in values here
                 if ( Layout_Meta_Data::IsLandscapeOrientation() )
@@ -1232,26 +1273,26 @@ void CCalcFuncmapSubPane::SetLayout()
                 iButtons[t]->SetHighlightRect( rect );
                 }
                 t++;
-      	        }
+                  }
             }
             
        }
             
-	    
-	    else
-	        {
+        
+        else
+            {
              for (TInt count(0); count < KButtonsInColumn; count++)
                 {
                 for (TInt row(0); row < 5; row++)   
-           	        {   	        
-               	        AknLayoutUtils::LayoutControl(
+                       {               
+                           AknLayoutUtils::LayoutControl(
                         iButtons[t], parentRect, AknLayoutScalable_Apps::cell_calc_pane( count, row ).LayoutLine());
                         iButtons[t]->SetHighlightRect( iButtons[t]->Rect() );
                         t++;
-           	        }
-           	        
+                       }
+                       
                 }
-	        }
+            }
                 
         
     }
@@ -1290,9 +1331,9 @@ CCoeControl* CCalcFuncmapSubPane::ComponentControl
 //
 /*CCalcCommandButton*/CAknButton* CCalcFuncmapSubPane::GetButtonBitmapControl
                                     (TInt aIndex)
-	{
-		return iButtons[aIndex];
-	}
+    {
+        return iButtons[aIndex];
+    }
 
 // ---------------------------------------------------------
 // CCalcFuncmapSubPane::SizeChanged
@@ -1314,23 +1355,23 @@ void CCalcFuncmapSubPane::SizeChanged()
 //
 void CCalcFuncmapSubPane::SetSqrtEnable(TBool aEnable)
 {
-	//Get the sqrt button
-	CAknButton* button = NULL;
-	 if( !AknLayoutUtils::PenEnabled()  )
-	    {
-	     button = iButtons[ESqrtButton];     
-	    }
-	  else
-	    {
-	     button = iButtons[ECmdTSqrt];    
-	    }  
-	if( button )
-	    {
+    //Get the sqrt button
+    CAknButton* button = NULL;
+     if( !AknLayoutUtils::PenEnabled()  )
+        {
+         button = iButtons[ESqrtButton];     
+        }
+      else
+        {
+         button = iButtons[ECmdTSqrt];    
+        }  
+    if( button )
+        {
          button->SetDimmed(!aEnable);   
          button->DrawNow();
         }
     iIsSqrtDimmed = aEnable;
-	}
+    }
 
 
 // ---------------------------------------------------------
@@ -1341,22 +1382,22 @@ void CCalcFuncmapSubPane::SetSqrtEnable(TBool aEnable)
 //
 void CCalcFuncmapSubPane::SetPercentEnable(TBool aEnable)
 {
-	//Get the percent button
-	CAknButton* button = NULL;
-	 if( !AknLayoutUtils::PenEnabled()  )
-	    {
-	     button = iButtons[EPercentButton];     
-	    }
-	  else
-	    {
-	     button = iButtons[ECmdTPercent];    
-	    }  
+    //Get the percent button
+    CAknButton* button = NULL;
+     if( !AknLayoutUtils::PenEnabled()  )
+        {
+         button = iButtons[EPercentButton];     
+        }
+      else
+        {
+         button = iButtons[ECmdTPercent];    
+        }  
     if( button )
-	    {
+        {
          button->SetDimmed(!aEnable);   
          button->DrawNow();
-	   }
-	iIsPercentDimmed = aEnable;
+       }
+    iIsPercentDimmed = aEnable;
 }
 
 // ---------------------------------------------------------
@@ -1364,7 +1405,7 @@ void CCalcFuncmapSubPane::SetPercentEnable(TBool aEnable)
 // Redraw percent button, either normal or dimmed.
 // (other items were commented in a header).
 // ---------------------------------------------------------
-//		
+//        
 #ifdef RD_INTELLIGENT_TEXT_INPUT
 TBool CCalcFuncmapSubPane::MapNumericCharL( TKeyEvent aKeyEvent )
     {
@@ -1439,11 +1480,11 @@ TBool CCalcFuncmapSubPane::MapNumericCharL( TKeyEvent aKeyEvent )
     }
 
 #else
-TBool CCalcFuncmapSubPane::MapNumericCharL( TPtiKey aKey, TPtiTextCase aCase )	
+TBool CCalcFuncmapSubPane::MapNumericCharL( TPtiKey aKey, TPtiTextCase aCase )    
     {
     TBuf<KMaxNumCharsPerCase> keys;
 
-    iQwertyKeyMappings->GetDataForKey( aKey, keys, aCase );				
+    iQwertyKeyMappings->GetDataForKey( aKey, keys, aCase );                
 
     if ( keys.Length() > 0 )
         {
@@ -1505,13 +1546,13 @@ TBool CCalcFuncmapSubPane::MapNumericCharL( TPtiKey aKey, TPtiTextCase aCase )
     return EFalse;
     }
 #endif       
-	
+    
 // ---------------------------------------------------------
 // CCalcFuncmapSubPane::MapNumericChar
 // Redraw percent button, either normal or dimmed.
 // (other items were commented in a header).
 // ---------------------------------------------------------
-//		
+//        
 #ifdef RD_INTELLIGENT_TEXT_INPUT
 TBool CCalcFuncmapSubPane::MapNumerics( TKeyEvent aKeyEvent )
     {
@@ -1552,12 +1593,12 @@ TBool CCalcFuncmapSubPane::MapNumerics( TKeyEvent aKeyEvent )
     }
 
 #else
-TBool CCalcFuncmapSubPane::MapNumerics( TPtiKey aKey, TPtiTextCase aCase )	
+TBool CCalcFuncmapSubPane::MapNumerics( TPtiKey aKey, TPtiTextCase aCase )    
     {
 
     TBuf<KMaxNumCharsPerCase> keys;
 
-    iQwertyKeyMappings->GetDataForKey( aKey, keys, aCase );				
+    iQwertyKeyMappings->GetDataForKey( aKey, keys, aCase );                
 
     if ( keys.Length() > 0 )
         {
@@ -1585,7 +1626,7 @@ TBool CCalcFuncmapSubPane::MapNumerics( TPtiKey aKey, TPtiTextCase aCase )
     return EFalse;
     }
 #endif
-		
+        
 // ---------------------------------------------------------
 // CCalcFuncmapSubPane::HandlePointerEventL
 // Handles apen input in Function Pane. .
@@ -1608,10 +1649,77 @@ void CCalcFuncmapSubPane::HandlePointerEventL
             {
             RedrawHighlight( oldSelect, iSelected );
             }
+        if( aPointerEvent.iType == TPointerEvent::EButton1Down )
+            {
+            iContainer->View()->HandleCommandL(KButtonsIdTblTouch[iSelected]);
+            iInputData = ETrue;
+            }
+        if( aPointerEvent.iType == TPointerEvent::EButton1Up )
+            {
+            iInputData = EFalse;
+            if( iErrorCode != KErrNone )
+                {
+                ErrorMsgL( iErrorCode );
+                iErrorCode = KErrNone;
+                }
+            }
         }
-    CCoeControl::HandlePointerEventL( aPointerEvent );
+
+        CCoeControl::HandlePointerEventL( aPointerEvent );
+        
     }
     
+// ---------------------------------------------------------
+// CCalcFuncmapSubPane::SetErrorCode
+// Call from container  when an error code is display.
+// ---------------------------------------------------------
+//        
+void  CCalcFuncmapSubPane::SetErrorCode(TInt aError)
+    {
+    iErrorCode = aError;
+    }
+
+// ---------------------------------------------------------
+// CCalcFuncmapSubPane::ErrorMsgL
+// Call when there is an error release event.
+// ---------------------------------------------------------
+//    
+void CCalcFuncmapSubPane::ErrorMsgL(TInt aErrorCode) 
+    {
+    TInt resourceId(0);
+
+    switch (aErrorCode)
+        {
+        case KErrOverflow:
+            {
+            resourceId = R_CALC_ERROR_OUTOFRANGE;
+            break;
+            }
+        case KErrDivideByZero:
+            {
+            resourceId = R_CALC_ERROR_DIVISIONBYZERO;
+
+             // UpdateState( EOperator );
+            break;
+            }
+        case KErrNotSupported:
+            {
+            resourceId = R_CALC_ERROR_NEGATIVEVALUESQRT;
+            break;
+            }
+        default:
+            {
+            return;
+            }
+        }
+    
+    //Localisation of scalable UI.
+    HBufC* message = iCoeEnv->AllocReadResourceLC( resourceId ) ;
+    CAknErrorNote* note = new (ELeave) CAknErrorNote();
+    note->ExecuteLD( *message );
+    CleanupStack::PopAndDestroy( message );
+    
+    }
 // ---------------------------------------------------------
 // CCalcFuncmapSubPane::FunctionPaneRect
 // This function gives the layout of Function Pnae.
@@ -1622,7 +1730,7 @@ void CCalcFuncmapSubPane::HandlePointerEventL
 TRect CCalcFuncmapSubPane::FunctionPaneRect()
    {
    TRect parentRect(Rect()); 
-   return 	parentRect;
+   return     parentRect;
    }
    
 // ---------------------------------------------------------
@@ -1633,17 +1741,17 @@ TRect CCalcFuncmapSubPane::FunctionPaneRect()
 //
 
 TInt CCalcFuncmapSubPane::CalculatingCorrectButton
-					(const TPointerEvent& aPointerEvent)
+                    (const TPointerEvent& aPointerEvent)
    {
     TInt selected = iSelected;
     
     //Function that calculates the correct button where the pointer event had occurred
     for(TInt i = 0; i<iCountOfButtons; i++)
     {
-   		if(iButtons[i]->Rect().Contains(aPointerEvent.iPosition))
-   		{
-   			selected = i;
-   		}
+           if(iButtons[i]->Rect().Contains(aPointerEvent.iPosition))
+           {
+               selected = i;
+           }
     }
     return selected;
    }
@@ -1656,23 +1764,22 @@ TInt CCalcFuncmapSubPane::CalculatingCorrectButton
 
 void CCalcFuncmapSubPane::HandleMiddleSoftKeyOREKeyOKL()
    {
-     	//get the selected button id
-	    CAknButton* button = iButtons[iSelected];
-	    //put the button in the pressed state
+         //get the selected button id
+        CAknButton* button = iButtons[iSelected];
+        //put the button in the pressed state
         CAknButtonState* state = button->State(EnNormal);
-    	//Put the button in pressed state
+        //Put the button in pressed state
         
         TKeyEvent aKeyEvent;
         aKeyEvent.iScanCode = EStdKeyEnter;
         TEventCode aType = EEventKeyDown;
         button->OfferKeyEventL(aKeyEvent,aType);
-	    //put to pressed state
-	    state->SetFlags(EnPressed);
+        //put to pressed state
+        state->SetFlags(EnPressed);
         button->DrawNow();
         
-	    if(!iIsOfferKeyEvent)
+        if(!iIsOfferKeyEvent)
         {
-            
             NotifyReleaseKeyL();
         }
    }
@@ -1754,17 +1861,17 @@ TBool CCalcFuncmapSubPane::IsKeyLongPressed()
 // ---------------------------------------------------------
 //
 void CCalcFuncmapSubPane::MapDataForChrShiftKey( TDes& aOperators, TInt& aFirstOperator, TInt& aSecondOperator)
-	{ 
-	if( aOperators.Length() > 0 )
-		{
-		TUint16 firstChar = aOperators[0];
-		TUint16 secondChar = firstChar;
-		
-		if ( aOperators.Length() > 1 )
-			{
-			secondChar = aOperators[1];
-			}
-		
+    { 
+    if( aOperators.Length() > 0 )
+        {
+        TUint16 firstChar = aOperators[0];
+        TUint16 secondChar = firstChar;
+        
+        if ( aOperators.Length() > 1 )
+            {
+            secondChar = aOperators[1];
+            }
+        
         switch ( firstChar )
             {
             case KPtiPinyinMarker:
@@ -1778,22 +1885,22 @@ void CCalcFuncmapSubPane::MapDataForChrShiftKey( TDes& aOperators, TInt& aFirstO
                     secondChar = aOperators[2];
                     }
                 else
-                	{
-                	firstChar = aOperators[1];
-                	secondChar = firstChar;
-                	}
+                    {
+                    firstChar = aOperators[1];
+                    secondChar = firstChar;
+                    }
                 break;
             default:
                 break;
-		
-		}
+        
+        }
         
        MapOperators( firstChar, aFirstOperator );
 
        MapOperators( secondChar, aSecondOperator );
        
        }
-	}
+    }
 
 // ---------------------------------------------------------
 // CCalcFuncmapSubPane::MapOperators
@@ -1801,83 +1908,83 @@ void CCalcFuncmapSubPane::MapDataForChrShiftKey( TDes& aOperators, TInt& aFirstO
 // ---------------------------------------------------------
 //
 TBool CCalcFuncmapSubPane::MapOperators( TUint16 aOperator, TInt& aResult)
-	{
+    {
     TInt loc1 = KAllowedOperatorPlus().Locate( aOperator );
     if ( loc1 != KErrNotFound )
         {
         if ( AknLayoutUtils::PenEnabled() )
-        	{
+            {
             aResult = ECmdTAdd;
-        	}
+            }
         else
-        	{
-        	aResult = EPlusButton;
-        	}
+            {
+            aResult = EPlusButton;
+            }
         return ETrue;
         }
     TInt loc2 = KAllowedOperatorMinus().Locate( aOperator );
     if ( loc2 != KErrNotFound )
         {
         if ( AknLayoutUtils::PenEnabled() )
-        	{
+            {
             aResult = ECmdTSubtract;
-        	}
+            }
         else
-        	{
-        	aResult = EMinusButton;
-        	}
+            {
+            aResult = EMinusButton;
+            }
         return ETrue;
         }
     TInt loc3 = KAllowedOperatorStar().Locate( aOperator );
     if ( loc3 != KErrNotFound )
         {
         if ( AknLayoutUtils::PenEnabled() )
-        	{
+            {
             aResult = ECmdTMultiply;
-        	}
+            }
         else
-        	{
-        	aResult = EMultiplyButton;
-        	}
+            {
+            aResult = EMultiplyButton;
+            }
         return ETrue;
         }
     TInt loc4 = KAllowedOperatorDivide().Locate( aOperator );
     if ( loc4 != KErrNotFound )
         {
         if ( AknLayoutUtils::PenEnabled() )
-        	{
+            {
             aResult = ECmdTDivide;
-        	}
+            }
         else
-        	{
-        	aResult = EDivideButton;
-        	}
+            {
+            aResult = EDivideButton;
+            }
         return ETrue;
         }
     TInt loc5 = KAllowedOperatorEquals().Locate( aOperator );
     if ( loc5 != KErrNotFound )
         {
         if ( AknLayoutUtils::PenEnabled() )
-        	{
+            {
             aResult = ECmdTResult;
-        	}
+            }
         else
-        	{
-        	aResult = EEqualButton;
-        	}
+            {
+            aResult = EEqualButton;
+            }
         return ETrue;
         }
     TInt loc6 = KAllowedOperatorPercent().Locate( aOperator );
     if ( loc6 != KErrNotFound )
         {
         if ( AknLayoutUtils::PenEnabled() )
-        	{
+            {
             aResult = ECmdTPercent;
-        	}
+            }
         else
-        	{ 
-        	aResult = EPercentButton;
-        	}
+            { 
+            aResult = EPercentButton;
+            }
         return ETrue;
         }
     TInt loc7 = KAllowedOperatorDecimal().Locate( aOperator );
@@ -1887,7 +1994,7 @@ TBool CCalcFuncmapSubPane::MapOperators( TUint16 aOperator, TInt& aResult)
         return ETrue;
         }
     return EFalse;
-	}
+    }
 
 // ---------------------------------------------------------
 // CCalcFuncmapSubPane::GetKeyboardType

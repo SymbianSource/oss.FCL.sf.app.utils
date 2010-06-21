@@ -45,12 +45,12 @@ const TInt KMaxNumCharsPerCase = 50;
 //  FORWARD DECLARATIONS
 //class   CCalcCommandButton;
 //Use of new AknButtons
-class 	CAknButton;
+class     CAknButton;
 class   CCalcContainer;
 class   CCalcAppEnv;
 class   CPtiEngine;
 class   CPtiQwertyKeyMappings;
-class 	CPtiCoreLanguage;
+class     CPtiCoreLanguage;
 #ifdef RD_INTELLIGENT_TEXT_INPUT 
 class   CPtiHalfQwertyKeyMappings;
 #endif
@@ -59,8 +59,8 @@ class   CPtiHalfQwertyKeyMappings;
 
 /**
 CCalcFuncmapSubPane : 'FunctionMap Sub-Pane' class
-										: Class also derived from MCoeControlObserver to get events
-										  from Avkon buttons
+                                        : Class also derived from MCoeControlObserver to get events
+                                          from Avkon buttons
 */
 class   CCalcFuncmapSubPane
         :public CCoeControl , public MCoeControlObserver
@@ -73,14 +73,14 @@ class   CCalcFuncmapSubPane
                ECmdTSeven,        
                ECmdTFour,         
                ECmdTOne,          
-			   ECmdTZero,         
-			   ECmdTSqrt, 		 
+               ECmdTZero,         
+               ECmdTSqrt,          
                ECmdTEight,        
                ECmdTFive,         
                ECmdTTwo,          
-			   ECmdTSeparator,    
-			   ECmdTPercent,		 
-			   ECmdTNine,         
+               ECmdTSeparator,    
+               ECmdTPercent,         
+               ECmdTNine,         
                ECmdTSix,          
                ECmdTThree,        
                ECmdTChangeSign,   
@@ -101,11 +101,11 @@ class   CCalcFuncmapSubPane
             EMinusButton,           // -
             EMultiplyButton,        // *
             EDivideButton,          // /
-			EChangeSignButton,      // +/-
+            EChangeSignButton,      // +/-
             EEqualButton,           // =
-			ESqrtButton,			// sqrt
-			EPercentButton,			// %
-			EScrollUp,              // << 
+            ESqrtButton,            // sqrt
+            EPercentButton,            // %
+            EScrollUp,              // << 
             EScrollDown             // >> 
             };
    public:  // Constructors and destructor
@@ -132,26 +132,26 @@ class   CCalcFuncmapSubPane
         * @param aEnable : Flag of ChangeSign enable
         */
         void SetChangeSignEnable(TBool aEnable);
-		
-		/**
+        
+        /**
         * Redraw Sqrt button on Sqrt enable.
         * @param aEnable : Flag of SqrtEnable enable
         */
-		void SetSqrtEnable (TBool aEnable);
+        void SetSqrtEnable (TBool aEnable);
 
         /**
         * Redraw Clear button on Clear enable.
         * @param aEnable : Flag of ClearEnable enable
         */
         void SetClearKeyEnable( TBool aEnable );
-		
-		/**
+        
+        /**
         * Redraw Sqrt button on Percent enable.
         * @param aEnable : Flag of PercentEnable enable
         */
-		void SetPercentEnable(TBool aEnable);
+        void SetPercentEnable(TBool aEnable);
 
-		/**
+        /**
         * If no key is pressed until timeout of *-key,
         * this function is called.
         */
@@ -186,8 +186,18 @@ class   CCalcFuncmapSubPane
         * 
         */
         TBool IsKeyLongPressed();
-
         
+        /**
+        * Called  when an error is displayed.
+        * @param aErrorCode : an error code  from  CCalcContainer
+        */
+        void SetErrorCode(TInt aErrorCode);
+        
+        /**
+        * Called  when there is a release event  .
+        * @param aErrorCode : an error code ,it used to display dialog
+        */
+        void ErrorMsgL(TInt aErrorCode);
     public:   // Functions from base classes
     
         /**
@@ -204,19 +214,19 @@ class   CCalcFuncmapSubPane
         */
         TKeyResponse OfferKeyEventL(const TKeyEvent& aKeyEvent, TEventCode aType);
 
-		/**
-		*Refresh with latest button Icons when the skin change event has occured.
-	    */
-		void RefreshButtonIcons();
-		
-		 /**
+        /**
+        *Refresh with latest button Icons when the skin change event has occured.
+        */
+        void RefreshButtonIcons();
+        
+         /**
         * CCalcFuncmapSubPane::GetButtonBitmapControl
-		* This function is called when the size changes.
+        * This function is called when the size changes.
         * 
         */
-		    CAknButton* GetButtonBitmapControl(TInt aIndex); //Return iButtons
-		
-		 /**
+            CAknButton* GetButtonBitmapControl(TInt aIndex); //Return iButtons
+        
+         /**
         * From CCoeControl : Handling pointer event
         * Handles all pen input events on function pane.
         * 
@@ -235,14 +245,14 @@ class   CCalcFuncmapSubPane
         */
         void HandleMiddleSoftKeyOREKeyOKL();             
 
-				/**
+                /**
         * GetChangeSignButtonState
         * Gets the state of the Sign Button
         */
         TBool GetChangeSignButtonState();
         
         
-				/**
+                /**
         * GetSqrtButtonState
         * Gets the state of the Squareroot Button
         */
@@ -319,7 +329,16 @@ class   CCalcFuncmapSubPane
         * @param aOldId : The button chosen before
         * @param aNewId : The button chosen newly
         */
-        void RedrawHighlight(TUint aOldId, TUint aNewId) const;
+        void RedrawHighlight(TUint aOldId, TUint aNewId) ;
+        
+        /**
+        * An old highlight rectangle and 
+        * a new highlight rectangle are redrawn.
+        * @param aOldId : The button chosen before
+        * @param aNewId : The button chosen newly
+        * @param aShowHightlight: control hightlight display
+        */
+        void RedrawHighlight(TUint aOldId, TUint aNewId,TBool aShowHightlight) ;
         
         /**
         * Set functionmap button layout. 
@@ -383,20 +402,20 @@ class   CCalcFuncmapSubPane
         CCalcAppEnv*    iCalcAppEnv;   // Not own
         RProperty       iQwertyModeStatusProperty; // To check the Qwerty keypad active 
         
-        TPtiTextCase	  iShiftKeyPressed;
+        TPtiTextCase      iShiftKeyPressed;
         CPtiEngine*     iEngine;
-        CRepository* 	  iCRKey;
+        CRepository*       iCRKey;
         CPtiCoreLanguage* iCoreLanguage;
         CPtiQwertyKeyMappings* iQwertyKeyMappings;
 #ifdef RD_INTELLIGENT_TEXT_INPUT       
         CPtiHalfQwertyKeyMappings* iHalfQwertyKeyMappings;
 #endif
 
-        TInt 			      iLanguage;
+        TInt                   iLanguage;
         TInt                  iUiLanguage;
-        TInt 			      iShiftKey;
-        TBool 			    iValue;
-        TInt            iCountOfButtons;	//keeps track of the count of buttons
+        TInt                   iShiftKey;
+        TBool                 iValue;
+        TInt            iCountOfButtons;    //keeps track of the count of buttons
         TInt            iButtonsInRow;   //Number of buttons in the row
         TInt            iButtonsInColumn; //Number of buttons in the Column
         TBool           iIsSqrtDimmed;  //Holds the state of the squareroot button
@@ -407,6 +426,9 @@ class   CCalcFuncmapSubPane
         TBool           iIsKeyLongPress;     //Checks if the button is Long Pressed or not
         TInt            iKeyboardType;
         TBool           iIsShiftKeyPressed;
+        TInt            iErrorCode;
+        TBool           iShowDrawHight;
+        TBool           iInputData;
     };
 
 #endif      //  CALCFUNC_H

@@ -101,26 +101,26 @@ class CCalcOutputSheet
         */
         void ScrollDown();
 
-		/**
-		* Refresh PaperBitmap Icon when the skin change event has occured.
-		*/
-		inline void RefreshPaperBitmap() ;
-		/**
-		* Refresh ScalablePaperBitmap Icon when the skin change event has occured.
-		*/
-		inline void RefreshScalablePaperBitmap() ;
+        /**
+        * Refresh PaperBitmap Icon when the skin change event has occured.
+        */
+        inline void RefreshPaperBitmap() ;
+        /**
+        * Refresh ScalablePaperBitmap Icon when the skin change event has occured.
+        */
+        inline void RefreshScalablePaperBitmap() ;
 
 
-		inline void RefreshResultsLineBitmap() ;
-		
-		/**
-		* From MEikScrollBarObserver: to Handle scrollbar events
-		* @param CEikScrollBar* : Pointer to the scrollbar
-		* @param TEikScrollEvent : Event on the Scrollbar
-		*/
-		void HandleScrollEventL(CEikScrollBar* aScrollBar, TEikScrollEvent aEventType);
-		
-		
+        inline void RefreshResultsLineBitmap() ;
+        
+        /**
+        * From MEikScrollBarObserver: to Handle scrollbar events
+        * @param CEikScrollBar* : Pointer to the scrollbar
+        * @param TEikScrollEvent : Event on the Scrollbar
+        */
+        void HandleScrollEventL(CEikScrollBar* aScrollBar, TEikScrollEvent aEventType);
+        
+        
         /**
         * From CCoeControl : Notifier for changing language
         * @param aType : Type of resource change
@@ -128,7 +128,7 @@ class CCalcOutputSheet
         void HandleResourceChange(TInt aType);
         void HandleResourceChangeOutSheetL(TInt aType);
  
-		
+        
     private:    // New functions
         /**
         * C++ default constructor.
@@ -157,7 +157,7 @@ class CCalcOutputSheet
         */
         void Draw(const TRect& aRect) const;
         
-  		/**
+          /**
         * Function used to dynamically update scrollbar indicators.
         */
         void UpdateScrollIndicatorL();
@@ -166,26 +166,27 @@ class CCalcOutputSheet
     private:    // Data
         TInt iScrollOffset;     // Scroll position
         const CGulIcon* iCalcPaper; // Not own
-		const CGulIcon* iCalcScalablePaper[KCountOfPaperBitmaps];
-		const CGulIcon* iCalcResultsLine;
+        const CGulIcon* iCalcScalablePaper[KCountOfPaperBitmaps];
+        const CGulIcon* iCalcResultsLine;
         CCalcHistory*   iCalcHistory;    // Not own
         CCalcContainer* iCalcContainer;  // Not own
         CCalcAppEnv*    iCalcAppEnv;     // Not own
-		TAknLayoutRect iCalcPaperLayout[KCountOfPaperBitmaps];
-		TInt iCalcOutputSheetLines;
-		CAknsBasicBackgroundControlContext* iOpSheetContext;
-		CArrayFixFlat<TAknLayoutText>* iOperatorLayout;
-		CArrayFixFlat<TAknLayoutText>* iOperandLayout;
-		CArrayFixFlat<TAknLayoutRect>* iResultsLineLayout;
-		CArrayFixFlat<TAknLayoutRect>* iEqualLineLayout;
-		CRepository* 	iCRKey;
-		TInt 			iLanguage;
+        TAknLayoutRect iCalcPaperLayout[KCountOfPaperBitmaps];
+        TInt iCalcOutputSheetLines;
+        CAknsBasicBackgroundControlContext* iOpSheetContext;
+        CArrayFixFlat<TAknLayoutText>* iOperatorLayout;
+        CArrayFixFlat<TAknLayoutText>* iOperandLayout;
+        CArrayFixFlat<TAknLayoutRect>* iResultsLineLayout;
+        CArrayFixFlat<TAknLayoutRect>* iEqualLineLayout;
+        CRepository*     iCRKey;
+        TInt             iLanguage;
         TInt            iUiLanguage;
-		CEikScrollBarFrame *iSBFrame;		//own -> pointer used for scrollbar frame
-		TAknLayoutRect  iPaperPaneRect;
-		TInt            iPrevThumbPosition;
-		            
-       
+        CEikScrollBarFrame *iSBFrame;        //own -> pointer used for scrollbar frame
+        TAknLayoutRect  iPaperPaneRect;
+        TInt            iPrevThumbPosition;
+                    
+        // the bottom right coordinate of scrollbar  
+        TPoint          iSBBrPoint;
     };
 
 #include "CalcOutSheet.inl"

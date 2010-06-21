@@ -23,7 +23,7 @@
 #include    <AknUtils.h>   // AknLayoutUtils::LayoutControl 
 #include    <Calcsoft.rsg>
 
-#include	<layoutmetadata.cdl.h>
+#include    <layoutmetadata.cdl.h>
 
 // For skin support. 
 #include    <AknsDrawUtils.h>
@@ -43,7 +43,7 @@
 #include    "CalcOutSheet.h"
 #include    "calc.hrh"
 #include    "CalcView.h"
-#include	"CalcEnv.h"
+#include    "CalcEnv.h"
 #include    "CalcHistory.h"
 #include    "CalcDrawingConst.laf" // for layout information
 
@@ -71,7 +71,7 @@ enum TCalcControlIndex
     {
     ECalcControlFunctionMap,
     ECalcControlOutputSheet,
-	ECalcControlEditorPane
+    ECalcControlEditorPane
     };
 
 // If const TChar is used, complie error occurs in THUMB build.
@@ -103,15 +103,15 @@ CCalcContainer::~CCalcContainer()
     delete iTimeout;
 
     if ( iTimeoutChr )
-    	{
+        {
         delete iTimeoutChr;
         iTimeoutChr = NULL;
-    	}
+        }
     if ( iTimeoutShift )
-    	{
+        {
         delete iTimeoutShift;
         iTimeoutShift = NULL;
-    	}
+        }
 
     delete iSkinContext;
     }
@@ -247,15 +247,15 @@ void CCalcContainer::SetChangeSignDisable()
 //
 void CCalcContainer::SetSqrtEnableL()
     {
-	TCalcEditLine editLine(iEditorPane->EditLine());
-	TBool sqrtEnable(ETrue);
+    TCalcEditLine editLine(iEditorPane->EditLine());
+    TBool sqrtEnable(ETrue);
     
-    if (editLine.NumberL() == 0.0)
+    if ( editLine.NumberL() == 0.0 )
         {
         sqrtEnable = EFalse;    
-		}
-	iFuncmapPane->SetSqrtEnable(sqrtEnable);
-	}
+        }
+    iFuncmapPane->SetSqrtEnable(sqrtEnable);
+    }
 
 // ---------------------------------------------------------
 // CCalcContainer::SetPercentEnableL
@@ -265,15 +265,15 @@ void CCalcContainer::SetSqrtEnableL()
 //
 void CCalcContainer::SetPercentEnableL()
     {
-	TCalcEditLine editLine(iEditorPane->EditLine());
-	TBool percentEnable(ETrue);
+    TCalcEditLine editLine(iEditorPane->EditLine());
+    TBool percentEnable(ETrue);
     
     if (editLine.NumberL() == 0.0)
         {
         percentEnable = EFalse;    
-		}
-	iFuncmapPane->SetPercentEnable(percentEnable);
-	}
+        }
+    iFuncmapPane->SetPercentEnable(percentEnable);
+    }
 
 
 // ---------------------------------------------------------
@@ -328,7 +328,16 @@ void CCalcContainer::NotifyChangeDecimal(TChar aOld, TChar aNew)
     iEditorPane->NotifyChangeDecimal(aOld, aNew);
     iSheetPane->DrawNow();
     }
-
+    
+// ---------------------------------------------------------
+// CCalcContainer::SetErrorCode
+// Call from view  when an error code is display.
+// ---------------------------------------------------------
+//        
+void  CCalcContainer::SetErrorCode(TInt aError)
+    {
+    iFuncmapPane->SetErrorCode( aError );
+    }
 
 // ---------------------------------------------------------
 // CCalcContainer::GetHelpContext
@@ -366,7 +375,7 @@ void CCalcContainer::ConstructL(
     
     iFuncmapPane = CCalcFuncmapSubPane::NewL(this);
     iSheetPane = CCalcOutputSheet::NewL(this);
-	iEditorPane = CCalcEditorSubPane::NewL(this);
+    iEditorPane = CCalcEditorSubPane::NewL(this);
 
     iTimeout = CPeriodic::NewL(KCallBackPriority);
  
@@ -687,7 +696,7 @@ TKeyResponse CCalcContainer::OfferKeyEventL
             else
                 {
                 if ( iFuncmapPane->GetKeyboardType() == EPtiKeyboardHalfQwerty )
-                	{
+                    {
                     if ( HandleChrKeyTimeoutForKeyPressL( aKeyEvent, aType ) )
                         {
                         return EKeyWasConsumed;
@@ -699,7 +708,6 @@ TKeyResponse CCalcContainer::OfferKeyEventL
                     }
                 }
 #endif
-
             iValue =1 ;
             break;
             }
@@ -707,7 +715,7 @@ TKeyResponse CCalcContainer::OfferKeyEventL
             {
             if(!(iFuncmapPane->IsQwertyKeypadActive()))
              {
-            	
+                
             if (iPrevInput == KCalcAsteriskBtn && !iTimeout->IsActive() && iValue ==1 )
                 {
                 TCallBack callback(TimeoutCallbackL, this);
@@ -720,7 +728,7 @@ TKeyResponse CCalcContainer::OfferKeyEventL
             else
                 {
                 if ( iFuncmapPane->GetKeyboardType() == EPtiKeyboardHalfQwerty )
-                	{
+                    {
                     if ( aKeyEvent.iScanCode == EStdKeyLeftFunc && !iTimeoutChr->IsActive() && iValue == 1 )
                         {
                         TCallBack callback( TimeoutCallbackChrL, this );
@@ -735,7 +743,7 @@ TKeyResponse CCalcContainer::OfferKeyEventL
                                      ( TTimeIntervalMicroSeconds32 ) KCallBackInterval, 
                                      callback );
                         }
-            	    }
+                    }
                 }
 #endif
 
@@ -759,9 +767,9 @@ TKeyResponse CCalcContainer::OfferKeyEventL
              iEditorPane->IsQwertyActive();
              }
         else
-        	{
-        	iEditorPane->IsQwertyNotActive();	
-        	}
+            {
+            iEditorPane->IsQwertyNotActive();    
+            }
         // Edit buffer of line
         keyResponse = iEditorPane->OfferKeyEventL(aKeyEvent, aType);
         }
@@ -789,14 +797,14 @@ void CCalcContainer::HandleResourceChangeCalSoftL(TInt aType)
     {
     if ((aType == KEikDynamicLayoutVariantSwitch) || (aType == KAknsMessageSkinChange) )
         {
-         	    
-	     TRect mainPaneRect ;
-	     TRect statusPaneRect;
-	     TBool signstate = EFalse;
-	     TBool sqrtstate = EFalse;
-	     TBool percentstate = EFalse;
+                 
+         TRect mainPaneRect ;
+         TRect statusPaneRect;
+         TBool signstate = EFalse;
+         TBool sqrtstate = EFalse;
+         TBool percentstate = EFalse;
         TBool clearstate = EFalse;
-        	     
+                 
         if ( Layout_Meta_Data::IsLandscapeOrientation() )
             {
             // when calculator is in Landscape layout, the statuspane displays     
@@ -810,37 +818,37 @@ void CCalcContainer::HandleResourceChangeCalSoftL(TInt aType)
             AknLayoutUtils::LayoutMetricsRect( AknLayoutUtils::EStatusPane, statusPaneRect );
             mainPaneRect.iTl = statusPaneRect.iTl;
             }
-	    
-	    
-	    //check if funcpane already exists
+        
+        
+        //check if funcpane already exists
 
       TInt selected = 0;
-	    if(iFuncmapPane)
-	    {
-	    	//store the  states of the buttons
-	        signstate = iFuncmapPane->GetChangeSignButtonState();
-	        sqrtstate = iFuncmapPane->GetSqrtButtonState();
-	        percentstate = iFuncmapPane->GetPercentButtonState();
+        if(iFuncmapPane)
+        {
+            //store the  states of the buttons
+            signstate = iFuncmapPane->GetChangeSignButtonState();
+            sqrtstate = iFuncmapPane->GetSqrtButtonState();
+            percentstate = iFuncmapPane->GetPercentButtonState();
 
             selected = iFuncmapPane->GetSelectedButtonId();
             
             clearstate = iFuncmapPane->GetClearButtonState(); 
-         	
-         	//delete the function pane
-	        delete(iFuncmapPane);
-	        iFuncmapPane =  NULL;
-	        
-	    }
+             
+             //delete the function pane
+            delete(iFuncmapPane);
+            iFuncmapPane =  NULL;
+            
+        }
         //Reload the bitmaps
         (CCalcAppEnv::Static())->SetSkinChangedValue(EFalse);
         (CCalcAppEnv::Static())->UpdateAknConstArrayForFuncMap();
         (CCalcAppEnv::Static())->LoadFuncMapBitmapL();
-	    
+        
         //Create the new pane
         iFuncmapPane = CCalcFuncmapSubPane::NewL(this); 
 
         if ( AknLayoutUtils::PenEnabled() )
-        {		    
+        {            
         iFuncmapPane->SetHighlightButton( 0, selected );   
         }
         
@@ -858,7 +866,7 @@ void CCalcContainer::HandleResourceChangeCalSoftL(TInt aType)
         
         //Update scroll bar here
         ScrollArrowUpdate();
-				iSheetPane->HandleResourceChange(aType);
+                iSheetPane->HandleResourceChange(aType);
         }
     else
         {
@@ -886,66 +894,66 @@ void CCalcContainer::SizeChanged()
         }
 
     
-	if( AknLayoutUtils::ScalableLayoutInterfaceAvailable() )
-		{
-    		 
-    		// Set layout of function map subpane, output sheet  and editor sub pane.		
-    	    if( AknLayoutUtils::PenEnabled() )
-    	    {
-    	        if (Layout_Meta_Data::IsLandscapeOrientation())
-    	        {
-    	        
-    	        	AknLayoutUtils::LayoutControl(
-    			    iFuncmapPane, parentRect, AknLayoutScalable_Apps::grid_calc_pane(enTouch_with_lsc).LayoutLine());
-    			    
-    	            AknLayoutUtils::LayoutControl(
-    		    	iSheetPane, parentRect,AknLayoutScalable_Apps::calc_paper_pane(enTouch_with_lsc).LayoutLine());
-    		    		
-    		        AknLayoutUtils::LayoutControl(
-    			    iEditorPane, parentRect,AknLayoutScalable_Apps::calc_display_pane(enTouch_with_lsc).LayoutLine());
-    	        }
-    	        else
-    	        {
-    	            AknLayoutUtils::LayoutControl(
-    			    iFuncmapPane, parentRect, AknLayoutScalable_Apps::grid_calc_pane(enTouch_with_prt).LayoutLine());
-    			    
-    	            AknLayoutUtils::LayoutControl(
-    		    	iSheetPane, parentRect,AknLayoutScalable_Apps::calc_paper_pane(enTouch_with_prt).LayoutLine());
-    		    	
-    		    	AknLayoutUtils::LayoutControl(
-    			    iEditorPane, parentRect,AknLayoutScalable_Apps::calc_display_pane(enTouch_with_prt).LayoutLine());
-    	        }
-    	    }
-    	    else
-    	    {
-    	        AknLayoutUtils::LayoutControl(
-    			    iFuncmapPane, parentRect, AknLayoutScalable_Apps::grid_calc_pane(enTouch_disabled).LayoutLine());
-    			    
-    		    AknLayoutUtils::LayoutControl(
-    			iSheetPane, parentRect,AknLayoutScalable_Apps::calc_paper_pane(enTouch_disabled).LayoutLine());
-    			
-    			AknLayoutUtils::LayoutControl(
-    			iEditorPane, parentRect,AknLayoutScalable_Apps::calc_display_pane(enTouch_disabled).LayoutLine());
-    		    
-    	    }	
+    if( AknLayoutUtils::ScalableLayoutInterfaceAvailable() )
+        {
+             
+            // Set layout of function map subpane, output sheet  and editor sub pane.        
+            if( AknLayoutUtils::PenEnabled() )
+            {
+                if (Layout_Meta_Data::IsLandscapeOrientation())
+                {
+                
+                    AknLayoutUtils::LayoutControl(
+                    iFuncmapPane, parentRect, AknLayoutScalable_Apps::grid_calc_pane(enTouch_with_lsc).LayoutLine());
+                    
+                    AknLayoutUtils::LayoutControl(
+                    iSheetPane, parentRect,AknLayoutScalable_Apps::calc_paper_pane(enTouch_with_lsc).LayoutLine());
+                        
+                    AknLayoutUtils::LayoutControl(
+                    iEditorPane, parentRect,AknLayoutScalable_Apps::calc_display_pane(enTouch_with_lsc).LayoutLine());
+                }
+                else
+                {
+                    AknLayoutUtils::LayoutControl(
+                    iFuncmapPane, parentRect, AknLayoutScalable_Apps::grid_calc_pane(enTouch_with_prt).LayoutLine());
+                    
+                    AknLayoutUtils::LayoutControl(
+                    iSheetPane, parentRect,AknLayoutScalable_Apps::calc_paper_pane(enTouch_with_prt).LayoutLine());
+                    
+                    AknLayoutUtils::LayoutControl(
+                    iEditorPane, parentRect,AknLayoutScalable_Apps::calc_display_pane(enTouch_with_prt).LayoutLine());
+                }
+            }
+            else
+            {
+                AknLayoutUtils::LayoutControl(
+                    iFuncmapPane, parentRect, AknLayoutScalable_Apps::grid_calc_pane(enTouch_disabled).LayoutLine());
+                    
+                AknLayoutUtils::LayoutControl(
+                iSheetPane, parentRect,AknLayoutScalable_Apps::calc_paper_pane(enTouch_disabled).LayoutLine());
+                
+                AknLayoutUtils::LayoutControl(
+                iEditorPane, parentRect,AknLayoutScalable_Apps::calc_display_pane(enTouch_disabled).LayoutLine());
+                
+            }    
 
-		}
-	else
-		{
+        }
+    else
+        {
     // Set layout of function map subpane.
     AknLayoutUtils::LayoutControl(
-	iFuncmapPane, parentRect, AppLayout::grid_calc_pane());	
-	
-	
+    iFuncmapPane, parentRect, AppLayout::grid_calc_pane());    
+    
+    
     // Set layout of output sheet.
     AknLayoutUtils::LayoutControl(
-		 iSheetPane, parentRect,AppLayout::gqn_graf_calc_paper());
-	
-	// Set layout of editor subpane.
+         iSheetPane, parentRect,AppLayout::gqn_graf_calc_paper());
+    
+    // Set layout of editor subpane.
     AknLayoutUtils::LayoutControl(
         iEditorPane, parentRect,AppLayout::Calculator_elements_Line_1());
-		}	
-	}
+        }    
+    }
 
 // ---------------------------------------------------------
 // CCalcContainer::Draw
@@ -993,9 +1001,18 @@ TTypeUid::Ptr CCalcContainer::MopSupplyObject(TTypeUid aId)
 // ---------------------------------------------------------
 //
 void CCalcContainer::ShowSqrtButton(TBool aEnable)
-	{
-		iFuncmapPane->SetSqrtEnable(aEnable);
-	}	
+    {
+    TCalcEditLine editLine( iEditorPane->EditLine() );
+    TBool sqrtEnable(ETrue);
+    TRAP_IGNORE(
+    if ( editLine.NumberL() == 0 )
+        {
+        sqrtEnable = EFalse;    
+        }
+    )
+
+    iFuncmapPane->SetSqrtEnable( sqrtEnable );
+    }    
 
 // ---------------------------------------------------------
 // CCalcContainer::ShowPercentButton()
@@ -1004,9 +1021,9 @@ void CCalcContainer::ShowSqrtButton(TBool aEnable)
 // ---------------------------------------------------------
 //
 void CCalcContainer::ShowPercentButton(TBool aEnable)
-	{
-		iFuncmapPane->SetPercentEnable(aEnable);
-	}
+    {
+    iFuncmapPane->SetPercentEnable(aEnable);
+    }
 
 // ---------------------------------------------------------
 // CCalcContainer::GetState()
@@ -1016,7 +1033,7 @@ void CCalcContainer::ShowPercentButton(TBool aEnable)
 //
 CCalcView::TStateNo CCalcContainer::GetState()
 {
-	return (iView->State());
+    return (iView->State());
 }
 
 // ---------------------------------------------------------
@@ -1040,9 +1057,9 @@ void CCalcContainer::HandlePointerEventL
 //
 void CCalcContainer::HandleMiddleSoftKey()
                 
-	{
-	TRAP_IGNORE( iFuncmapPane->HandleMiddleSoftKeyOREKeyOKL() );
-	}
+    {
+    TRAP_IGNORE( iFuncmapPane->HandleMiddleSoftKeyOREKeyOKL() );
+    }
 
 // ---------------------------------------------------------
 // ---------------------------------------------------------
@@ -1052,15 +1069,15 @@ void CCalcContainer::HandleMiddleSoftKey()
 //
 void CCalcContainer::SetOperatorFromTouchL(TInt akey )
 {
-	  //Simulate events as events are occurring from the KB Events
-	  TKeyEvent eventkey;
-	  TEventCode keycode;
+      //Simulate events as events are occurring from the KB Events
+      TKeyEvent eventkey;
+      TEventCode keycode;
     keycode = EEventKeyDown;
     eventkey.iCode = 0;
     eventkey.iScanCode = ASCII_ZERO + akey;
     
     //First send Keydown event
-   	OfferKeyEventL(eventkey,keycode);
+       OfferKeyEventL(eventkey,keycode);
 #ifdef RD_INTELLIGENT_TEXT_INPUT
     eventkey.iCode = ASCII_ZERO + akey;
 #else
@@ -1086,9 +1103,9 @@ void CCalcContainer::SetOperatorFromTouchL(TInt akey )
 //
 void CCalcContainer::ClearInputKeyL(TInt aRepeat)
 {
-	  //Simulate events as events are occurring from the KB Events
-	TKeyEvent eventkey;
-	TEventCode keycode;
+      //Simulate events as events are occurring from the KB Events
+    TKeyEvent eventkey;
+    TEventCode keycode;
     keycode = EEventKeyDown;
     eventkey.iCode = 0; 
     eventkey.iScanCode = 1; //for clear input key
@@ -1127,14 +1144,14 @@ void CCalcContainer::SetSeparatorFromTouchL()
         eventkey.iCode = 0;
 #ifdef RD_INTELLIGENT_TEXT_INPUT  
         if ( iFuncmapPane->GetKeyboardType() == EPtiKeyboardHalfQwerty )
-        	{
+            {
             eventkey.iScanCode = 126;  //scan code for separator
-        	}
+            }
         else
 #endif
-        	{
+            {
             eventkey.iScanCode = 122;  //scan code for separator
-        	}
+            }
 
         // First send Keydown event
         OfferKeyEventL( eventkey, keycode );
@@ -1146,7 +1163,7 @@ void CCalcContainer::SetSeparatorFromTouchL()
         }
     else
         {
-        // Simulate events as events are occurring from the KB Events	
+        // Simulate events as events are occurring from the KB Events    
         TKeyEvent eventkey;
         TEventCode keycode = EEventKeyDown;
         eventkey.iCode = 0;

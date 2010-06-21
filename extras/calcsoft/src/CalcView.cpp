@@ -95,11 +95,11 @@ CCalcView::~CCalcView()
     delete iContainer;
       if(iServiceHandler)
       {
-   		 delete iServiceHandler;
-   		 iServiceHandler = NULL;
+            delete iServiceHandler;
+            iServiceHandler = NULL;
       }
      
- 	}
+     }
 
 // ---------------------------------------------------------
 // CCalcView::State
@@ -153,11 +153,11 @@ void CCalcView::UpdateState
                 }
             break;
             }
-		case EOperatorResult:
-			{
-			iState = EOperatorOnlyResult;
-			break;
-			}
+        case EOperatorResult:
+            {
+            iState = EOperatorOnlyResult;
+            break;
+            }
         case EOperator:
             {
             iState = EOperandAndOperator;
@@ -221,22 +221,22 @@ void CCalcView::ErrorMsgL
              // UpdateState( EOperator );
             break;
             }
-		case KErrNotSupported:
-			{
-			resourceId = R_CALC_ERROR_NEGATIVEVALUESQRT;
-			break;
-			}
+        case KErrNotSupported:
+            {
+            resourceId = R_CALC_ERROR_NEGATIVEVALUESQRT;
+            break;
+            }
         default:
             {
             return;
             }
         }
     
-	//Localisation of scalable UI.
-	HBufC* message = iCoeEnv->AllocReadResourceLC(resourceId) ;
+    //Localisation of scalable UI.
+    HBufC* message = iCoeEnv->AllocReadResourceLC(resourceId) ;
     CAknErrorNote* note = new (ELeave) CAknErrorNote();
     note->ExecuteLD(*message);
-	CleanupStack::PopAndDestroy(message);
+    CleanupStack::PopAndDestroy(message);
     
     }
 
@@ -272,18 +272,18 @@ void CCalcView::DynInitMainMenuPane
                 aMenuPane->DeleteMenuItem(ECalcCmdClearCalcAndHistory);
                 }
              if(iLastResultSetected)
-             	{
-                aMenuPane->DeleteMenuItem(ECalcCmdLastResult); 	
-             	}
+                 {
+                aMenuPane->DeleteMenuItem(ECalcCmdLastResult);     
+                 }
             break;
             }
         case EOperandAndOperator:
         case EOperandAndOperatorAndOperand:
              if(iLastResultSetected)
-             	{
-                aMenuPane->DeleteMenuItem(ECalcCmdLastResult); 	
-             	}
-            break; 	 
+                 {
+                aMenuPane->DeleteMenuItem(ECalcCmdLastResult);     
+                 }
+            break;      
         default:
             {
             break;
@@ -373,24 +373,34 @@ void CCalcView::HandleCommandL
             }
         case ECalcCmdPercent:
             {
-			HandleOperatorL(TCalcEditLine::ECalcPercent);
-			// The result is always is displayed
-			// after the percent button is pressed.
+            HandleOperatorL(TCalcEditLine::ECalcPercent);
+            // The result is always is displayed
+            // after the percent button is pressed.
             // But if there was a error in the calculation
             // this if will enable us to not call the
             // HandleResultL and thus making sure that
             // the state of the buttons is identical to the
             // situation before the calculation.
-			if (iState == EOperatorOnlyResult)
+            if (iState == EOperatorOnlyResult)
                 HandleResultL();
             break;
             }
         case ECalcCmdSqrt:
             {
-			HandleOperatorL(TCalcEditLine::ECalcSqrt);
-			// HandleResultL only if sqrt was pressed after single operand.
-			if (iState == EOperatorOnlyResult)
-				HandleResultL();
+//            TRequestStatus trs;
+//            RTimer timer;
+//            timer.CreateLocal();
+//            timer.After(trs, 1000*2);
+//            while ( trs == KRequestPending) {
+//                  User::WaitForAnyRequest();
+//            }
+//            timer.Cancel();
+//            timer.Close();
+            HandleOperatorL(TCalcEditLine::ECalcSqrt);
+            // HandleResultL only if sqrt was pressed after single operand.
+            if (iState == EOperatorOnlyResult)
+                HandleResultL();
+
             break;
             }
         case ECalcCmdMemorySave:
@@ -439,11 +449,11 @@ void CCalcView::HandleCommandL
             break;
             }
         case EAknSoftkeySelect:
-        	{
-        	iContainer->HandleMiddleSoftKey();
-        	break;
-        	}
-        	
+            {
+            iContainer->HandleMiddleSoftKey();
+            break;
+            }
+            
         //Below cases are possible only for Touch UI Layouts
         case ECalcCmdOne:
             {
@@ -514,21 +524,21 @@ void CCalcView::HandleCommandL
     /****** If none of the cases handle the Aiw Help then it will come to the default case ****/
         default:
             {
-		 		CArrayFix<TCoeHelpContext>* buf = AppUi()->AppHelpContextL();
-		 		TCoeHelpContext& helpContext = buf->At(0); 		
- 		  		TAiwVariant uidVariant;
-		 		TAiwVariant contextVariant; 		
-		 		uidVariant.Set(helpContext.iMajor); 		
-		 		TAiwGenericParam uidParam(EGenericParamHelpItem, uidVariant); 				 		contextVariant.Set(helpContext.iContext); 		
-		 		contextVariant.Set(helpContext.iContext); 		
-		 		TAiwGenericParam contextParam(EGenericParamHelpItem, contextVariant); 	
-		 		CAiwGenericParamList* list = CAiwGenericParamList::NewLC(); 		
-		 		list->AppendL(uidParam);
-		 		list->AppendL(contextParam); 
-		 	    iServiceHandler->ExecuteMenuCmdL(aCommand,*list,iServiceHandler->OutParamListL()); 	
-		 		CleanupStack::PopAndDestroy(list);
-		 		delete buf;
-		 		buf= NULL;
+                 CArrayFix<TCoeHelpContext>* buf = AppUi()->AppHelpContextL();
+                 TCoeHelpContext& helpContext = buf->At(0);         
+                   TAiwVariant uidVariant;
+                 TAiwVariant contextVariant;         
+                 uidVariant.Set(helpContext.iMajor);         
+                 TAiwGenericParam uidParam(EGenericParamHelpItem, uidVariant);                          contextVariant.Set(helpContext.iContext);         
+                 contextVariant.Set(helpContext.iContext);         
+                 TAiwGenericParam contextParam(EGenericParamHelpItem, contextVariant);     
+                 CAiwGenericParamList* list = CAiwGenericParamList::NewLC();         
+                 list->AppendL(uidParam);
+                 list->AppendL(contextParam); 
+                 iServiceHandler->ExecuteMenuCmdL(aCommand,*list,iServiceHandler->OutParamListL());     
+                 CleanupStack::PopAndDestroy(list);
+                 delete buf;
+                 buf= NULL;
             break;
             }
         }
@@ -556,7 +566,7 @@ void CCalcView::CreateContainerL()
     iContainer = CCalcContainer::NewL(this);
     
     iContainer->SetMopParent(this);
-	    
+        
     TRect mainPaneRect ;
     TRect statusPaneRect;
     
@@ -567,7 +577,7 @@ void CCalcView::CreateContainerL()
         AknLayoutUtils::LayoutMetricsRect(AknLayoutUtils::EMainPane,mainPaneRect);
         AknLayoutUtils::LayoutMetricsRect(AknLayoutUtils::EStatusPane,statusPaneRect);
         mainPaneRect.iTl= statusPaneRect.iTl;
-      	
+          
       }
       
       else
@@ -578,11 +588,11 @@ void CCalcView::CreateContainerL()
         AknLayoutUtils::LayoutMetricsRect(AknLayoutUtils::EStatusPane,statusPaneRect);
        
        mainPaneRect.iTl= statusPaneRect.iTl;
-      	      		      		      	
+                                                
       } 
     
-	
-	iContainer->SetRect(mainPaneRect);	
+    
+    iContainer->SetRect(mainPaneRect);    
     iEditorSubPane = iContainer->EditorPane();
     iOutputSheet = iContainer->OutputSheet();
     }
@@ -600,8 +610,8 @@ void CCalcView::HandleResultL()
         {
         iEditorSubPane->DrawNow();
         UpdateState(EEqual);
-        iContainer->SetChangeSignEnableL();
-		iContainer->SetSqrtEnableL();
+
+        iContainer->SetSqrtEnableL();
         iContainer->ShowPercentButton(EFalse);
         iContainer->SetClearKeyEnable();             
         }
@@ -644,7 +654,7 @@ void CCalcView::HandleLastResultL()
         UpdateState(EAllClear);
         }
     iContainer->SetChangeSignEnableL();
-	iContainer->SetSqrtEnableL();
+    iContainer->SetSqrtEnableL();
     iContainer->SetClearKeyEnable(); 
 
     //highlighting the sign "%".
@@ -690,7 +700,7 @@ void CCalcView::HandleMemorySaveL()
     iEditorSubPane->DrawNow();
     UpdateState(kindOfInput);
     iContainer->SetChangeSignEnableL();
-	iContainer->SetSqrtEnableL();
+    iContainer->SetSqrtEnableL();
     }
 
 // ---------------------------------------------------------
@@ -801,135 +811,135 @@ void CCalcView::HandleOperatorL
     TReal64 result(editorNumber);
 
     this->iLastResultSetected = EFalse;
-	// User has pressed %
+    // User has pressed %
     if (aOperator == TCalcEditLine::ECalcPercent)
-        {	
+        {    
         if (iState == EOperandAndOperatorAndOperand)
             {
-			editLine.TrimZeroL();
-			// Save the previous operator
-			TCalcEditLine::TCalcOperatorType previousOperator = editLine.Operator();
-			// Set the operator to percent
-			editLine.SetOperator(TCalcEditLine::ECalcPercent);
-			
+            editLine.TrimZeroL();
+            // Save the previous operator
+            TCalcEditLine::TCalcOperatorType previousOperator = editLine.Operator();
+            // Set the operator to percent
+            editLine.SetOperator(TCalcEditLine::ECalcPercent);
+            
             
             // Calculate
             TRAPD(errorCode3, 
-			    result = iCalcDocument->CalculateAndModifyHistoryL(
+                result = iCalcDocument->CalculateAndModifyHistoryL(
                 editorNumber, editLine, previousOperator));
-			
+            
             if (errorCode3)
-				{
-				ErrorMsgL(errorCode3);
-				return;
-				}
+                {
+                iContainer->SetErrorCode(errorCode3);
+                return;
+                }
 
             iOutputSheet->ScrollToBottomL();
-			// Show the correct operand in the output sheet
-			aOperator = previousOperator;
-			// Set the state to EOperatorResult so that the HandleResult knows what to do
-			UpdateState(EOperatorResult);
-			}	
-		}
+            // Show the correct operand in the output sheet
+            aOperator = previousOperator;
+            // Set the state to EOperatorResult so that the HandleResult knows what to do
+            UpdateState(EOperatorResult);
+            }    
+        }
 
-	// User has pressed sqrt
-	else if (aOperator == TCalcEditLine::ECalcSqrt)
-		{
-		// We are in a middle of calculation chain
-		if (iState == EOperandAndOperatorAndOperand)
-			{
-			editLine.TrimZeroL();
-			// Save the previous operator
-			TCalcEditLine::TCalcOperatorType previousOperator = editLine.Operator();
-			// Set the operator to sqrt
-			editLine.SetOperator(TCalcEditLine::ECalcSqrt);
-			
-			// First calculate the sqrt
-			TRAPD(errorCode, 
-				result = iCalcDocument->CalculateAndNoHistoryL(
-				editorNumber, editLine));
+    // User has pressed sqrt
+    else if (aOperator == TCalcEditLine::ECalcSqrt)
+        {
+        // We are in a middle of calculation chain
+        if (iState == EOperandAndOperatorAndOperand)
+            {
+            editLine.TrimZeroL();
+            // Save the previous operator
+            TCalcEditLine::TCalcOperatorType previousOperator = editLine.Operator();
+            // Set the operator to sqrt
+            editLine.SetOperator(TCalcEditLine::ECalcSqrt);
+            
+            // First calculate the sqrt
+            TRAPD(errorCode, 
+                result = iCalcDocument->CalculateAndNoHistoryL(
+                editorNumber, editLine));
                                                  
-			if (errorCode)
-				{
-				ErrorMsgL(errorCode);
-				return;
-				}
-			
-			// Set the operator to previous one
-			editLine.SetOperator(previousOperator);
-			// Result goes to the outputsheet
-			editLine.SetNumber(result);
+            if (errorCode)
+                {
+                iContainer->SetErrorCode(errorCode);
+                return;
+                }
+            
+            // Set the operator to previous one
+            editLine.SetOperator(previousOperator);
+            // Result goes to the outputsheet
+            editLine.SetNumber(result);
 
-			// Calculate again
-			TRAPD(errorCode2, 
-				result = iCalcDocument->CalculateAndAddHistoryL(
-				result, editLine));
+            // Calculate again
+            TRAPD(errorCode2, 
+                result = iCalcDocument->CalculateAndAddHistoryL(
+                result, editLine));
                                                  
-			if (errorCode2)
-				{
-				ErrorMsgL(errorCode2);
-				return;
-				}
-			// Set this so that we will display correct operator in the output sheet
-			aOperator = previousOperator;
-			iOutputSheet->ScrollToBottomL();
-			UpdateState(EOperator);
-			// Dimm the square root and percent
-			iContainer->ShowSqrtButton(EFalse);
-			iContainer->ShowPercentButton(EFalse);
-			}
-		// Only operand and sqrt
-		else
-			{
-			editLine.SetOperator(aOperator);
-		
-			// Trap harness, because the CalculateAndHistoryL leaves in case of negative operand
-			TRAPD(errorCode,
-				result = iCalcDocument->CalculateAndAddHistoryL(
-				editorNumber, editLine));
-			
-			if (errorCode)
-				{
-				ErrorMsgL(errorCode);
-				return;
-				}
+            if (errorCode2)
+                {
+                iContainer->SetErrorCode(errorCode2);
+                return;
+                }
+            // Set this so that we will display correct operator in the output sheet
+            aOperator = previousOperator;
+            iOutputSheet->ScrollToBottomL();
+            UpdateState(EOperator);
+            // Dimm the square root and percent
+            iContainer->ShowSqrtButton(EFalse);
+            iContainer->ShowPercentButton(EFalse);
+            }
+        // Only operand and sqrt
+        else
+            {
+            editLine.SetOperator(aOperator);
+                    
+            // Trap harness, because the CalculateAndHistoryL leaves in case of negative operand
+            TRAPD(errorCode,
+                result = iCalcDocument->CalculateAndAddHistoryL(
+                editorNumber, editLine));
+            
+            if (errorCode)
+                {
+                iContainer->SetErrorCode(errorCode);
+                return;
+                }
 
-			iOutputSheet->ScrollToBottomL();
-			//Set the state to EOperatorResult so that we know to call HandleResult later
-			UpdateState(EOperatorResult);
-			}
-		}
+            iOutputSheet->ScrollToBottomL();
+            //Set the state to EOperatorResult so that we know to call HandleResult later
+            UpdateState(EOperatorResult);
+            }
+        }
     //  Current state is state4 and previous input is MS,
     // provisional result is get and show this the editor.
     // And a line is not added to OutputSheet because a line
     // is already added.
     
-	else if (iState == ESelectResult)
+    else if (iState == ESelectResult)
         {
         iCalcDocument->AddEmptyLine();
         editLine.SetOperator(TCalcEditLine::ECalcOperatorNone);
-		//  Because the state is "User has selected result",
+        //  Because the state is "User has selected result",
         // this function does not occur leave.
         result = iCalcDocument->CalculateAndAddHistoryL(
                  editorNumber, editLine);
         iOutputSheet->ScrollToBottomL();
-		UpdateState(EOperator);	
-		iContainer->SetSqrtEnableL();
-		}
-		
+        UpdateState(EOperator);    
+        iContainer->SetSqrtEnableL();
+        }
+        
     //  If a input is a operator and state is updated,
     // calculate and update history.
     else if (iState != EOperandAndOperator)  
         {
         editLine.TrimZeroL();
 
-		// If the number in the EditLine is not a operand
-		// we need to dim square root and percent buttons
-		if (iState == EOperandAndOperatorAndOperand)
-			{
-			iContainer->ShowSqrtButton(EFalse);
-			iContainer->ShowPercentButton(EFalse);
-			}
+        // If the number in the EditLine is not a operand
+        // we need to dim square root and percent buttons
+        if (iState == EOperandAndOperatorAndOperand)
+            {
+            iContainer->ShowSqrtButton(EFalse);
+            iContainer->ShowPercentButton(EFalse);
+            }
         // Calculate by user's input
         TRAPD(errorCode, 
               result = iCalcDocument->CalculateAndAddHistoryL(
@@ -937,12 +947,12 @@ void CCalcView::HandleOperatorL
                                                  
         if (errorCode)
             {
-            ErrorMsgL(errorCode);
+            iContainer->SetErrorCode(errorCode);
             return;
             }
         iOutputSheet->ScrollToBottomL();
-		UpdateState(EOperator);
-		}
+        UpdateState(EOperator);
+        }
     
     iEditorSubPane->SetEditorNumber(result);
     iEditorSubPane->SetOperator(aOperator);
@@ -952,14 +962,14 @@ void CCalcView::HandleOperatorL
         iEditorSubPane->DrawNow();  
         }
     iContainer->ScrollArrowUpdate();
-    iContainer->SetChangeSignEnableL();
+ 
     iContainer->SetClearKeyEnable(); 
-	if (aOperator == TCalcEditLine::ECalcAdd ||aOperator == TCalcEditLine::ECalcSubtract ||
-		 aOperator == TCalcEditLine::ECalcMultiply ||aOperator == TCalcEditLine::ECalcDivide )
-		{
-		iContainer->SetChangeSignDisable();
-		}  
-	
+    if (aOperator == TCalcEditLine::ECalcAdd ||aOperator == TCalcEditLine::ECalcSubtract ||
+         aOperator == TCalcEditLine::ECalcMultiply ||aOperator == TCalcEditLine::ECalcDivide )
+        {
+        iContainer->SetChangeSignDisable();
+        }  
+    
     }
 
 
@@ -978,16 +988,16 @@ TInt CCalcView::HandleEqualSubRoutineL()
 
     if (iState == EOperandAndOperator || iState == EOperatorOnlyResult)
         {
-		// User has selected equal or operand and sqrt, or percent
+        // User has selected equal or operand and sqrt, or percent
         result = iCalcDocument->ProvisionalResult();
         }
     else 
         {
         editLine.TrimZeroL();
-		// We are calculating the intermediate result. 
-		// So we need to dim the sqrt and percent buttons.
-		iContainer->ShowSqrtButton(EFalse);
-		iContainer->ShowPercentButton(EFalse);
+        // We are calculating the intermediate result. 
+        // So we need to dim the sqrt and percent buttons.
+        iContainer->ShowSqrtButton(EFalse); 
+        iContainer->ShowPercentButton(EFalse);
         
         if (iState == ESelectResult)
             {
@@ -1003,8 +1013,7 @@ TInt CCalcView::HandleEqualSubRoutineL()
     // error message is displayed.
     if (calculationError)
         {
-        ErrorMsgL(calculationError);
-
+        iContainer->SetErrorCode(calculationError);
         }
     else
         {
@@ -1073,48 +1082,48 @@ void CCalcView::DynInitMenuPaneL
     {
     if(iServiceHandler->HandleSubmenuL(*aMenuPane))
         {
-        	return;
+            return;
         }
     switch (aResourceId)
         {
         case (R_CALC_POPUPMENU):
             {
-		        
-    	       		DynInitMainMenuPane(aMenuPane);
-			        
-		        /***** Get the context of the Help topic from here *****/
-		      	CArrayFix<TCoeHelpContext>* buf= AppUi()->AppHelpContextL();
-		       	TInt i= buf->Count();
-		       	if(i!=0)
-		       		{
-		       		/***** Check whether our flag is defined or not *****/
-		       	    #ifdef RD_HELP_AIW_INTEGRATION
-		       	    
-		       	    /***** Call the AiwProvider's AddItemsL  to attach the mnu items********/
-		       	    	
-		       		 	iServiceHandler->InitializeMenuPaneL(*aMenuPane,aResourceId,
-		        						ECmdLast,iServiceHandler->InParamListL()); 
-		        	/**** Set the old embedded help as dimmed one ****/ 
-		        		aMenuPane->SetItemDimmed(ECalcCmdHelp, ETrue);				 	
-		        	#else
-		        	/**** Set the Aiw Help as dimmed one as our feature flag is not defined ****/ 
-		        		aMenuPane->SetItemDimmed(ECmdAiwPlaceHolder,ETrue);	
-		        	#endif
-		       		}
-		        else 
-		            {
-		         /**** If the Feature flag is not defined dont show the Aiw Help ****/
-		        	aMenuPane->SetItemDimmed(ECmdAiwPlaceHolder,ETrue);
-		            }
-		            
-		        /******* Delete the buffer and make it to NULL *****/
-		       	delete buf;
-		        buf = NULL;   
-		        if (!FeatureManager::FeatureSupported( KFeatureIdHelp ))
-			        {
-			        aMenuPane->DeleteMenuItem(ECalcCmdHelp);
-			        aMenuPane->DeleteMenuItem(ECmdAiwPlaceHolder);
-			        }  
+                
+                       DynInitMainMenuPane(aMenuPane);
+                    
+                /***** Get the context of the Help topic from here *****/
+                  CArrayFix<TCoeHelpContext>* buf= AppUi()->AppHelpContextL();
+                   TInt i= buf->Count();
+                   if(i!=0)
+                       {
+                       /***** Check whether our flag is defined or not *****/
+                       #ifdef RD_HELP_AIW_INTEGRATION
+                       
+                       /***** Call the AiwProvider's AddItemsL  to attach the mnu items********/
+                           
+                            iServiceHandler->InitializeMenuPaneL(*aMenuPane,aResourceId,
+                                        ECmdLast,iServiceHandler->InParamListL()); 
+                    /**** Set the old embedded help as dimmed one ****/ 
+                        aMenuPane->SetItemDimmed(ECalcCmdHelp, ETrue);                     
+                    #else
+                    /**** Set the Aiw Help as dimmed one as our feature flag is not defined ****/ 
+                        aMenuPane->SetItemDimmed(ECmdAiwPlaceHolder,ETrue);    
+                    #endif
+                       }
+                else 
+                    {
+                 /**** If the Feature flag is not defined dont show the Aiw Help ****/
+                    aMenuPane->SetItemDimmed(ECmdAiwPlaceHolder,ETrue);
+                    }
+                    
+                /******* Delete the buffer and make it to NULL *****/
+                   delete buf;
+                buf = NULL;   
+                if (!FeatureManager::FeatureSupported( KFeatureIdHelp ))
+                    {
+                    aMenuPane->DeleteMenuItem(ECalcCmdHelp);
+                    aMenuPane->DeleteMenuItem(ECmdAiwPlaceHolder);
+                    }  
             break;
             }
 
@@ -1135,33 +1144,33 @@ void CCalcView::DynInitMenuPaneL
 // ---------------------------------------------------------
 //
 void CCalcView::HandleForegroundEventL(TBool aForeground)
-	{
-	if( (aForeground) && (STATIC_CAST(CCalcAppUi*, AppUi())->IsSkinChanged()) )
-		{
-		iEditorSubPane->RefreshDisplaySideLBitmap();
-		iEditorSubPane->RefreshDisplayCenterBitmap();
-		iEditorSubPane->RefreshDisplaySideRBitmap();	
-		
-		iEditorSubPane->DrawNow();
+    {
+    if( (aForeground) && (STATIC_CAST(CCalcAppUi*, AppUi())->IsSkinChanged()) )
+        {
+        iEditorSubPane->RefreshDisplaySideLBitmap();
+        iEditorSubPane->RefreshDisplayCenterBitmap();
+        iEditorSubPane->RefreshDisplaySideRBitmap();    
+        
+        iEditorSubPane->DrawNow();
 
-		iOutputSheet->RefreshPaperBitmap();
-		iOutputSheet->RefreshScalablePaperBitmap();
+        iOutputSheet->RefreshPaperBitmap();
+        iOutputSheet->RefreshScalablePaperBitmap();
 #ifdef __SCALABLE_ICONS
-		iOutputSheet->RefreshResultsLineBitmap();
+        iOutputSheet->RefreshResultsLineBitmap();
 #endif
-		iOutputSheet->DrawNow();
+        iOutputSheet->DrawNow();
 
-		iContainer->FunctionSubPane()->RefreshButtonIcons();		
-		for(TInt i =0; i< 10; i++)
-			{
-			iContainer->FunctionSubPane()->GetButtonBitmapControl(i)->DrawNow();
-			}
-		}
-	else
-		{
-		CAknView::HandleForegroundEventL(aForeground);
-		}
-	}
+        iContainer->FunctionSubPane()->RefreshButtonIcons();        
+        for(TInt i =0; i< 10; i++)
+            {
+            iContainer->FunctionSubPane()->GetButtonBitmapControl(i)->DrawNow();
+            }
+        }
+    else
+        {
+        CAknView::HandleForegroundEventL(aForeground);
+        }
+    }
 
 
 //  End of File  

@@ -121,30 +121,30 @@ class   CCalcContainer
         */
         void SetClearKeyEnable();
 
-		/**
+        /**
         * Show square root button only if no 0 in editor.
         */
-		void SetSqrtEnableL();
+        void SetSqrtEnableL();
 
-		/**
+        /**
         * Show percent button only if no 0 in editor.
         */
-		void SetPercentEnableL();
+        void SetPercentEnableL();
 
-		/**
+        /**
         * Redraw square root button.
         */
-		void ShowSqrtButton(TBool aEnable);
+        void ShowSqrtButton(TBool aEnable);
 
-		/**
+        /**
         * Redraw percent button.
         */
-		void ShowPercentButton(TBool aEnable);
+        void ShowPercentButton(TBool aEnable);
 
-		/**
-		* Returns the state of the calculator.
-		*/
-		CCalcView::TStateNo GetState();
+        /**
+        * Returns the state of the calculator.
+        */
+        CCalcView::TStateNo GetState();
 
         /**
         * Time out CallBack function for *-key press
@@ -173,6 +173,12 @@ class   CCalcContainer
         */
         void NotifyChangeDecimal(TChar aOld, TChar aNew);
         
+        /**
+        * Called  when an error is displayed.
+        * @param aErrorCode : an error code  from  CCalcContainer
+        */
+        void SetErrorCode(TInt aErrorCode);
+        
     public: // Functions from base classes
         /**
         * From CCoeControl : Get help context
@@ -180,38 +186,38 @@ class   CCalcContainer
         */
         void GetHelpContext(TCoeHelpContext& aContext) const;
 
-		/**
-		*Returns functionMap subpane
-		*/
-		inline CCalcFuncmapSubPane* FunctionSubPane() const; 
-		
-		/**
+        /**
+        *Returns functionMap subpane
+        */
+        inline CCalcFuncmapSubPane* FunctionSubPane() const; 
+        
+        /**
         * HandleMiddleSoftKey
         * Handled when MSK is selected 
-        */	
-		void HandleMiddleSoftKey();
+        */    
+        void HandleMiddleSoftKey();
 
-		/**
+        /**
         * SetOperatorFromTouch
         * To handle the addition of Touch Input values for digits
-        */	
-		void SetOperatorFromTouchL(TInt akey);
-		
-		/**
+        */    
+        void SetOperatorFromTouchL(TInt akey);
+        
+        /**
         * ClearInputKey
         * To handle the clear input key through the touch UI 
-        */	
-		void ClearInputKeyL(TInt aRepeat = 0);
-		
-		/**
+        */    
+        void ClearInputKeyL(TInt aRepeat = 0);
+        
+        /**
         * ClearInputKey
         * To handle the '.' key press
-        */	
-		
-		void SetSeparatorFromTouchL();
+        */    
+        
+        void SetSeparatorFromTouchL();
 
-		// From CCoeControl		
-		void ActivateL();
+        // From CCoeControl        
+        void ActivateL();
     private:  // New functions 
         /**
         * C++ default constructor.

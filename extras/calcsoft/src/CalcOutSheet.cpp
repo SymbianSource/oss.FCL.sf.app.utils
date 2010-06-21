@@ -24,9 +24,9 @@
 #include    <AknUtils.h>
 #include    <Calcsoft.rsg>
 #include    <applayout.cdl.h>
-#include 	<AknsDrawUtils.h>
-#include	<layoutmetadata.cdl.h>
-#include	"CalcEnv.h"
+#include     <AknsDrawUtils.h>
+#include    <layoutmetadata.cdl.h>
+#include    "CalcEnv.h"
 #include    "CalcCont.h"    
 #include    "CalcOutSheet.h"
 #include    "CalcDoc.h"
@@ -64,37 +64,37 @@ CCalcOutputSheet::~CCalcOutputSheet()
     {
     delete iOpSheetContext;
     if(iOperatorLayout)
-	    {
-	    iOperatorLayout->Reset();
-	    delete iOperatorLayout;	
-	    }
-	if(iOperandLayout)
-	    {
-	    iOperandLayout->Reset();
-	    delete iOperandLayout;	
-	    }
-	if(iEqualLineLayout)
-	    {
-	    iEqualLineLayout->Reset();
-	    delete iEqualLineLayout;	
-	    }
-	if(iResultsLineLayout)
-	    {
-	    iResultsLineLayout->Reset();
-	    delete iResultsLineLayout;	
-	    }
-	if (iCRKey)
-		{
-		delete iCRKey;
-		iCRKey = NULL;
-		}
-		
-	//Delete the scrollbar frame
-	if(iSBFrame)
-	    {
-	    delete iSBFrame;
-	    iSBFrame = NULL;
-	    }
+        {
+        iOperatorLayout->Reset();
+        delete iOperatorLayout;    
+        }
+    if(iOperandLayout)
+        {
+        iOperandLayout->Reset();
+        delete iOperandLayout;    
+        }
+    if(iEqualLineLayout)
+        {
+        iEqualLineLayout->Reset();
+        delete iEqualLineLayout;    
+        }
+    if(iResultsLineLayout)
+        {
+        iResultsLineLayout->Reset();
+        delete iResultsLineLayout;    
+        }
+    if (iCRKey)
+        {
+        delete iCRKey;
+        iCRKey = NULL;
+        }
+        
+    //Delete the scrollbar frame
+    if(iSBFrame)
+        {
+        delete iSBFrame;
+        iSBFrame = NULL;
+        }
     }
 
 // ---------------------------------------------------------
@@ -126,7 +126,7 @@ void CCalcOutputSheet::NotifyClearHistoryL()
     iScrollOffset = 0;
     if( AknLayoutUtils::PenEnabled()  )
     {
-    	UpdateScrollIndicatorL();	
+        UpdateScrollIndicatorL();    
     }
     DrawNow();
     }
@@ -212,9 +212,9 @@ void CCalcOutputSheet::ConstructL
     
     iCalcAppEnv = CCalcAppEnv::Static();
     iCalcPaper = iCalcAppEnv->PaperBitmap();
-	iCalcAppEnv->ScalablePaperBitmaps(iCalcScalablePaper);
+    iCalcAppEnv->ScalablePaperBitmaps(iCalcScalablePaper);
 #ifdef __SCALABLE_ICONS
-	iCalcResultsLine = iCalcAppEnv->ResultsLineBitmap();
+    iCalcResultsLine = iCalcAppEnv->ResultsLineBitmap();
 #endif
 
     CCalcAppUi* appui = iCalcAppEnv->AppUi();
@@ -264,197 +264,198 @@ void CCalcOutputSheet::SizeChangedOutSheetL()
     }
     iCalcOutputSheetLines   = (listLimits.LastRow()-listLimits.FirstRow()) + 1;
     iOperatorLayout->ResizeL(iCalcOutputSheetLines);
-	iOperandLayout->ResizeL(iCalcOutputSheetLines);
-	iResultsLineLayout->ResizeL(iCalcOutputSheetLines-1);
-	iEqualLineLayout->ResizeL(iCalcOutputSheetLines-1);
-	
+    iOperandLayout->ResizeL(iCalcOutputSheetLines);
+    iResultsLineLayout->ResizeL(iCalcOutputSheetLines-1);
+    iEqualLineLayout->ResizeL(iCalcOutputSheetLines-1);
+    
     iOperatorLayout->Reset();
-	iOperandLayout->Reset();
-	iResultsLineLayout->Reset();
-	iEqualLineLayout->Reset();
+    iOperandLayout->Reset();
+    iResultsLineLayout->Reset();
+    iEqualLineLayout->Reset();
     
     TAknLayoutRect rectParent;
-	TAknWindowLineLayout layoutOfParentResultsLine;
-	TAknLayoutRect rectListCalcPane;
-	
+    TAknWindowLineLayout layoutOfParentResultsLine;
+    TAknLayoutRect rectListCalcPane;
+    
  
     
     if( AknLayoutUtils::ScalableLayoutInterfaceAvailable() )
-		{
-			TAknWindowLineLayout  calcPaperPane;
-			
-			//For Touch UI Layouts, different configuration
-			if( AknLayoutUtils::PenEnabled() )
-	        {
-	            if (Layout_Meta_Data::IsLandscapeOrientation())
-	            {
-	                calcPaperPane = AknLayoutScalable_Apps::calc_paper_pane(enTouch_with_lsc).LayoutLine();
-	            }
-	            else
-	            {
-	                calcPaperPane = AknLayoutScalable_Apps::calc_paper_pane(enTouch_with_prt).LayoutLine();
-	            }
-	        }
-	        else
-	        {
-		        calcPaperPane = AknLayoutScalable_Apps::calc_paper_pane(enTouch_disabled).LayoutLine();
-	        }
-			TAknLayoutRect rectcalcPaperPane;	
-			rectcalcPaperPane.LayoutRect(parentRect,calcPaperPane);
-			TAknWindowLineLayout layoutListCalcPane;
-			if( AknLayoutUtils::PenEnabled() )
-	        {
-	            layoutListCalcPane = AknLayoutScalable_Apps::list_calc_pane(enTouch_enabled).LayoutLine();
-	        }
-	        else
-	        {
-	            layoutListCalcPane = AknLayoutScalable_Apps::list_calc_pane(enTouch_disabled).LayoutLine();
-	        }
-			
-			rectListCalcPane.LayoutRect(rectcalcPaperPane.Rect(),layoutListCalcPane);
-		}
+        {
+            TAknWindowLineLayout  calcPaperPane;
+            
+            //For Touch UI Layouts, different configuration
+            if( AknLayoutUtils::PenEnabled() )
+            {
+                if (Layout_Meta_Data::IsLandscapeOrientation())
+                {
+                    calcPaperPane = AknLayoutScalable_Apps::calc_paper_pane(enTouch_with_lsc).LayoutLine();
+                }
+                else
+                {
+                    calcPaperPane = AknLayoutScalable_Apps::calc_paper_pane(enTouch_with_prt).LayoutLine();
+                }
+            }
+            else
+            {
+                calcPaperPane = AknLayoutScalable_Apps::calc_paper_pane(enTouch_disabled).LayoutLine();
+            }
+            TAknLayoutRect rectcalcPaperPane;    
+            rectcalcPaperPane.LayoutRect(parentRect,calcPaperPane);
+            iSBBrPoint = rectcalcPaperPane.Rect().iBr;
+            TAknWindowLineLayout layoutListCalcPane;
+            if( AknLayoutUtils::PenEnabled() )
+            {
+                layoutListCalcPane = AknLayoutScalable_Apps::list_calc_pane(enTouch_enabled).LayoutLine();
+            }
+            else
+            {
+                layoutListCalcPane = AknLayoutScalable_Apps::list_calc_pane(enTouch_disabled).LayoutLine();
+            }
+            
+            rectListCalcPane.LayoutRect(rectcalcPaperPane.Rect(),layoutListCalcPane);
+        }
     
-	TInt nTimes=(iCalcOutputSheetLines-1);
+    TInt nTimes=(iCalcOutputSheetLines-1);
     for (TInt cnt(0); cnt < iCalcOutputSheetLines; cnt++)
         {
         if (AknLayoutUtils::ScalableLayoutInterfaceAvailable())
-		{
-		if(AknLayoutUtils::PenEnabled())
-		{
-			if (Layout_Meta_Data::IsLandscapeOrientation())
-			{
-				layoutOfParentResultsLine =  AknLayoutScalable_Apps::list_calc_item_pane(nTimes,enTouch_enabled).LayoutLine();	
-			}
-			else
-			{
-				layoutOfParentResultsLine =  AknLayoutScalable_Apps::list_calc_item_pane(nTimes,enTouch_enabled).LayoutLine();
-			}
-	
-		}
-		else
-		{
-		    layoutOfParentResultsLine =  AknLayoutScalable_Apps::list_calc_item_pane(nTimes,enTouch_disabled).LayoutLine();    
-		}
-		
-		
-		rectParent.LayoutRect(rectListCalcPane.Rect(),layoutOfParentResultsLine) ;
-			
-		TAknLayoutText operatorLayout;
-		TAknLayoutText operendLayout;
-		if(AknLayoutUtils::PenEnabled())
-		{
-		    operatorLayout.LayoutText(rectParent.Rect(),AknLayoutScalable_Apps::list_calc_item_pane_t2(enTouch_with_prt).LayoutLine(),iCalcAppEnv->OutSheetOperatorFont()); 
-		    iOperatorLayout->AppendL(operatorLayout);
-		
-		    operendLayout.LayoutText(rectParent.Rect(),AknLayoutScalable_Apps::list_calc_item_pane_t1(enTouch_with_lsc).LayoutLine(),iCalcAppEnv->OutSheetOperatorFont()); 
-		    iOperandLayout->AppendL(operendLayout);
-		}
-		else
-		{
-		    operatorLayout.LayoutText(rectParent.Rect(),AknLayoutScalable_Apps::list_calc_item_pane_t2(enTouch_disabled).LayoutLine(),iCalcAppEnv->OutSheetOperatorFont()); 
-		    iOperatorLayout->AppendL(operatorLayout);
-		
-		    operendLayout.LayoutText(rectParent.Rect(),AknLayoutScalable_Apps::list_calc_item_pane_t1(enTouch_disabled).LayoutLine(),iCalcAppEnv->OutSheetOperatorFont()); 
-		    iOperandLayout->AppendL(operendLayout);    
-		}
-		
-	  // aCustomFont
+        {
+        if(AknLayoutUtils::PenEnabled())
+        {
+            if (Layout_Meta_Data::IsLandscapeOrientation())
+            {
+                layoutOfParentResultsLine =  AknLayoutScalable_Apps::list_calc_item_pane(nTimes,enTouch_enabled).LayoutLine();    
+            }
+            else
+            {
+                layoutOfParentResultsLine =  AknLayoutScalable_Apps::list_calc_item_pane(nTimes,enTouch_enabled).LayoutLine();
+            }
+    
+        }
+        else
+        {
+            layoutOfParentResultsLine =  AknLayoutScalable_Apps::list_calc_item_pane(nTimes,enTouch_disabled).LayoutLine();    
+        }
+        
+        
+        rectParent.LayoutRect(rectListCalcPane.Rect(),layoutOfParentResultsLine) ;
+            
+        TAknLayoutText operatorLayout;
+        TAknLayoutText operendLayout;
+        if(AknLayoutUtils::PenEnabled())
+        {
+            operatorLayout.LayoutText(rectParent.Rect(),AknLayoutScalable_Apps::list_calc_item_pane_t2(enTouch_with_prt).LayoutLine(),iCalcAppEnv->OutSheetOperatorFont()); 
+            iOperatorLayout->AppendL(operatorLayout);
+        
+            operendLayout.LayoutText(rectParent.Rect(),AknLayoutScalable_Apps::list_calc_item_pane_t1(enTouch_with_lsc).LayoutLine(),iCalcAppEnv->OutSheetOperatorFont()); 
+            iOperandLayout->AppendL(operendLayout);
+        }
+        else
+        {
+            operatorLayout.LayoutText(rectParent.Rect(),AknLayoutScalable_Apps::list_calc_item_pane_t2(enTouch_disabled).LayoutLine(),iCalcAppEnv->OutSheetOperatorFont()); 
+            iOperatorLayout->AppendL(operatorLayout);
+        
+            operendLayout.LayoutText(rectParent.Rect(),AknLayoutScalable_Apps::list_calc_item_pane_t1(enTouch_disabled).LayoutLine(),iCalcAppEnv->OutSheetOperatorFont()); 
+            iOperandLayout->AppendL(operendLayout);    
+        }
+        
+      // aCustomFont
      --nTimes;
-		
-		}
-	  
-	  else
-	  {
-	  	  
-	    
-	  //Scalable UI.
+        
+        }
+      
+      else
+      {
+            
+        
+      //Scalable UI.
 
-	  	TAknLayoutText operatorLayout;
-		TAknLayoutText operendLayout;
-	  	operatorLayout.LayoutText(parentRect,AppLayout::Calculator_texts_Line_8(nTimes),iCalcAppEnv->OutSheetOperatorFont()); // aCustomFont
-	    iOperatorLayout->AppendL(operatorLayout);        
+          TAknLayoutText operatorLayout;
+        TAknLayoutText operendLayout;
+          operatorLayout.LayoutText(parentRect,AppLayout::Calculator_texts_Line_8(nTimes),iCalcAppEnv->OutSheetOperatorFont()); // aCustomFont
+        iOperatorLayout->AppendL(operatorLayout);        
 
-		operendLayout.LayoutText(parentRect,AppLayout::Calculator_texts_Line_7(nTimes), NULL);
-		iOperandLayout->AppendL(operendLayout);            
+        operendLayout.LayoutText(parentRect,AppLayout::Calculator_texts_Line_7(nTimes), NULL);
+        iOperandLayout->AppendL(operendLayout);            
      --nTimes;
-	  }
+      }
     }
     
     //Scalable UI.
-	nTimes = iCalcOutputSheetLines - 2;	  
+    nTimes = iCalcOutputSheetLines - 2;      
     for (TInt ii(0); ii < (iCalcOutputSheetLines - 1); ii++)
         {
 
 
-		if( AknLayoutUtils::ScalableLayoutInterfaceAvailable() )
-			{
-#ifdef __SCALABLE_ICONS		
-			layoutOfParentResultsLine =  AknLayoutScalable_Apps::list_calc_item_pane(nTimes).LayoutLine();
+        if( AknLayoutUtils::ScalableLayoutInterfaceAvailable() )
+            {
+#ifdef __SCALABLE_ICONS        
+            layoutOfParentResultsLine =  AknLayoutScalable_Apps::list_calc_item_pane(nTimes).LayoutLine();
 
-			rectParent.LayoutRect(rectListCalcPane.Rect(),layoutOfParentResultsLine) ;
-			TAknWindowLineLayout   layoutOfResultsLine = AknLayoutScalable_Apps::list_calc_item_pane_g1().LayoutLine(); 
-			TAknLayoutRect lineLayout;
-			lineLayout.LayoutRect(rectParent.Rect(),layoutOfResultsLine);
-			iResultsLineLayout->AppendL(lineLayout);
+            rectParent.LayoutRect(rectListCalcPane.Rect(),layoutOfParentResultsLine) ;
+            TAknWindowLineLayout   layoutOfResultsLine = AknLayoutScalable_Apps::list_calc_item_pane_g1().LayoutLine(); 
+            TAknLayoutRect lineLayout;
+            lineLayout.LayoutRect(rectParent.Rect(),layoutOfResultsLine);
+            iResultsLineLayout->AppendL(lineLayout);
 #else
-			TAknLayoutRect lineLayout;
-			lineLayout.LayoutRect(parentRect,AppLayout::Calculator_elements_Line_3(nTimes)); 
-			iEqualLineLayout->AppendL(lineLayout);
+            TAknLayoutRect lineLayout;
+            lineLayout.LayoutRect(parentRect,AppLayout::Calculator_elements_Line_3(nTimes)); 
+            iEqualLineLayout->AppendL(lineLayout);
 #endif
-			}
-			else
-			{
-			TAknLayoutRect lineLayout;
-			lineLayout.LayoutRect(parentRect,AppLayout::Calculator_elements_Line_3(nTimes)); 
-			iEqualLineLayout->AppendL(lineLayout);
-			}
-			
-		--nTimes;
+            }
+            else
+            {
+            TAknLayoutRect lineLayout;
+            lineLayout.LayoutRect(parentRect,AppLayout::Calculator_elements_Line_3(nTimes)); 
+            iEqualLineLayout->AppendL(lineLayout);
+            }
+            
+        --nTimes;
         }
 
     TAknLayoutRect  paperRect;
-	if( AknLayoutUtils::ScalableLayoutInterfaceAvailable() )
-			{
-			TAknLayoutRect rectCalcPaperPane;	
-			TAknLayoutRect rectbgCalcPaperPane;
-			//Different configuration for Touch Layouts
-			if( AknLayoutUtils::PenEnabled() )
-			{
-					//In landscape mode different configuration is needed
-			     if (Layout_Meta_Data::IsLandscapeOrientation())
-			     {
-			        rectCalcPaperPane.LayoutRect(parentRect,AknLayoutScalable_Apps::calc_paper_pane(enTouch_with_lsc).LayoutLine());  
-			     }
-			     else
-			     {
-			        rectCalcPaperPane.LayoutRect(parentRect,AknLayoutScalable_Apps::calc_paper_pane(enTouch_with_prt).LayoutLine());      
-			     }
-			     rectbgCalcPaperPane.LayoutRect(rectCalcPaperPane.Rect(),AknLayoutScalable_Apps::bg_calc_paper_pane(enTouch_enabled).LayoutLine());
-			}
-			else
-			{
-			    rectCalcPaperPane.LayoutRect(parentRect,AknLayoutScalable_Apps::calc_paper_pane(enTouch_disabled).LayoutLine());    
-			    rectbgCalcPaperPane.LayoutRect(rectCalcPaperPane.Rect(),AknLayoutScalable_Apps::bg_calc_paper_pane().LayoutLine());
-			}
-			
-			iPaperPaneRect  = rectCalcPaperPane;
-			
-			
-			iCalcPaperLayout[0].LayoutRect(rectbgCalcPaperPane.Rect(),AknLayoutScalable_Apps::bg_calc_paper_pane_g1().LayoutLine());
-			iCalcPaperLayout[1].LayoutRect(rectbgCalcPaperPane.Rect(),AknLayoutScalable_Apps::bg_calc_paper_pane_g2().LayoutLine());
-			iCalcPaperLayout[2].LayoutRect(rectbgCalcPaperPane.Rect(),AknLayoutScalable_Apps::bg_calc_paper_pane_g3().LayoutLine());
-			iCalcPaperLayout[3].LayoutRect(rectbgCalcPaperPane.Rect(),AknLayoutScalable_Apps::bg_calc_paper_pane_g4().LayoutLine());
-		    iCalcPaperLayout[4].LayoutRect(rectbgCalcPaperPane.Rect(),AknLayoutScalable_Apps::bg_calc_paper_pane_g5().LayoutLine());
-			iCalcPaperLayout[5].LayoutRect(rectbgCalcPaperPane.Rect(),AknLayoutScalable_Apps::bg_calc_paper_pane_g6().LayoutLine());
-			iCalcPaperLayout[6].LayoutRect(rectbgCalcPaperPane.Rect(),AknLayoutScalable_Apps::bg_calc_paper_pane_g7().LayoutLine());
-    		iCalcPaperLayout[7].LayoutRect(rectbgCalcPaperPane.Rect(),AknLayoutScalable_Apps::bg_calc_paper_pane_g8().LayoutLine());
-			iCalcPaperLayout[8].LayoutRect(rectbgCalcPaperPane.Rect(),AknLayoutScalable_Apps::calc_bg_paper_pane_g9().LayoutLine());
-			}
-			
-	   iOpSheetContext->SetRect(Rect());
-		
-		//Only for touch UI, scrollbars are present
-	   if( AknLayoutUtils::PenEnabled()  )
+    if( AknLayoutUtils::ScalableLayoutInterfaceAvailable() )
+            {
+            TAknLayoutRect rectCalcPaperPane;    
+            TAknLayoutRect rectbgCalcPaperPane;
+            //Different configuration for Touch Layouts
+            if( AknLayoutUtils::PenEnabled() )
+            {
+                    //In landscape mode different configuration is needed
+                 if (Layout_Meta_Data::IsLandscapeOrientation())
+                 {
+                    rectCalcPaperPane.LayoutRect(parentRect,AknLayoutScalable_Apps::calc_paper_pane(enTouch_with_lsc).LayoutLine());  
+                 }
+                 else
+                 {
+                    rectCalcPaperPane.LayoutRect(parentRect,AknLayoutScalable_Apps::calc_paper_pane(enTouch_with_prt).LayoutLine());      
+                 }
+                 rectbgCalcPaperPane.LayoutRect(rectCalcPaperPane.Rect(),AknLayoutScalable_Apps::bg_calc_paper_pane(enTouch_enabled).LayoutLine());
+            }
+            else
+            {
+                rectCalcPaperPane.LayoutRect(parentRect,AknLayoutScalable_Apps::calc_paper_pane(enTouch_disabled).LayoutLine());    
+                rectbgCalcPaperPane.LayoutRect(rectCalcPaperPane.Rect(),AknLayoutScalable_Apps::bg_calc_paper_pane().LayoutLine());
+            }
+            
+            iPaperPaneRect  = rectCalcPaperPane;
+            
+            
+            iCalcPaperLayout[0].LayoutRect(rectbgCalcPaperPane.Rect(),AknLayoutScalable_Apps::bg_calc_paper_pane_g1().LayoutLine());
+            iCalcPaperLayout[1].LayoutRect(rectbgCalcPaperPane.Rect(),AknLayoutScalable_Apps::bg_calc_paper_pane_g2().LayoutLine());
+            iCalcPaperLayout[2].LayoutRect(rectbgCalcPaperPane.Rect(),AknLayoutScalable_Apps::bg_calc_paper_pane_g3().LayoutLine());
+            iCalcPaperLayout[3].LayoutRect(rectbgCalcPaperPane.Rect(),AknLayoutScalable_Apps::bg_calc_paper_pane_g4().LayoutLine());
+            iCalcPaperLayout[4].LayoutRect(rectbgCalcPaperPane.Rect(),AknLayoutScalable_Apps::bg_calc_paper_pane_g5().LayoutLine());
+            iCalcPaperLayout[5].LayoutRect(rectbgCalcPaperPane.Rect(),AknLayoutScalable_Apps::bg_calc_paper_pane_g6().LayoutLine());
+            iCalcPaperLayout[6].LayoutRect(rectbgCalcPaperPane.Rect(),AknLayoutScalable_Apps::bg_calc_paper_pane_g7().LayoutLine());
+            iCalcPaperLayout[7].LayoutRect(rectbgCalcPaperPane.Rect(),AknLayoutScalable_Apps::bg_calc_paper_pane_g8().LayoutLine());
+            iCalcPaperLayout[8].LayoutRect(rectbgCalcPaperPane.Rect(),AknLayoutScalable_Apps::calc_bg_paper_pane_g9().LayoutLine());
+            }
+            
+       iOpSheetContext->SetRect(Rect());
+        
+        //Only for touch UI, scrollbars are present
+       if( AknLayoutUtils::PenEnabled()  )
         {
           UpdateScrollIndicatorL();
         }
@@ -467,8 +468,8 @@ void CCalcOutputSheet::SizeChangedOutSheetL()
         }
         
         }
-		
-		}
+        
+        }
 
 
 // ---------------------------------------------------------
@@ -478,13 +479,13 @@ void CCalcOutputSheet::SizeChangedOutSheetL()
 // ---------------------------------------------------------
 void CCalcOutputSheet::UpdateScrollIndicatorL()
     {
-    	
-    	if( !AknLayoutUtils::PenEnabled()  )
-    	{
-    		return;
-    	}
-    	
-        TAknLayoutRect rectCalcScrollPane;	
+        
+        if( !AknLayoutUtils::PenEnabled()  )
+        {
+            return;
+        }
+        
+        TAknLayoutRect rectCalcScrollPane;    
 
         //Get the layout information for the scrollbar
         if( AknLayoutUtils::PenEnabled() )
@@ -499,7 +500,7 @@ void CCalcOutputSheet::UpdateScrollIndicatorL()
          }
 
         }
-				//Create scrollbar if not created already
+                //Create scrollbar if not created already
         if ( !iSBFrame )
         {
         //Make this class as the observer class as well
@@ -509,16 +510,16 @@ void CCalcOutputSheet::UpdateScrollIndicatorL()
         CAknAppUi* appUi = iAvkonAppUi;
         if (AknLayoutUtils::DefaultScrollBarType(appUi) == CEikScrollBarFrame::EDoubleSpan)
         {
-        	// For EDoubleSpan type scrollbar
-        	iSBFrame->CreateDoubleSpanScrollBarsL(ETrue, EFalse); // non-window owning scrollbar            
-        	iSBFrame->SetTypeOfVScrollBar(CEikScrollBarFrame::EDoubleSpan);
+            // For EDoubleSpan type scrollbar
+            iSBFrame->CreateDoubleSpanScrollBarsL(ETrue, EFalse); // non-window owning scrollbar            
+            iSBFrame->SetTypeOfVScrollBar(CEikScrollBarFrame::EDoubleSpan);
         }
         else
         {
-        	// For EArrowHead type scrollbar
-        	iSBFrame->SetTypeOfVScrollBar(CEikScrollBarFrame::EArrowHead);
+            // For EArrowHead type scrollbar
+            iSBFrame->SetTypeOfVScrollBar(CEikScrollBarFrame::EArrowHead);
         }  
-        iSBFrame->SetScrollBarVisibilityL(CEikScrollBarFrame::EOff,CEikScrollBarFrame::EAuto);
+        iSBFrame->SetScrollBarVisibilityL(CEikScrollBarFrame::EOff,CEikScrollBarFrame::EOff);
         }
 
         TEikScrollBarModel hSbarModel;
@@ -533,7 +534,7 @@ void CCalcOutputSheet::UpdateScrollIndicatorL()
         }
         else
         {
-        		//span calculator if no of lines exceeds one page
+                //span calculator if no of lines exceeds one page
             vSbarModel.iScrollSpan = 1 + iCalcHistory->Count() - iCalcOutputSheetLines;  
         }
 
@@ -542,6 +543,16 @@ void CCalcOutputSheet::UpdateScrollIndicatorL()
 
         TRect clientRect( iAvkonAppUi->ClientRect() );
         TRect rec(rectCalcScrollPane.Rect()); 
+        TPoint point = rectCalcScrollPane.Rect().iBr;
+        TInt width = rectCalcScrollPane.Rect().Width();
+        TInt rightPointRectX = iSBBrPoint.iX;
+        TInt pointRectX = point.iX;
+        TInt pointRectY = point.iY;
+        pointRectX = rightPointRectX;
+        TPoint newPoint;
+        newPoint.SetXY( pointRectX, pointRectY );
+        TRect rect;
+        rect.SetRect( rec.iTl, newPoint );
 
         TEikScrollBarFrameLayout layout;
         layout.iTilingMode = TEikScrollBarFrameLayout::EInclusiveRectConstant;
@@ -557,13 +568,24 @@ void CCalcOutputSheet::UpdateScrollIndicatorL()
 
         TAknDoubleSpanScrollBarModel hDsSbarModel(hSbarModel);
         TAknDoubleSpanScrollBarModel vDsSbarModel(vSbarModel);
+        
+        if (iCalcHistory->Count() <= iCalcOutputSheetLines )
+        {
+        iSBFrame->SetScrollBarVisibilityL(CEikScrollBarFrame::EOff,
+                CEikScrollBarFrame::EOff);
+        }
+        else
+        {
+        iSBFrame->SetScrollBarVisibilityL(CEikScrollBarFrame::EOff,
+                CEikScrollBarFrame::EOn);
+        }
 
-        iSBFrame->TileL(&hDsSbarModel, &vDsSbarModel, clientRect, rec, layout);               
+        iSBFrame->TileL(&hDsSbarModel, &vDsSbarModel, clientRect, rect, layout);               
         iSBFrame->SetVFocusPosToThumbPos(vDsSbarModel.FocusPosition());
         }  
         else
         {
-        iSBFrame->TileL( &hSbarModel, &vSbarModel, clientRect, rec, layout );
+        iSBFrame->TileL( &hSbarModel, &vSbarModel, clientRect, rect, layout );
         iSBFrame->SetVFocusPosToThumbPos( vSbarModel.iThumbPosition );
         }
         }
@@ -580,7 +602,7 @@ void CCalcOutputSheet::Draw
     {
     
     CWindowGc& gc = SystemGc();
-	gc.Clear(aRect);
+    gc.Clear(aRect);
     gc.SetClippingRect(aRect);
     TRect rect(Rect());
     
@@ -593,31 +615,31 @@ void CCalcOutputSheet::Draw
            
     gc.SetBrushStyle(CGraphicsContext::ENullBrush);
     gc.SetPenStyle(CGraphicsContext::ENullPen);
-	//set the size of the bitmap. SVG-T upgrade.
-	CAknsItemData* idata = NULL;    				
+    //set the size of the bitmap. SVG-T upgrade.
+    CAknsItemData* idata = NULL;                    
     if (skin)
-    	{
+        {
         idata = skin->GetCachedItemData( KAknsIIDQsnFrCalcPaper);
-    	}
-    	
+        }
+        
     if ( idata && idata->Type() == EAknsITImageTable )
-    	{
+        {
             if ( AknLayoutUtils::PenEnabled() ) 
             {//when touch input,the paper become bigger,so it needs only one paper 
                 AknIconUtils::SetSize(iCalcScalablePaper[0]->Bitmap(),iCalcPaperLayout[0].Rect().Size(),EAspectRatioNotPreserved); 
                 AknIconUtils::SetSize(iCalcScalablePaper[0]->Mask(),iCalcPaperLayout[0].Rect().Size(),EAspectRatioNotPreserved);
-                iCalcPaperLayout[0].DrawImage(gc, iCalcScalablePaper[0]->Bitmap(),iCalcScalablePaper[0]->Mask());	
+                iCalcPaperLayout[0].DrawImage(gc, iCalcScalablePaper[0]->Bitmap(),iCalcScalablePaper[0]->Mask());    
             }
             else
             {
                 for(TInt Cnt=0;Cnt < 9; Cnt++)
-            	{
+                {
                 AknIconUtils::SetSize(iCalcScalablePaper[Cnt]->Bitmap(),iCalcPaperLayout[Cnt].Rect().Size(),EAspectRatioNotPreserved); 
-            	AknIconUtils::SetSize(iCalcScalablePaper[Cnt]->Mask(),iCalcPaperLayout[Cnt].Rect().Size(),EAspectRatioNotPreserved);
-            	iCalcPaperLayout[Cnt].DrawImage(gc, iCalcScalablePaper[Cnt]->Bitmap(),iCalcScalablePaper[Cnt]->Mask());
+                AknIconUtils::SetSize(iCalcScalablePaper[Cnt]->Mask(),iCalcPaperLayout[Cnt].Rect().Size(),EAspectRatioNotPreserved);
+                iCalcPaperLayout[Cnt].DrawImage(gc, iCalcScalablePaper[Cnt]->Bitmap(),iCalcScalablePaper[Cnt]->Mask());
                 }
             }
-  		}
+          }
     else
         {
             // Make outsheet displayed in Jingmask is the same size as in other themes
@@ -629,10 +651,10 @@ void CCalcOutputSheet::Draw
             else
                 {
                 AknsDrawUtils::Background( AknsUtils:: SkinInstance(), iOpSheetContext, this, gc, rect );
-                }	
+                }    
         }
-  		
-	
+          
+    
     for (TInt loop(iCalcOutputSheetLines - 1); loop >= 0; loop--)
         {
         const TCalcEditLine& history = (*iCalcHistory)[loop + iScrollOffset];
@@ -641,78 +663,78 @@ void CCalcOutputSheet::Draw
         
         if (loop < iCalcOutputSheetLines - 1)
             {
-			// When an operator is Equal, a line is drawn at an upper end.
-			if (TCalcEditLine::ECalcEqual == operatorType)
-				{
-					TRgb ResultsLineolor;
+            // When an operator is Equal, a line is drawn at an upper end.
+            if (TCalcEditLine::ECalcEqual == operatorType)
+                {
+                    TRgb ResultsLineolor;
                     TInt error1 = AknsUtils::GetCachedColor( skin, ResultsLineolor, KAknsIIDQsnTextColors, EAknsCIQsnTextColorsCG29);
                     if(error1 == KErrNone)
                     {
                         AknIconUtils::SetIconColor(iCalcResultsLine->Bitmap(),ResultsLineolor);
                     }
-				if( AknLayoutUtils::ScalableLayoutInterfaceAvailable() )
-					{
+                if( AknLayoutUtils::ScalableLayoutInterfaceAvailable() )
+                    {
 #ifdef __SCALABLE_ICONS
-					TAknLayoutRect& lineLayout = iResultsLineLayout->At(loop);
-					AknIconUtils::SetSize(iCalcResultsLine->Bitmap(),lineLayout.Rect().Size(),EAspectRatioNotPreserved);
-					AknIconUtils::SetSize(iCalcResultsLine->Mask(),lineLayout.Rect().Size(),EAspectRatioNotPreserved);
-					lineLayout.DrawImage(gc, iCalcResultsLine->Bitmap(),iCalcResultsLine->Mask()); 
+                    TAknLayoutRect& lineLayout = iResultsLineLayout->At(loop);
+                    AknIconUtils::SetSize(iCalcResultsLine->Bitmap(),lineLayout.Rect().Size(),EAspectRatioNotPreserved);
+                    AknIconUtils::SetSize(iCalcResultsLine->Mask(),lineLayout.Rect().Size(),EAspectRatioNotPreserved);
+                    lineLayout.DrawImage(gc, iCalcResultsLine->Bitmap(),iCalcResultsLine->Mask()); 
 #else
-					TAknLayoutRect& equalLineLayout= iEqualLineLayout->At(loop);
-					TRect rectLine = equalLineLayout.Rect();
-					equalLineLayout.DrawRect(gc);
+                    TAknLayoutRect& equalLineLayout= iEqualLineLayout->At(loop);
+                    TRect rectLine = equalLineLayout.Rect();
+                    equalLineLayout.DrawRect(gc);
 #endif
-					}
-				else 
-					{ 
-					TAknLayoutRect& equalLineLayout= iEqualLineLayout->At(loop);
-					TRect rectLine = equalLineLayout.Rect();
-					equalLineLayout.DrawRect(gc);
-					}
-				}
+                    }
+                else 
+                    { 
+                    TAknLayoutRect& equalLineLayout= iEqualLineLayout->At(loop);
+                    TRect rectLine = equalLineLayout.Rect();
+                    equalLineLayout.DrawRect(gc);
+                    }
+                }
             }
             TRgb color;
             TInt error = AknsUtils::GetCachedColor( skin, color, KAknsIIDQsnTextColors, EAknsCIQsnTextColorsCG29);
-			if(error == KErrNone)
-			{
-				gc.SetPenColor(color);
-			}
-			
-		//change TBuf<10> to TBuf<KCalcMaxNumberWidth>
+            if(error == KErrNone)
+            {
+                gc.SetPenColor(color);
+            }
+            
+        //change TBuf<10> to TBuf<KCalcMaxNumberWidth>
        TBuf<KCalcMaxNumberWidth> keyvalue;
        
        keyvalue.Append(history.NumberString());
        AknTextUtils::LanguageSpecificNumberConversion  (keyvalue);
         // An operand's drawing
-		TAknLayoutText& operendLayout = iOperandLayout->At(loop);
+        TAknLayoutText& operendLayout = iOperandLayout->At(loop);
 
                     if ( iUiLanguage == ELangFarsi || iUiLanguage == ELangHindi || 
                         iUiLanguage == ELangUrdu || iUiLanguage == ELangArabic )
                         {
                          if( iUiLanguage == ELangUrdu || iUiLanguage == ELangArabic )
-		         {
-			    	TInt len = keyvalue.Length();
-				    TInt pos = KErrNotFound;
-				    TBuf<1> ch;
-				    ch.Append(iCalcAppEnv->MinusIndicator());
-				    if( (pos = keyvalue.Locate(iCalcAppEnv->MinusIndicator())) != KErrNotFound &&
-				         pos == keyvalue.LocateReverse(iCalcAppEnv->MinusIndicator()))
-				    {
-				     keyvalue.Delete( pos, 1 );
-				     keyvalue.Insert( 0, ch );	 
-				    }
-		         }
-			operendLayout.DrawText(gc,keyvalue,EFalse,color);
-		    }
-		else
-			{
-			operendLayout.DrawText(gc,history.NumberString(),EFalse,color);	
-			}
+                 {
+                    TInt len = keyvalue.Length();
+                    TInt pos = KErrNotFound;
+                    TBuf<1> ch;
+                    ch.Append(iCalcAppEnv->MinusIndicator());
+                    if( (pos = keyvalue.Locate(iCalcAppEnv->MinusIndicator())) != KErrNotFound &&
+                         pos == keyvalue.LocateReverse(iCalcAppEnv->MinusIndicator()))
+                    {
+                     keyvalue.Delete( pos, 1 );
+                     keyvalue.Insert( 0, ch );     
+                    }
+                 }
+            operendLayout.DrawText(gc,keyvalue,EFalse,color);
+            }
+        else
+            {
+            operendLayout.DrawText(gc,history.NumberString(),EFalse,color);    
+            }
         // An operator's drawing
         TPtrC operatorString(
             iCalcAppEnv->OutSheetOperator(operatorType));
-		TAknLayoutText& operatorLayout = iOperatorLayout->At(loop);
-		operatorLayout.DrawText(gc, operatorString , EFalse, color);
+        TAknLayoutText& operatorLayout = iOperatorLayout->At(loop);
+        operatorLayout.DrawText(gc, operatorString , EFalse, color);
         }
         
         
@@ -736,7 +758,7 @@ void CCalcOutputSheet::HandleScrollEventL(CEikScrollBar* aScrollBar, TEikScrollE
            
            if(iPrevThumbPosition >aScrollBar->ThumbPosition() )
            {
-           		  //Move the scroll bar n times up
+                     //Move the scroll bar n times up
                 while(iPrevThumbPosition != aScrollBar->ThumbPosition())
                 {
                     ScrollUp();
@@ -781,19 +803,19 @@ void CCalcOutputSheet::HandleResourceChangeOutSheetL(TInt aType)
     if ( aType == KEikDynamicLayoutVariantSwitch )
         {
         if (AknLayoutUtils::PenEnabled())
-			{
-			ScrollToBottomL();
-			}
-		}
-	if ( aType == KAknsMessageSkinChange )
-		{
-		if (AknLayoutUtils::PenEnabled())
-			{
-			delete (iSBFrame);
-			iSBFrame = NULL;
+            {
+            ScrollToBottomL();
+            }
+        }
+    if ( aType == KAknsMessageSkinChange )
+        {
+        if (AknLayoutUtils::PenEnabled())
+            {
+            delete (iSBFrame);
+            iSBFrame = NULL;
 
-			UpdateScrollIndicatorL();
-			}
-		}
+            UpdateScrollIndicatorL();
+            }
+        }
 }
 //  End of File  

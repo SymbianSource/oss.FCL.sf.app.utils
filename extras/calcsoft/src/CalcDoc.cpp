@@ -265,6 +265,10 @@ TReal64 CCalcDocument::CalculateL
         case  TCalcEditLine::ECalcAdd:
             {
             result += aOperand;
+            if( Abs(result)<= KCalcDefaultZero )
+            	{
+            	result = 0;
+            	}
             break;
             }
         case  TCalcEditLine::ECalcSubtract:
