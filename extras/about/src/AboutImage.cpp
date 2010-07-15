@@ -20,6 +20,18 @@
 #include <fbs.h>
 #include "AboutImage.h"
 #include <AknIconUtils.h>
+#include <aknenv.h>
+#include <AknUtils.h>
+#include <aknconsts.h>
+#include <AknBidiTextUtils.h>
+#include <AknsDrawUtils.h> 
+#include <AknsBasicBackgroundControlContext.h>
+#include <AknsConstants.h>
+#include <AknDef.h>
+
+
+const TInt QtnJavaLogoWidth  = 46;
+const TInt QtnJavaLogoHeight = 70;
 
 // ================= MEMBER FUNCTIONS ==========================================
 
@@ -30,20 +42,32 @@ CAboutImage::CAboutImage()
 CAboutImage::~CAboutImage()
     {
     delete iBitmap;
+    delete iBitmapMask;
     }
 
 CAboutImage* CAboutImage::NewLC( const TDesC& aFileName,
                                  TInt aBitmapId,
                                  TInt aStartLine,
-                                 TInt aBaseLineDelta )
+                                 TInt aBaseLineDelta,
+                                 TBool aTypeFlag )
     {
     CAboutImage* self = new( ELeave ) CAboutImage();
     CleanupStack::PushL( self );
 
-    /*self->iBitmap = new( ELeave ) CFbsBitmap;
-    self->iBitmap->Load( aFileName, aBitmapId );*/
-
+    if( aTypeFlag )
+    	{
+    	// bmp files
 	self->iBitmap  = AknIconUtils::CreateIconL(aFileName, aBitmapId );
+    	}
+    else
+    	{
+    	// svg files
+    	MAknsSkinInstance* skinInstance = AknsUtils::SkinInstance();
+    	AknsUtils::CreateIconL( skinInstance, KAknsIIDQgnMenuSmsvoLst, self->iBitmap, self->iBitmapMask, 
+					aFileName, aBitmapId, aBitmapId + 1 );
+    	AknIconUtils::SetSize( self->iBitmap, TSize( QtnJavaLogoWidth, QtnJavaLogoHeight ) );
+    	AknIconUtils::SetSize( self->iBitmapMask, TSize( QtnJavaLogoWidth, QtnJavaLogoHeight ) );
+    	}
     self->iStartLine = aStartLine;
 
     // enough lines so that image and margins fit in them.
@@ -111,4 +135,12 @@ const CFbsBitmap* CAboutImage::Bitmap() const
     return iBitmap;
     }
 
+// -----------------------------------------------------------------------------
+// CAboutImage::BitmapMask()
+// -----------------------------------------------------------------------------
+
+const CFbsBitmap* CAboutImage::BitmapMask() const
+	{
+	return iBitmapMask;
+	}
 // End of File  

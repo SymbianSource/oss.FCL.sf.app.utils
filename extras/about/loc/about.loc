@@ -49,7 +49,7 @@
 // d: Starts from a new line.
 // l: none
 //
-#define qtn_about_legal_text_3 "This product is based on Symbian^3 Edition software."
+#define qtn_about_legal_text_3 "This product is based on Symbian^3."
 
 // d: Nokia legal text
 // d: Starts from a new line.
@@ -1184,3 +1184,9 @@
 // l: none
 //
 #define qtn_about_legal_text_192 "THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+
+// d: Nokia legal text
+// d: Starts from a new line.
+// l: none
+//
+#define qtn_about_legal_text_193 "Manufactured under license from Dolby Laboratories. Dolby' and the 'double-D' symbol are trademarks of Dolby Laboratories. This product contains one or more programs protected under international and U.S. copyright laws as unpublished works. They are confidential and proprietary to Dolby Laboratories. The reproduction or disclosure, in whole or part, or the production of derivative works therefrom without the express permission of Dolby Laboratories is prohibited. Copyright 2003-2010 by Dolby Laboratories. All rights reserved."

@@ -86,6 +86,8 @@ void CAboutContainer::ConstructL( const TRect& aRect )
     CreateWindowL();
 
     iScrollBarDragged = EFalse;
+    iBreakFlag = EFalse;
+    iIsSvg = EFalse;
 	iSkinContext = NULL;
 	iText = NULL;
 	iImages = NULL;
@@ -228,17 +230,6 @@ void CAboutContainer::Draw( const TRect& aRect ) const
             gc.BitBlt( position, image->Bitmap(), aRect );
             }
         }
-     /*   if(iCurrentScreen == 0)
-    {
-        TAknWindowLineLayout area = AknLayoutScalable_Apps::mce_icon_pane().LayoutLine();
- 	    TAknLayoutRect layoutRect;
- 	    TRect iconrect = Rect();
- 	    iconrect.iTl.iX = position.iX;
-	    layoutRect.LayoutRect(iconrect, area);
-  	    layoutRect.DrawImage(gc, iIcon->Bitmap(),iIcon->Mask());
-        
-    }*/
-
     }
 
 // -----------------------------------------------------------------------------
@@ -272,6 +263,17 @@ void CAboutContainer::SetTextL( const TDesC& aText , const TInt aItem )
         {
         HBufC* line = (*wrappedArray)[i].AllocLC();
 
+		switch( aItem )
+			{
+			// The fourteen string's setting
+			case 14:
+				{
+				iBreakFlag = ETrue;
+				break;
+				}
+			default:
+				break;
+			}
         if(!line->Length())
             {
             iText->AppendL( NULL );
@@ -280,8 +282,29 @@ void CAboutContainer::SetTextL( const TDesC& aText , const TInt aItem )
             }
         else
             {
-            iText->AppendL( line );
-            CleanupStack::Pop(line);  // line
+            if( iBreakFlag && ( numLines - 1 ) == i )
+            	{
+                iText->AppendL( line );
+                // Get the text's lines' count for set break
+                TInt textCount = iText->Count();
+                TInt count = iLinesPerScreen - ( textCount % ( iLinesPerScreen - 1 ) ) - 1;
+                if( iLinesPerScreen == count + 1 )
+                	{
+                	// When the last line has content, we should set count zero 
+                	count = 0;
+                	}
+                for( TInt j = 0; j < count; j++ )
+                	{
+                	iText->AppendL( NULL );
+                	}
+                CleanupStack::Pop( line );  // line
+                iBreakFlag = EFalse;
+            	}
+            else
+            	{
+                iText->AppendL( line );
+                CleanupStack::Pop( line );  // line
+            	}
             }
         }
 	iText->AppendL( NULL );
@@ -331,8 +354,9 @@ void CAboutContainer::SetImageL( const TDesC& aFileName, TInt aBitmapId )
     {
     TInt firstLineOfImage( iText->Count() );
 
+    // If flag is ETrue, the file type is bmp 
     CAboutImage* image =
-    CAboutImage::NewLC( aFileName, aBitmapId, firstLineOfImage, iBaseLineDelta );
+    CAboutImage::NewLC( aFileName, aBitmapId, firstLineOfImage, iBaseLineDelta, ETrue );
 
     // new lines to make room for the picture
 
@@ -653,61 +677,13 @@ void CAboutContainer::CalculateL(const TRect& aRect)
     TResourceReader reader;
     iEikonEnv->CreateResourceReaderLC( reader, R_ABOUT_MAIN_TEXT );
 #endif
-    
-    CFbsBitmap* bitmap,*mask;
-    bitmap = NULL;
-    mask= NULL;
-    TFileName bmpPath;
-    _LIT( KMbmFileName, "Z:about.mif" );
-
-    TParse* fpMbm = new(ELeave) TParse ();
-    fpMbm->Set ( KMbmFileName, &KDC_APP_BITMAP_DIR, NULL );
-    bmpPath.Copy( fpMbm ->FullName() );
-    delete fpMbm;
-    fpMbm=NULL;
-
-    TResourceReader readerSVG;                   
-    iEikonEnv->CreateResourceReaderLC( readerSVG, R_ABOUT_SVG_TEXT );
-    TInt svgId = readerSVG.ReadInt16();
-    TInt svgIdmask = readerSVG.ReadInt16();
-    TInt height = readerSVG.ReadInt16();
-    TInt width = readerSVG.ReadInt16();
-    CleanupStack::PopAndDestroy();      // readerSVG
-	  
-    MAknsSkinInstance* skinInstance = AknsUtils::SkinInstance();
-    AknsUtils::CreateIconL( skinInstance, KAknsIIDQgnMenuSmsvoLst, bitmap, mask, bmpPath, svgId, svgIdmask );	
-    //AknsUtils::CreateIconL( skinInstance, KAknsIIDQgnMenuSmsvoLst, bitmap, bmpPath, EMbmAboutQgn_graf_java_logo );	
-    if ( iIcon )
-        {
-        delete( iIcon );
-        iIcon = NULL;
-        }
-    iIcon = CGulIcon::NewL( bitmap,mask );
-    
-    TRect rect1; 
-   	rect1.iTl.iX = 0;
-   	rect1.iTl.iY = 0;
-   	rect1.iBr.iX = height;
-   	rect1.iBr.iY = width;
-	  AknIconUtils::SetSize( iIcon->Bitmap(), rect1.Size() ); 
-	  AknIconUtils::SetSize( iIcon->Mask(), rect1.Size() );
-
-    TInt lines( bitmap->SizeInPixels().iHeight +
-                  KImageTopMargin + 
-                  KImageBottomMargin +
-                  ( iBaseLineDelta - 1 ) / iBaseLineDelta );
-
-/*        for(TInt i =0; i< 2; i++)
-		{
-		    iText->AppendL(NULL);    
-		}*/
+ 
     TInt NumItem( reader.ReadInt16() );
     iNumItem = NumItem;
 
     for ( TInt i = 0 ; i < iNumItem ; i++ )
         {
         TInt type = reader.ReadInt8();
-
         if ( type == EAboutTextItem )    
             { 
             HBufC* text;  
@@ -723,14 +699,28 @@ void CAboutContainer::CalculateL(const TRect& aRect)
                 {
                 text = iEikonEnv->AllocReadResourceLC( reader.ReadInt32() );
                 }
-            SetTextL( *text , i );
-            CleanupStack::PopAndDestroy( text );
+			SetTextL( *text , i );
+			CleanupStack::PopAndDestroy( text );
             }
         else if ( type == EAboutImageItem )
             {
             TPtrC bitmapFile = reader.ReadTPtrC();
             TInt bitmapId = reader.ReadInt16();
-            SetImageL( bitmapFile, bitmapId );
+            if( iIsSvg )
+            	{
+            	TFileName svgPath;
+            	_LIT( KSvgFileName, "Z:about.mif" );
+            	TParse* fpSvg = new( ELeave ) TParse ();
+            	fpSvg->Set( KSvgFileName, &KDC_APP_BITMAP_DIR, NULL );
+            	svgPath.Copy( fpSvg ->FullName() );
+            	delete fpSvg;
+            	fpSvg = NULL;    
+            	SetImageL( svgPath, EMbmAboutQgn_graf_java_logo );
+            	}
+            else
+            	{
+            	SetImageL( bitmapFile, bitmapId );
+            	}
             }
         else
             {

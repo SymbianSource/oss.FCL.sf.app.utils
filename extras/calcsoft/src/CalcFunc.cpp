@@ -374,7 +374,7 @@ void CCalcFuncmapSubPane::HandleControlEventL(CCoeControl* aControl,TCoeEvent aE
         
     //Get the selected button
     CAknButton* button = (CAknButton*)aControl;
-    
+
     for ( TInt i = 0; i < KCountOfButtons; ++i )
         {
         if ( button == iButtons[i] )
@@ -385,6 +385,13 @@ void CCalcFuncmapSubPane::HandleControlEventL(CCoeControl* aControl,TCoeEvent aE
             //break;
             }
         }    
+
+    // Check if the button has been pressed.
+    CAknButtonState* state = button->State(EnNormal);
+    if ( aEventType == EEventStateChanged && state->Flags() == EnNormal )
+        {
+        iInputData = ETrue;
+        }
     
     if ( !button->IsDimmed() )
         {
@@ -413,9 +420,11 @@ void CCalcFuncmapSubPane::HandleControlEventL(CCoeControl* aControl,TCoeEvent aE
             }
             else
             {
-             if ( iIsKeyLongPress )
+            // Input data if the button has been pressed or long pressed.
+            if ( iInputData || iIsKeyLongPress )
                 {
                 iContainer->View()->HandleCommandL(KButtonsIdTblTouch[iSelected]);
+                iInputData = EFalse;
                 }
             }   
 
@@ -857,11 +866,24 @@ TKeyResponse CCalcFuncmapSubPane::OfferKeyEventL(const TKeyEvent& aKeyEvent, TEv
     }
     else if (aType == EEventKeyDown)
     {
-        iIsOfferKeyEvent = ETrue;        
+    iIsOfferKeyEvent = ETrue; 
+    // If the enter key has been pressed, set the button and input data.
+    if ( aKeyEvent.iCode == EKeyEnter || aKeyEvent.iScanCode == EStdKeyEnter )
+        {
+        exitCode = EKeyWasConsumed;
+        HandleMiddleSoftKeyOREKeyOKL();
+        iShiftKeyPressed = EPtiCaseLower;
+        return exitCode;
+        }       
     }
     else if (aType == EEventKeyUp)
     {
-        iIsOfferKeyEvent = EFalse;        
+    iIsOfferKeyEvent = EFalse;
+    // Release the button when enter key released.
+    if ( aKeyEvent.iCode == EKeyEnter || aKeyEvent.iScanCode == EStdKeyEnter )
+        {
+        NotifyReleaseKeyL();
+        }
     }
     
    
@@ -920,7 +942,8 @@ void CCalcFuncmapSubPane::ConstructL
             NULL,
             _L(""),
             _L(""),
-            0,
+            // Report the observer when the button recieve the key down event.
+            KAknButtonReportOnKeyDown, 
             0
             );     
             
@@ -935,7 +958,8 @@ void CCalcFuncmapSubPane::ConstructL
             NULL,
             _L(""),
             _L(""),
-            0,
+            // Report the observer when the button recieve the key down event.
+            KAknButtonReportOnKeyDown,
             0
             );     
             /*if((count == ESqrtButton) && !iIsChangeSignDimmed)
@@ -1163,6 +1187,7 @@ void CCalcFuncmapSubPane::RedrawHighlight
 
     if( aOldId != aNewId )
         {
+        button->SetFocus( EFalse, EDrawNow );
         button = iButtons[aNewId];        
         }
     }
@@ -1197,7 +1222,7 @@ void CCalcFuncmapSubPane::RedrawHighlight
         button->SetFocus( EFalse, EDrawNow );      
         button = iButtons[aNewId];        
         button->SetFocus( ETrue, EDrawNow );
-        }
+        }  
     }
 // ---------------------------------------------------------
 // CCalcFuncmapSubPane::SetLayout
@@ -1649,11 +1674,28 @@ void CCalcFuncmapSubPane::HandlePointerEventL
             {
             RedrawHighlight( oldSelect, iSelected );
             }
-        if( aPointerEvent.iType == TPointerEvent::EButton1Down )
+        else
             {
-            iContainer->View()->HandleCommandL(KButtonsIdTblTouch[iSelected]);
-            iInputData = ETrue;
+            //when user drag outside of button,the Button Up event is missed always.
+            //Because the pointer is out of the button and it can't get the pointer
+            //event any more. We simulate the button up event to release the button
+            //when user drag out of button
+            if( aPointerEvent.iType == TPointerEvent::EDrag )
+                {
+                TPointerEvent event = aPointerEvent;
+                event.iType = TPointerEvent::EButton1Up;
+                iInputData = EFalse;
+                if( iErrorCode != KErrNone )
+                   {
+                   ErrorMsgL( iErrorCode );
+                   iErrorCode = KErrNone;
+                   }
+                CCoeControl::HandlePointerEventL( event );
+                return;
+                }
             }
+
+
         if( aPointerEvent.iType == TPointerEvent::EButton1Up )
             {
             iInputData = EFalse;
@@ -1764,24 +1806,21 @@ TInt CCalcFuncmapSubPane::CalculatingCorrectButton
 
 void CCalcFuncmapSubPane::HandleMiddleSoftKeyOREKeyOKL()
    {
-         //get the selected button id
-        CAknButton* button = iButtons[iSelected];
-        //put the button in the pressed state
-        CAknButtonState* state = button->State(EnNormal);
-        //Put the button in pressed state
-        
-        TKeyEvent aKeyEvent;
-        aKeyEvent.iScanCode = EStdKeyEnter;
-        TEventCode aType = EEventKeyDown;
-        button->OfferKeyEventL(aKeyEvent,aType);
-        //put to pressed state
-        state->SetFlags(EnPressed);
-        button->DrawNow();
-        
-        if(!iIsOfferKeyEvent)
-        {
-            NotifyReleaseKeyL();
-        }
+     //get the selected button id
+    CAknButton* button = iButtons[iSelected];
+    //put the button in the pressed state
+    CAknButtonState* state = button->State(EnNormal);
+    //Put the button in pressed state
+    
+    TKeyEvent aKeyEvent;
+    aKeyEvent.iScanCode = EStdKeyEnter;
+    TEventCode aType = EEventKeyDown;
+    button->OfferKeyEventL(aKeyEvent,aType);
+
+    //put to pressed state
+    state->SetFlags(EnPressed);
+    button->DrawNow();
+
    }
    
 // ---------------------------------------------------------

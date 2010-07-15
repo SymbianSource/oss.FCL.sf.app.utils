@@ -679,7 +679,9 @@ TKeyResponse CCalcContainer::OfferKeyEventL
             aKeyEvent.iScanCode != EStdKeyRightArrow &&
             aKeyEvent.iScanCode != EStdKeyUpArrow &&
             aKeyEvent.iScanCode != EStdKeyDownArrow &&
-            aKeyEvent.iCode != EKeyOK)
+            aKeyEvent.iCode != EKeyOK &&
+            aKeyEvent.iCode != EKeyEnter &&
+            aKeyEvent.iScanCode != EStdKeyEnter )
                 {
                 iFuncmapPane->NotifyOtherThanOkKeyPressed();
                 }

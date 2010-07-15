@@ -39,7 +39,7 @@ class CAboutImage : public CBase
     public: // Constructors and destructor
         
         static CAboutImage* NewLC( const TDesC& aFileName, TInt aBitmapId,
-                                   TInt aStartLine, TInt aBaseLineDelta );
+                                   TInt aStartLine, TInt aBaseLineDelta, TBool aTypeFlag );
 
         /**
         * Destructor
@@ -54,6 +54,7 @@ class CAboutImage : public CBase
         TInt EndLine() const;
         TInt Lines() const;
         const CFbsBitmap* Bitmap() const;
+        const CFbsBitmap* BitmapMask() const;
 
     private: // private constructor
 
@@ -65,6 +66,7 @@ class CAboutImage : public CBase
     private:  // Data
 
         CFbsBitmap* iBitmap; // owned
+        CFbsBitmap* iBitmapMask; //owned
         TInt iStartLine;
         TInt iEndLine;
     };

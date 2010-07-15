@@ -96,6 +96,9 @@ class CAboutContainer : public CCoeControl, public MEikScrollBarObserver
         // Judge whether scroll bar is dragged. 
         TBool iScrollBarDragged;
         TInt iNumItem;
+        // Judge the break between "real" about box language and the full OSS texts 
+        TBool iBreakFlag;
+        TBool iIsSvg;
     };
 
 #endif

@@ -125,6 +125,12 @@ RESOURCE ABOUT_ITEM_LIST r_about_main_text
             {
             txt = r_about_legal_text_5;
             },
+#ifdef FF_VIDEO_AUDIO_BRANDING
+    	ABOUT_TEXT
+    		{
+    		txt = r_about_legal_text_193;
+    		},
+#endif
         ABOUT_TEXT
             {
 			txt = r_about_legal_text_6;
@@ -875,14 +881,6 @@ RESOURCE ABOUT_ITEM_LIST r_about_main_text
 			}
 		};
 	}
-
-RESOURCE ABOUT_SVGIMAGE r_about_svg_text
-    {  
-    svgid = EMbmAboutQgn_graf_s60_logo;       
-    svgmaskid = EMbmAboutQgn_graf_s60_logo_mask;   
-    height = 70;               
-    width = 46;
-    }
     
 RESOURCE TBUF r_about_legal_text_1   { buf = qtn_about_legal_text_1; }
 RESOURCE TBUF r_about_legal_text_2   { buf = qtn_about_legal_text_2; }
@@ -1076,6 +1074,7 @@ RESOURCE TBUF r_about_legal_text_189  { buf = qtn_about_legal_text_189; }
 RESOURCE TBUF r_about_legal_text_190  { buf = qtn_about_legal_text_190; }
 RESOURCE TBUF r_about_legal_text_191  { buf = qtn_about_legal_text_191; }
 RESOURCE TBUF r_about_legal_text_192  { buf = qtn_about_legal_text_192; }
+RESOURCE TBUF r_about_legal_text_193  { buf = qtn_about_legal_text_193; }
 
 RESOURCE LOCALISABLE_APP_INFO r_about_localisable_app_info
     {
