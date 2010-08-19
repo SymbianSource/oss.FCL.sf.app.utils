@@ -39,10 +39,12 @@ inline CCalcAppUi* CCalcAppEnv::AppUi() const
 inline const TPtrC CCalcAppEnv::EditorOperator(
             const TCalcEditLine::TCalcOperatorType aType ) const
     {
-    if ( ( aType == TCalcEditLine::ECalcMultiply ||
-        aType == TCalcEditLine::ECalcDivide ) &&
+    //'r_calc_editor_operator_array' is operator array for Editor Operator. 
+    if ( ( aType == TCalcEditLine::ECalcDivide ) &&
         AknLayoutUtils::PenEnabled() )
         {
+        //show operator '/' instead of division operator 
+        //division move 6 is '/' in Editor Operator array
         return ( *iEditorOperArray )[( TInt ) aType + 6];
         }
     return ( *iEditorOperArray )[(TInt) aType];
@@ -57,10 +59,12 @@ inline const TPtrC CCalcAppEnv::EditorOperator(
 inline const TPtrC CCalcAppEnv::OutSheetOperator(
             const TCalcEditLine::TCalcOperatorType aType ) const
     {
-    if ( ( aType == TCalcEditLine::ECalcMultiply ||
-        aType == TCalcEditLine::ECalcDivide ) &&
+    //'r_calc_outsheet_operator_array' is operator array for OutSheet Operator. 
+    if ( ( aType == TCalcEditLine::ECalcDivide ) &&
         AknLayoutUtils::PenEnabled() )
         {
+        //show operator '/' instead of division operator
+        //division move 6 is '/' in OutSheet Operator array
         return (*iOutSheetOperArray)[( TInt ) aType + 6];
         }
     return (*iOutSheetOperArray)[( TInt ) aType];
