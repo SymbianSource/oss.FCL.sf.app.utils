@@ -1,0 +1,131 @@
+/*
+* Copyright (c) 2002 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0""
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  This file provides the information required for building 
+*                Calculator.
+*
+*/
+
+
+#include <platform_paths.hrh>
+
+PRJ_PLATFORMS
+DEFAULT
+
+//  Help exports
+#include "../help/group/bld.inf"
+
+PRJ_EXPORTS
+// export localised loc file 
+../loc/calc.loc        APP_LAYER_LOC_EXPORT_PATH(calc.loc)
+
+./backup_registration.xml /epoc32/data/z/private/10005902/backup_registration.xml
+./backup_registration.xml /epoc32/release/winscw/udeb/z/private/10005902/backup_registration.xml
+./backup_registration.xml /epoc32/release/winscw/urel/z/private/10005902/backup_registration.xml
+
+// export IBY files
+../rom/Calcsoft.iby                 CORE_APP_LAYER_IBY_EXPORT_PATH(calcsoft.iby)
+../rom/CalculatorResources.iby      LANGUAGE_APP_LAYER_IBY_EXPORT_PATH(calculatorresources.iby)
+
+PRJ_MMPFILES
+
+
+
+//#ifdef __SCALABLE_ICONS
+//gnumakefile icons_scalable_calcsoft.mk
+//gnumakefile icons_aif_scalable_calcsoft.mk
+//#else
+//gnumakefile icons_calcsoft.mk
+//gnumakefile icons_aif_bitmaps_calcsoft.mk
+//#endif
+
+
+./Calcsoft.mmp
+
+PRJ_EXTENSIONS
+
+START EXTENSION s60/mifconv
+OPTION TARGETFILE calcsoft.mif
+OPTION HEADERFILE calcsoft.mbg
+OPTION SOURCES  -c8,1 qgn_graf_calc_display\
+                -c8,8 qgn_graf_calc_paper\
+                -c8,8 qsn_fr_calc_display_side_l\
+                -c8,8 qsn_fr_calc_display_center\
+                -c8,8 qsn_fr_calc_display_side_r\
+                -c8,8 qgn_graf_calc_results_line\
+                -c8,8 qsn_fr_calc_paper_center\
+                -c8,8 qsn_fr_calc_paper_corner_tl\
+                -c8,8 qsn_fr_calc_paper_corner_tr\
+                -c8,8 qsn_fr_calc_paper_corner_bl\
+                -c8,8 qsn_fr_calc_paper_corner_br\
+                -c8,8 qsn_fr_calc_paper_side_t\
+                -c8,8 qsn_fr_calc_paper_side_b\
+                -c8,8 qsn_fr_calc_paper_side_l\
+                -c8,8 qsn_fr_calc_paper_side_r\
+                -c8,8 qgn_indi_calc_cancel\
+                -c8,8 qgn_indi_calc_seven\
+                -c8,8 qgn_indi_calc_four\
+                -c8,8 qgn_indi_calc_one\
+                -c8,8 qgn_indi_calc_zero\
+                -c8,8 qgn_indi_calc_squareroot\
+                -c8,8 qgn_indi_calc_eight\
+                -c8,8 qgn_indi_calc_five\
+                -c8,8 qgn_indi_calc_two\
+                -c8,8 qgn_indi_calc_separator\
+                -c8,8 qgn_indi_calc_percent\
+                -c8,8 qgn_indi_calc_nine\
+                -c8,8 qgn_indi_calc_six\
+                -c8,8 qgn_indi_calc_three\
+                -c8,8 qgn_indi_calc_sign\
+                -c8,8 qgn_indi_calc_divide\
+                -c8,8 qgn_indi_calc_multiply\
+                -c8,8 qgn_indi_calc_subtract\
+                -c8,8 qgn_indi_calc_add\
+                -c8,8 qgn_indi_calc_equals\
+                -c8,1 qgn_indi_calc_button_plus\
+                -c8,1 qgn_indi_calc_button_minus\
+                -c8,1 qgn_indi_calc_button_multiply\
+                -c8,1 qgn_indi_calc_button_divide\
+                -c8,1 qgn_indi_calc_button_sign\
+                -c8,1 qgn_indi_calc_button_equals\
+                -c8,1 qgn_indi_calc_button_squareroot\
+                -c8,1 qgn_indi_calc_button_percent\
+                -c8,1 qgn_indi_calc_button_up\
+                -c8,1 qgn_indi_calc_button_down\
+                -c8,1 qgn_indi_calc_button_plus_pressed\
+                -c8,1 qgn_indi_calc_button_minus_pressed\
+                -c8,1 qgn_indi_calc_button_multiply_pressed\
+                -c8,1 qgn_indi_calc_button_divide_pressed\
+                -c8,1 qgn_indi_calc_button_sign_pressed\
+                -c8,1 qgn_indi_calc_button_equals_pressed\
+                -c8,1 qgn_indi_calc_button_squareroot_pressed\
+                -c8,1 qgn_indi_calc_button_percent_pressed\
+                -c8,1 qgn_indi_calc_button_up_pressed\
+                -c8,1 qgn_indi_calc_button_down_pressed\
+                -c8,8 qgn_indi_calc_button_up_inactive\
+                -c8,8 qgn_indi_calc_button_down_inactive\
+                -c8,8 qgn_indi_calc_button_sign_inactive\
+                -c8,8 qgn_indi_calc_button_squareroot_inactive\
+                -c8,8 qgn_indi_calc_button_percent_inactive
+END
+
+START EXTENSION s60/mifconv
+OPTION TARGETFILE calcsoft_aif.mif
+OPTION SOURCES -c8,8 qgn_menu_calc
+END
+
+PRJ_TESTMMPFILES
+//../tsrc/CVTCalcsoft.mmp  // CVT test case(s)
+
+
+// End of File
