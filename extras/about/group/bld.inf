@@ -40,7 +40,7 @@ START EXTENSION s60/mifconv
 OPTION TARGETFILE about.mif
 OPTION HEADERFILE about.mbg
 OPTION SOURCES -c8,8 qgn_menu_about_cxt\
-               -c8 qgn_graf_java_logo
+               -c8,8 qgn_graf_java_logo
 END
 
 START EXTENSION s60/mifconv

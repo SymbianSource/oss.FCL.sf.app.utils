@@ -23,23 +23,31 @@
 #include <coecntrl.h>
 #include <gdi.h>  
 #include <eiksbobs.h> 
+#include <gulicon.h>
+#include "MResourceLoaderObserver.h"
+
 // FORWARD DECLARATIONS
 class CEikScrollBarFrame;
 class CAboutImage;
 class CFont;
 class TRect;
 class TBidiText;
-class   CAknsBasicBackgroundControlContext;
-#include <gulicon.h>
+class CAknsBasicBackgroundControlContext;
+class CAboutResourceLoader;
+
 
 // CLASS DECLARATION
 
 /**
 *  CAboutContainer  container control class.
-*  
+*  The container for About. It handle the system event. 
+*  And it draws correct texts and images to screen base on the scroll bar.
+*
 */
-//About container derived from scrollbarobserver to get events on scrollbar movements
-class CAboutContainer : public CCoeControl, public MEikScrollBarObserver
+
+class CAboutContainer : public CCoeControl,
+                        public MEikScrollBarObserver,
+                        public MResourceLoaderObserver
     {
     public: // Constructors and destructor
         CAboutContainer();
@@ -73,6 +81,9 @@ class CAboutContainer : public CCoeControl, public MEikScrollBarObserver
         void SetImageL( const TDesC& aFileName, TInt aBitmapId );
         void UpdateScrollIndicatorL();
 
+    private: //From MResourceLoaderObserver
+        void HandleItemsLoadedL( TInt aError );
+        void HandleResourceLoadCompletedL( const TInt aResourceId, TInt aError );
         // text wrapping
 
     private: // Data
@@ -95,10 +106,24 @@ class CAboutContainer : public CCoeControl, public MEikScrollBarObserver
 		
         // Judge whether scroll bar is dragged. 
         TBool iScrollBarDragged;
-        TInt iNumItem;
+        
+        //Owned: Resource loader.
+        CAboutResourceLoader* iLoader;
+        
         // Judge the break between "real" about box language and the full OSS texts 
         TBool iBreakFlag;
-        TBool iIsSvg;
+        
+        // Store the resource path for load the file
+        TFileName iResourcePath;
+        
+        // Store the item count of the current loading resource.
+        TInt iCurrentCount;
+        
+        // Store the the count of the loaded content's items
+        TInt iFinalCount;
+        
+        // In order to carry out one operation only for getting iFinalCount
+        TBool iHandleFlag;
     };
 
 #endif

@@ -1,0 +1,1261 @@
+/*
+* Copyright (c) 2010 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0""
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description: Resource file for about oss text. More information look at about.rss
+* file' description.
+* 
+*/
+
+
+//  RESOURCE IDENTIFIER
+NAME    OTHE // 4 letter ID
+
+//  INCLUDES
+
+#include "about.rh"
+#include "about.hrh"
+#include <about.loc>
+#include <about.mbg>
+#include <eikon.rh>
+#include <avkon.rh>
+#include <avkon.loc>
+#include <avkon.rsg>
+#include <avkon.mbg>
+#include <appinfo.rh>
+#include <data_caging_paths_strings.hrh>
+
+#define about_mbm APP_BITMAP_DIR"\\about.mbm"
+
+RESOURCE RSS_SIGNATURE {}
+
+RESOURCE TBUF { buf= ""; }
+
+
+// Texts and images appear in this order on the about screen.
+// Every new text item starts from a new line.
+
+RESOURCE ABOUT_ITEM_LIST r_about_oss_text_add
+    {
+    items =
+        {
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_426;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_427;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_428;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_429;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_430;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_431;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_432;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_433;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_434;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_435;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_436;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_437;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_438;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_439;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_440;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_441;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_442;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_443;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_444;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_445;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_446;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_447;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_448;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_449;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_450;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_451;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_452;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_453;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_454;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_455;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_456;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_457;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_458;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_459;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_460;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_461;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_462;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_463;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_464;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_467;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_468;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_469;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_470;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_471;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_472;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_473;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_474;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_475;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_476;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_477;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_478;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_479;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_480;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_481;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_482;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_483;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_484;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_485;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_486;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_487;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_488;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_489;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_490;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_491;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_492;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_493;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_494;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_495;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_496;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_497;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_498;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_499;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_500;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_501;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_502;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_503;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_504;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_505;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_506;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_507;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_508;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_509;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_510;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_511;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_512;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_513;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_514;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_515;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_516;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_517;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_518;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_519;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_520;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_521;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_522;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_523;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_524;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_525;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_526;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_527;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_528;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_529;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_530;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_531;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_532;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_533;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_534;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_535;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_536;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_537;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_538;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_539;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_540;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_541;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_542;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_543;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_544;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_545;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_546;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_547;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_548;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_549;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_550;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_551;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_552;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_553;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_554;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_555;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_556;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_557;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_558;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_559;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_560;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_561;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_562;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_563;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_564;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_565;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_566;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_567;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_568;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_569;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_570;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_571;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_572;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_573;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_574;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_575;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_576;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_577;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_578;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_579;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_580;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_581;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_582;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_583;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_584;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_585;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_586;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_587;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_588;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_589;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_590;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_591;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_592;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_593;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_594;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_595;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_596;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_597;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_598;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_599;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_600;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_601;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_602;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_603;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_604;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_605;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_606;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_607;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_608;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_609;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_610;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_611;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_612;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_613;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_614;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_615;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_616;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_617;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_618;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_619;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_620;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_621;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_622;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_623;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_624;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_625;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_626;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_627;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_628;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_629;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_630;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_631;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_632;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_633;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_634;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_635;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_636;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_637;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_638;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_639;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_640;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_641;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_642;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_643;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_644;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_645;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_646;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_647;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_648;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_649;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_650;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_651;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_652;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_653;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_654;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_655;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_656;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_657;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_658;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_659;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_660;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_661;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_662;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_663;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_664;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_665;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_666;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_667;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_668;
+            }
+        };
+    }
+
+RESOURCE TBUF r_about_legal_text_426  { buf = qtn_about_legal_text_426; }
+RESOURCE TBUF r_about_legal_text_427  { buf = qtn_about_legal_text_427; }
+RESOURCE TBUF r_about_legal_text_428  { buf = qtn_about_legal_text_428; }
+RESOURCE TBUF r_about_legal_text_429  { buf = qtn_about_legal_text_429; }
+RESOURCE TBUF r_about_legal_text_430  { buf = qtn_about_legal_text_430; }
+RESOURCE TBUF r_about_legal_text_431  { buf = qtn_about_legal_text_431; }
+RESOURCE TBUF r_about_legal_text_432  { buf = qtn_about_legal_text_432; }
+RESOURCE TBUF r_about_legal_text_433  { buf = qtn_about_legal_text_433; }
+RESOURCE TBUF r_about_legal_text_434  { buf = qtn_about_legal_text_434; }
+RESOURCE TBUF r_about_legal_text_435  { buf = qtn_about_legal_text_435; }
+RESOURCE TBUF r_about_legal_text_436  { buf = qtn_about_legal_text_436; }
+RESOURCE TBUF r_about_legal_text_437  { buf = qtn_about_legal_text_437; }
+RESOURCE TBUF r_about_legal_text_438  { buf = qtn_about_legal_text_438; }
+RESOURCE TBUF r_about_legal_text_439  { buf = qtn_about_legal_text_439; }
+RESOURCE TBUF r_about_legal_text_440  { buf = qtn_about_legal_text_440; }
+RESOURCE TBUF r_about_legal_text_441  { buf = qtn_about_legal_text_441; }
+RESOURCE TBUF r_about_legal_text_442  { buf = qtn_about_legal_text_442; }
+RESOURCE TBUF r_about_legal_text_443  { buf = qtn_about_legal_text_443; }
+RESOURCE TBUF r_about_legal_text_444  { buf = qtn_about_legal_text_444; }
+RESOURCE TBUF r_about_legal_text_445  { buf = qtn_about_legal_text_445; }
+RESOURCE TBUF r_about_legal_text_446  { buf = qtn_about_legal_text_446; }
+RESOURCE TBUF r_about_legal_text_447  { buf = qtn_about_legal_text_447; }
+RESOURCE TBUF r_about_legal_text_448  { buf = qtn_about_legal_text_448; }
+RESOURCE TBUF r_about_legal_text_449  { buf = qtn_about_legal_text_449; }
+RESOURCE TBUF r_about_legal_text_450  { buf = qtn_about_legal_text_450; }
+RESOURCE TBUF r_about_legal_text_451  { buf = qtn_about_legal_text_451; }
+RESOURCE TBUF r_about_legal_text_452  { buf = qtn_about_legal_text_452; }
+RESOURCE TBUF r_about_legal_text_453  { buf = qtn_about_legal_text_453; }
+RESOURCE TBUF r_about_legal_text_454  { buf = qtn_about_legal_text_454; }
+RESOURCE TBUF r_about_legal_text_455  { buf = qtn_about_legal_text_455; }
+RESOURCE TBUF r_about_legal_text_456  { buf = qtn_about_legal_text_456; }
+RESOURCE TBUF r_about_legal_text_457  { buf = qtn_about_legal_text_457; }
+RESOURCE TBUF r_about_legal_text_458  { buf = qtn_about_legal_text_458; }
+RESOURCE TBUF r_about_legal_text_459  { buf = qtn_about_legal_text_459; }
+RESOURCE TBUF r_about_legal_text_460  { buf = qtn_about_legal_text_460; }
+RESOURCE TBUF r_about_legal_text_461  { buf = qtn_about_legal_text_461; }
+RESOURCE TBUF r_about_legal_text_462  { buf = qtn_about_legal_text_462; }
+RESOURCE TBUF r_about_legal_text_463  { buf = qtn_about_legal_text_463; }
+RESOURCE TBUF r_about_legal_text_464  { buf = qtn_about_legal_text_464; }
+RESOURCE TBUF r_about_legal_text_465  { buf = qtn_about_legal_text_465; }
+RESOURCE TBUF r_about_legal_text_466  { buf = qtn_about_legal_text_466; }
+RESOURCE TBUF r_about_legal_text_467  { buf = qtn_about_legal_text_467; }
+RESOURCE TBUF r_about_legal_text_468  { buf = qtn_about_legal_text_468; }
+RESOURCE TBUF r_about_legal_text_469  { buf = qtn_about_legal_text_469; }
+RESOURCE TBUF r_about_legal_text_470  { buf = qtn_about_legal_text_470; }
+RESOURCE TBUF r_about_legal_text_471  { buf = qtn_about_legal_text_471; }
+RESOURCE TBUF r_about_legal_text_472  { buf = qtn_about_legal_text_472; }
+RESOURCE TBUF r_about_legal_text_473  { buf = qtn_about_legal_text_473; }
+RESOURCE TBUF r_about_legal_text_474  { buf = qtn_about_legal_text_474; }
+RESOURCE TBUF r_about_legal_text_475  { buf = qtn_about_legal_text_475; }
+RESOURCE TBUF r_about_legal_text_476  { buf = qtn_about_legal_text_476; }
+RESOURCE TBUF r_about_legal_text_477  { buf = qtn_about_legal_text_477; }
+RESOURCE TBUF r_about_legal_text_478  { buf = qtn_about_legal_text_478; }
+RESOURCE TBUF r_about_legal_text_479  { buf = qtn_about_legal_text_479; }
+RESOURCE TBUF r_about_legal_text_480  { buf = qtn_about_legal_text_480; }
+RESOURCE TBUF r_about_legal_text_481  { buf = qtn_about_legal_text_481; }
+RESOURCE TBUF r_about_legal_text_482  { buf = qtn_about_legal_text_482; }
+RESOURCE TBUF r_about_legal_text_483  { buf = qtn_about_legal_text_483; }
+RESOURCE TBUF r_about_legal_text_484  { buf = qtn_about_legal_text_484; }
+RESOURCE TBUF r_about_legal_text_485  { buf = qtn_about_legal_text_485; }
+RESOURCE TBUF r_about_legal_text_486  { buf = qtn_about_legal_text_486; }
+RESOURCE TBUF r_about_legal_text_487  { buf = qtn_about_legal_text_487; }
+RESOURCE TBUF r_about_legal_text_488  { buf = qtn_about_legal_text_488; }
+RESOURCE TBUF r_about_legal_text_489  { buf = qtn_about_legal_text_489; }
+RESOURCE TBUF r_about_legal_text_490  { buf = qtn_about_legal_text_490; }
+RESOURCE TBUF r_about_legal_text_491  { buf = qtn_about_legal_text_491; }
+RESOURCE TBUF r_about_legal_text_492  { buf = qtn_about_legal_text_492; }
+RESOURCE TBUF r_about_legal_text_493  { buf = qtn_about_legal_text_493; }
+RESOURCE TBUF r_about_legal_text_494  { buf = qtn_about_legal_text_494; }
+RESOURCE TBUF r_about_legal_text_495  { buf = qtn_about_legal_text_495; }
+RESOURCE TBUF r_about_legal_text_496  { buf = qtn_about_legal_text_496; }
+RESOURCE TBUF r_about_legal_text_497  { buf = qtn_about_legal_text_497; }
+RESOURCE TBUF r_about_legal_text_498  { buf = qtn_about_legal_text_498; }
+RESOURCE TBUF r_about_legal_text_499  { buf = qtn_about_legal_text_499; }
+RESOURCE TBUF r_about_legal_text_500  { buf = qtn_about_legal_text_500; }
+RESOURCE TBUF r_about_legal_text_501  { buf = qtn_about_legal_text_501; }
+RESOURCE TBUF r_about_legal_text_502  { buf = qtn_about_legal_text_502; }
+RESOURCE TBUF r_about_legal_text_503  { buf = qtn_about_legal_text_503; }
+RESOURCE TBUF r_about_legal_text_504  { buf = qtn_about_legal_text_504; }
+RESOURCE TBUF r_about_legal_text_505  { buf = qtn_about_legal_text_505; }
+RESOURCE TBUF r_about_legal_text_506  { buf = qtn_about_legal_text_506; }
+RESOURCE TBUF r_about_legal_text_507  { buf = qtn_about_legal_text_507; }
+RESOURCE TBUF r_about_legal_text_508  { buf = qtn_about_legal_text_508; }
+RESOURCE TBUF r_about_legal_text_509  { buf = qtn_about_legal_text_509; }
+RESOURCE TBUF r_about_legal_text_510  { buf = qtn_about_legal_text_510; }
+RESOURCE TBUF r_about_legal_text_511  { buf = qtn_about_legal_text_511; }
+RESOURCE TBUF r_about_legal_text_512  { buf = qtn_about_legal_text_512; }
+RESOURCE TBUF r_about_legal_text_513  { buf = qtn_about_legal_text_513; }
+RESOURCE TBUF r_about_legal_text_514  { buf = qtn_about_legal_text_514; }
+RESOURCE TBUF r_about_legal_text_515  { buf = qtn_about_legal_text_515; }
+RESOURCE TBUF r_about_legal_text_516  { buf = qtn_about_legal_text_516; }
+RESOURCE TBUF r_about_legal_text_517  { buf = qtn_about_legal_text_517; }
+RESOURCE TBUF r_about_legal_text_518  { buf = qtn_about_legal_text_518; }
+RESOURCE TBUF r_about_legal_text_519  { buf = qtn_about_legal_text_519; }
+RESOURCE TBUF r_about_legal_text_520  { buf = qtn_about_legal_text_520; }
+RESOURCE TBUF r_about_legal_text_521  { buf = qtn_about_legal_text_521; }
+RESOURCE TBUF r_about_legal_text_522  { buf = qtn_about_legal_text_522; }
+RESOURCE TBUF r_about_legal_text_523  { buf = qtn_about_legal_text_523; }
+RESOURCE TBUF r_about_legal_text_524  { buf = qtn_about_legal_text_524; }
+RESOURCE TBUF r_about_legal_text_525  { buf = qtn_about_legal_text_525; }
+RESOURCE TBUF r_about_legal_text_526  { buf = qtn_about_legal_text_526; }
+RESOURCE TBUF r_about_legal_text_527  { buf = qtn_about_legal_text_527; }
+RESOURCE TBUF r_about_legal_text_528  { buf = qtn_about_legal_text_528; }
+RESOURCE TBUF r_about_legal_text_529  { buf = qtn_about_legal_text_529; }
+RESOURCE TBUF r_about_legal_text_530  { buf = qtn_about_legal_text_530; }
+RESOURCE TBUF r_about_legal_text_531  { buf = qtn_about_legal_text_531; }
+RESOURCE TBUF r_about_legal_text_532  { buf = qtn_about_legal_text_532; }
+RESOURCE TBUF r_about_legal_text_533  { buf = qtn_about_legal_text_533; }
+RESOURCE TBUF r_about_legal_text_534  { buf = qtn_about_legal_text_534; }
+RESOURCE TBUF r_about_legal_text_535  { buf = qtn_about_legal_text_535; }
+RESOURCE TBUF r_about_legal_text_536  { buf = qtn_about_legal_text_536; }
+RESOURCE TBUF r_about_legal_text_537  { buf = qtn_about_legal_text_537; }
+RESOURCE TBUF r_about_legal_text_538  { buf = qtn_about_legal_text_538; }
+RESOURCE TBUF r_about_legal_text_539  { buf = qtn_about_legal_text_539; }
+RESOURCE TBUF r_about_legal_text_540  { buf = qtn_about_legal_text_540; }
+RESOURCE TBUF r_about_legal_text_541  { buf = qtn_about_legal_text_541; }
+RESOURCE TBUF r_about_legal_text_542  { buf = qtn_about_legal_text_542; }
+RESOURCE TBUF r_about_legal_text_543  { buf = qtn_about_legal_text_543; }
+RESOURCE TBUF r_about_legal_text_544  { buf = qtn_about_legal_text_544; }
+RESOURCE TBUF r_about_legal_text_545  { buf = qtn_about_legal_text_545; }
+RESOURCE TBUF r_about_legal_text_546  { buf = qtn_about_legal_text_546; }
+RESOURCE TBUF r_about_legal_text_547  { buf = qtn_about_legal_text_547; }
+RESOURCE TBUF r_about_legal_text_548  { buf = qtn_about_legal_text_548; }
+RESOURCE TBUF r_about_legal_text_549  { buf = qtn_about_legal_text_549; }
+RESOURCE TBUF r_about_legal_text_550  { buf = qtn_about_legal_text_550; }
+RESOURCE TBUF r_about_legal_text_551  { buf = qtn_about_legal_text_551; }
+RESOURCE TBUF r_about_legal_text_552  { buf = qtn_about_legal_text_552; }
+RESOURCE TBUF r_about_legal_text_553  { buf = qtn_about_legal_text_553; }
+RESOURCE TBUF r_about_legal_text_554  { buf = qtn_about_legal_text_554; }
+RESOURCE TBUF r_about_legal_text_555  { buf = qtn_about_legal_text_555; }
+RESOURCE TBUF r_about_legal_text_556  { buf = qtn_about_legal_text_556; }
+RESOURCE TBUF r_about_legal_text_557  { buf = qtn_about_legal_text_557; }
+RESOURCE TBUF r_about_legal_text_558  { buf = qtn_about_legal_text_558; }
+RESOURCE TBUF r_about_legal_text_559  { buf = qtn_about_legal_text_559; }
+RESOURCE TBUF r_about_legal_text_560  { buf = qtn_about_legal_text_560; }
+RESOURCE TBUF r_about_legal_text_561  { buf = qtn_about_legal_text_561; }
+RESOURCE TBUF r_about_legal_text_562  { buf = qtn_about_legal_text_562; }
+RESOURCE TBUF r_about_legal_text_563  { buf = qtn_about_legal_text_563; }
+RESOURCE TBUF r_about_legal_text_564  { buf = qtn_about_legal_text_564; }
+RESOURCE TBUF r_about_legal_text_565  { buf = qtn_about_legal_text_565; }
+RESOURCE TBUF r_about_legal_text_566  { buf = qtn_about_legal_text_566; }
+RESOURCE TBUF r_about_legal_text_567  { buf = qtn_about_legal_text_567; }
+RESOURCE TBUF r_about_legal_text_568  { buf = qtn_about_legal_text_568; }
+RESOURCE TBUF r_about_legal_text_569  { buf = qtn_about_legal_text_569; }
+RESOURCE TBUF r_about_legal_text_570  { buf = qtn_about_legal_text_570; }
+RESOURCE TBUF r_about_legal_text_571  { buf = qtn_about_legal_text_571; }
+RESOURCE TBUF r_about_legal_text_572  { buf = qtn_about_legal_text_572; }
+RESOURCE TBUF r_about_legal_text_573  { buf = qtn_about_legal_text_573; }
+RESOURCE TBUF r_about_legal_text_574  { buf = qtn_about_legal_text_574; }
+RESOURCE TBUF r_about_legal_text_575  { buf = qtn_about_legal_text_575; }
+RESOURCE TBUF r_about_legal_text_576  { buf = qtn_about_legal_text_576; }
+RESOURCE TBUF r_about_legal_text_577  { buf = qtn_about_legal_text_577; }
+RESOURCE TBUF r_about_legal_text_578  { buf = qtn_about_legal_text_578; }
+RESOURCE TBUF r_about_legal_text_579  { buf = qtn_about_legal_text_579; }
+RESOURCE TBUF r_about_legal_text_580  { buf = qtn_about_legal_text_580; }
+RESOURCE TBUF r_about_legal_text_581  { buf = qtn_about_legal_text_581; }
+RESOURCE TBUF r_about_legal_text_582  { buf = qtn_about_legal_text_582; }
+RESOURCE TBUF r_about_legal_text_583  { buf = qtn_about_legal_text_583; }
+RESOURCE TBUF r_about_legal_text_584  { buf = qtn_about_legal_text_584; }
+RESOURCE TBUF r_about_legal_text_585  { buf = qtn_about_legal_text_585; }
+RESOURCE TBUF r_about_legal_text_586  { buf = qtn_about_legal_text_586; }
+RESOURCE TBUF r_about_legal_text_587  { buf = qtn_about_legal_text_587; }
+RESOURCE TBUF r_about_legal_text_588  { buf = qtn_about_legal_text_588; }
+RESOURCE TBUF r_about_legal_text_589  { buf = qtn_about_legal_text_589; }
+RESOURCE TBUF r_about_legal_text_590  { buf = qtn_about_legal_text_590; }
+RESOURCE TBUF r_about_legal_text_591  { buf = qtn_about_legal_text_591; }
+RESOURCE TBUF r_about_legal_text_592  { buf = qtn_about_legal_text_592; }
+RESOURCE TBUF r_about_legal_text_593  { buf = qtn_about_legal_text_593; }
+RESOURCE TBUF r_about_legal_text_594  { buf = qtn_about_legal_text_594; }
+RESOURCE TBUF r_about_legal_text_595  { buf = qtn_about_legal_text_595; }
+RESOURCE TBUF r_about_legal_text_596  { buf = qtn_about_legal_text_596; }
+RESOURCE TBUF r_about_legal_text_597  { buf = qtn_about_legal_text_597; }
+RESOURCE TBUF r_about_legal_text_598  { buf = qtn_about_legal_text_598; }
+RESOURCE TBUF r_about_legal_text_599  { buf = qtn_about_legal_text_599; }
+RESOURCE TBUF r_about_legal_text_600  { buf = qtn_about_legal_text_600; }
+RESOURCE TBUF r_about_legal_text_601  { buf = qtn_about_legal_text_601; }
+RESOURCE TBUF r_about_legal_text_602  { buf = qtn_about_legal_text_602; }
+RESOURCE TBUF r_about_legal_text_603  { buf = qtn_about_legal_text_603; }
+RESOURCE TBUF r_about_legal_text_604  { buf = qtn_about_legal_text_604; }
+RESOURCE TBUF r_about_legal_text_605  { buf = qtn_about_legal_text_605; }
+RESOURCE TBUF r_about_legal_text_606  { buf = qtn_about_legal_text_606; }
+RESOURCE TBUF r_about_legal_text_607  { buf = qtn_about_legal_text_607; }
+RESOURCE TBUF r_about_legal_text_608  { buf = qtn_about_legal_text_608; }
+RESOURCE TBUF r_about_legal_text_609  { buf = qtn_about_legal_text_609; }
+RESOURCE TBUF r_about_legal_text_610  { buf = qtn_about_legal_text_600; }
+RESOURCE TBUF r_about_legal_text_611  { buf = qtn_about_legal_text_611; }
+RESOURCE TBUF r_about_legal_text_612  { buf = qtn_about_legal_text_612; }
+RESOURCE TBUF r_about_legal_text_613  { buf = qtn_about_legal_text_613; }
+RESOURCE TBUF r_about_legal_text_614  { buf = qtn_about_legal_text_614; }
+RESOURCE TBUF r_about_legal_text_615  { buf = qtn_about_legal_text_615; }
+RESOURCE TBUF r_about_legal_text_616  { buf = qtn_about_legal_text_616; }
+RESOURCE TBUF r_about_legal_text_617  { buf = qtn_about_legal_text_617; }
+RESOURCE TBUF r_about_legal_text_618  { buf = qtn_about_legal_text_618; }
+RESOURCE TBUF r_about_legal_text_619  { buf = qtn_about_legal_text_619; }
+RESOURCE TBUF r_about_legal_text_620  { buf = qtn_about_legal_text_620; }
+RESOURCE TBUF r_about_legal_text_621  { buf = qtn_about_legal_text_621; }
+RESOURCE TBUF r_about_legal_text_622  { buf = qtn_about_legal_text_622; }
+RESOURCE TBUF r_about_legal_text_623  { buf = qtn_about_legal_text_623; }
+RESOURCE TBUF r_about_legal_text_624  { buf = qtn_about_legal_text_624; }
+RESOURCE TBUF r_about_legal_text_625  { buf = qtn_about_legal_text_625; }
+RESOURCE TBUF r_about_legal_text_626  { buf = qtn_about_legal_text_626; }
+RESOURCE TBUF r_about_legal_text_627  { buf = qtn_about_legal_text_627; }
+RESOURCE TBUF r_about_legal_text_628  { buf = qtn_about_legal_text_628; }
+RESOURCE TBUF r_about_legal_text_629  { buf = qtn_about_legal_text_629; }
+RESOURCE TBUF r_about_legal_text_630  { buf = qtn_about_legal_text_630; }
+RESOURCE TBUF r_about_legal_text_631  { buf = qtn_about_legal_text_631; }
+RESOURCE TBUF r_about_legal_text_632  { buf = qtn_about_legal_text_632; }
+RESOURCE TBUF r_about_legal_text_633  { buf = qtn_about_legal_text_633; }
+RESOURCE TBUF r_about_legal_text_634  { buf = qtn_about_legal_text_634; }
+RESOURCE TBUF r_about_legal_text_635  { buf = qtn_about_legal_text_635; }
+RESOURCE TBUF r_about_legal_text_636  { buf = qtn_about_legal_text_636; }
+RESOURCE TBUF r_about_legal_text_637  { buf = qtn_about_legal_text_637; }
+RESOURCE TBUF r_about_legal_text_638  { buf = qtn_about_legal_text_638; }
+RESOURCE TBUF r_about_legal_text_639  { buf = qtn_about_legal_text_639; }
+RESOURCE TBUF r_about_legal_text_640  { buf = qtn_about_legal_text_640; }
+RESOURCE TBUF r_about_legal_text_641  { buf = qtn_about_legal_text_641; }
+RESOURCE TBUF r_about_legal_text_642  { buf = qtn_about_legal_text_642; }
+RESOURCE TBUF r_about_legal_text_643  { buf = qtn_about_legal_text_643; }
+RESOURCE TBUF r_about_legal_text_644  { buf = qtn_about_legal_text_644; }
+RESOURCE TBUF r_about_legal_text_645  { buf = qtn_about_legal_text_645; }
+RESOURCE TBUF r_about_legal_text_646  { buf = qtn_about_legal_text_646; }
+RESOURCE TBUF r_about_legal_text_647  { buf = qtn_about_legal_text_647; }
+RESOURCE TBUF r_about_legal_text_648  { buf = qtn_about_legal_text_648; }
+RESOURCE TBUF r_about_legal_text_649  { buf = qtn_about_legal_text_649; }
+RESOURCE TBUF r_about_legal_text_650  { buf = qtn_about_legal_text_650; }
+RESOURCE TBUF r_about_legal_text_651  { buf = qtn_about_legal_text_651; }
+RESOURCE TBUF r_about_legal_text_652  { buf = qtn_about_legal_text_652; }
+RESOURCE TBUF r_about_legal_text_653  { buf = qtn_about_legal_text_653; }
+RESOURCE TBUF r_about_legal_text_654  { buf = qtn_about_legal_text_654; }
+RESOURCE TBUF r_about_legal_text_655  { buf = qtn_about_legal_text_655; }
+RESOURCE TBUF r_about_legal_text_656  { buf = qtn_about_legal_text_656; }
+RESOURCE TBUF r_about_legal_text_657  { buf = qtn_about_legal_text_657; }
+RESOURCE TBUF r_about_legal_text_658  { buf = qtn_about_legal_text_658; }
+RESOURCE TBUF r_about_legal_text_659  { buf = qtn_about_legal_text_659; }
+RESOURCE TBUF r_about_legal_text_660  { buf = qtn_about_legal_text_660; }
+RESOURCE TBUF r_about_legal_text_661  { buf = qtn_about_legal_text_661; }
+RESOURCE TBUF r_about_legal_text_662  { buf = qtn_about_legal_text_662; }
+RESOURCE TBUF r_about_legal_text_663  { buf = qtn_about_legal_text_663; }
+RESOURCE TBUF r_about_legal_text_664  { buf = qtn_about_legal_text_664; }
+RESOURCE TBUF r_about_legal_text_665  { buf = qtn_about_legal_text_665; }
+RESOURCE TBUF r_about_legal_text_666  { buf = qtn_about_legal_text_666; }
+RESOURCE TBUF r_about_legal_text_667  { buf = qtn_about_legal_text_667; }
+RESOURCE TBUF r_about_legal_text_668  { buf = qtn_about_legal_text_668; }
+// End of File

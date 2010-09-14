@@ -55,10 +55,10 @@ CAboutImage* CAboutImage::NewLC( const TDesC& aFileName,
     CleanupStack::PushL( self );
 
     if( aTypeFlag )
-    	{
-    	// bmp files
-	self->iBitmap  = AknIconUtils::CreateIconL(aFileName, aBitmapId );
-    	}
+        {
+        // bmp files
+        self->iBitmap  = AknIconUtils::CreateIconL(aFileName, aBitmapId );
+        }
     else
     	{
     	// svg files

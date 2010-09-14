@@ -19,8 +19,8 @@
 #include <data_caging_paths.hrh>
 #include <platform_paths.hrh>
 
-	TARGET 			about.exe
-	TARGETTYPE 		exe
+TARGET 			about.exe
+TARGETTYPE 		exe
 UID             0x100039CE  0x10005A22
 VENDORID	VID_DEFAULT
 
@@ -34,39 +34,57 @@ SOURCE         AboutAppUi.cpp
 SOURCE         AboutDocument.cpp
 SOURCE         AboutContainer.cpp
 SOURCE         AboutImage.cpp
+SOURCE         AboutResourceLoader.cpp
+SOURCE         AboutResource.cpp
 
 APP_LAYER_SYSTEMINCLUDE
-START RESOURCE ../data/about.rss
-HEADER
-	TARGETPATH APP_RESOURCE_DIR
-LANGUAGE_IDS
-END
-
-	START RESOURCE ../data/about_reg.rss
-DEPENDS about.rsg
-	TARGETPATH /private/10003a3f/apps
-	END
 
 USERINCLUDE    ../inc
 
+SOURCEPATH    ../data
+
+START RESOURCE about.rss
+    HEADER
+    TARGETPATH APP_RESOURCE_DIR
+LANGUAGE_IDS
+END
+
+START RESOURCE about_oss_part_text.rss
+    TARGET about_oss_part_text
+    HEADER
+    TARGETPATH APP_RESOURCE_DIR
+LANGUAGE_IDS
+END
+
+START RESOURCE about_oss_other_text.rss
+    TARGET about_oss_other_text
+    HEADER
+    TARGETPATH APP_RESOURCE_DIR
+LANGUAGE_IDS
+END
+
+START RESOURCE about_reg.rss
+    DEPENDS about.rsg
+    TARGETPATH /private/10003a3f/apps
+END
 
 LIBRARY        apparc.lib
 LIBRARY        avkon.lib
 LIBRARY        bafl.lib
 LIBRARY        cone.lib
 LIBRARY        eikcoctl.lib
-LIBRARY        eikcore.lib 
+LIBRARY        eikcore.lib
 LIBRARY        euser.lib
 LIBRARY        fbscli.lib
-LIBRARY		   efsrv.lib	
-LIBRARY         aknskins.lib //for skin sbackground
-LIBRARY         cdlengine.lib  //for scalable ui
-LIBRARY         gdi.lib
-LIBRARY			aknicon.lib
-LIBRARY         egul.lib
-LIBRARY         aknlayout2scalable.lib
-LIBRARY         sysversioninfo.lib
-LIBRARY         commonengine.lib
-LIBRARY         apgrfx.lib
+LIBRARY        efsrv.lib
+LIBRARY        aknskins.lib //for skin sbackground
+LIBRARY        cdlengine.lib //for scalable ui
+LIBRARY        gdi.lib
+LIBRARY        aknicon.lib
+LIBRARY        egul.lib
+LIBRARY        aknlayout2scalable.lib
+LIBRARY        sysversioninfo.lib
+LIBRARY        commonengine.lib
+LIBRARY        apgrfx.lib
 
 // End of File

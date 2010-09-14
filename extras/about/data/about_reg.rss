@@ -18,6 +18,8 @@
 
 #include <appinfo.rh>
 #include <about.rsg>
+#include <about_oss_other_text.rsg>
+#include <about_oss_part_text.rsg>
 #include <data_caging_paths_strings.hrh>
 #include <about.loc>
 
