@@ -19,11 +19,11 @@
 #include "MResourceLoaderObserver.h"    // For MResourceLoaderObserver
 #include "AboutResource.h"              // For CAboutResource
 #include <StringLoader.h>               // For StringLoader
-#include <coneresloader.h>              // For RConeResourceLoader
+#include <ConeResLoader.h>              // For RConeResourceLoader
 #include <eikenv.h>                     // For CEikonEnv
 #include <StringLoader.h>               // For StringLoader
 #include <f32file.h>
-#include <BAUTILS.H>
+#include <bautils.h>
 
 // CONSTANTS
 const TInt KDefaultResourceId( -1 ); // Default resource id.
