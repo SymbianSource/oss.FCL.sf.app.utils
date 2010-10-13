@@ -891,6 +891,10 @@ RESOURCE ABOUT_ITEM_LIST r_about_oss_text
         ABOUT_TEXT
             {
             txt = r_about_legal_text_425;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_426;
             }
         };
     }
@@ -1106,4 +1110,5 @@ RESOURCE TBUF r_about_legal_text_422  { buf = qtn_about_legal_text_422; }
 RESOURCE TBUF r_about_legal_text_423  { buf = qtn_about_legal_text_423; }
 RESOURCE TBUF r_about_legal_text_424  { buf = qtn_about_legal_text_424; }
 RESOURCE TBUF r_about_legal_text_425  { buf = qtn_about_legal_text_425; }
+RESOURCE TBUF r_about_legal_text_426  { buf = qtn_about_legal_text_426; }
 // End of File

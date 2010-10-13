@@ -75,7 +75,7 @@ void CCalcView::ConstructL()
     iCalcDocument = STATIC_CAST(CCalcDocument*, AppUi()->Document());
 
     iCalcDocument->SetCalcView( this );
-
+    CreateContainerL();
     iCalcDocument->LoadStateL();
    
     /******** Initialize the ServiceHandler in the ConstructL *****/
@@ -92,17 +92,12 @@ void CCalcView::ConstructL()
 // Destructor
 CCalcView::~CCalcView()
     {
-    if ( iContainer )
-        {
-        delete iContainer;
-        iContainer = NULL;
-        }
-
-    if( iServiceHandler )
-        {
-        delete iServiceHandler;
-        iServiceHandler = NULL;
-        }
+    delete iContainer;
+      if(iServiceHandler)
+      {
+            delete iServiceHandler;
+            iServiceHandler = NULL;
+      }
      
      }
 
@@ -1044,13 +1039,8 @@ void CCalcView::DoActivateL
                  TUid /* aCustomMessageId */,
                  const TDesC8& /* aCustomMessage */)
     {
-    if ( iContainer == NULL )
-        {
-        CreateContainerL();
-        AppUi()->AddToStackL( *this, iContainer );
-        iContainer->ActivateL();
-        } 
-    
+    AppUi()->AddToStackL(*this, iContainer);
+    iContainer->ActivateL();
     }
 
 // ----------------------------------------------------
@@ -1061,11 +1051,9 @@ void CCalcView::DoActivateL
 //
 void CCalcView::DoDeactivate()
     {
-    if ( iContainer )
+    if (iContainer)
         {
-        AppUi()->RemoveFromStack( iContainer );
-        delete iContainer;
-        iContainer = NULL;
+        AppUi()->RemoveFromStack(iContainer);
         }
     }
 

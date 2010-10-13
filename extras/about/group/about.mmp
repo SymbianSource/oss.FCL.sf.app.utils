@@ -49,6 +49,13 @@ START RESOURCE about.rss
 LANGUAGE_IDS
 END
 
+START RESOURCE about_oss_text.rss
+    TARGET about_oss_text
+    HEADER
+    TARGETPATH APP_RESOURCE_DIR
+LANGUAGE_IDS
+END
+
 START RESOURCE about_oss_part_text.rss
     TARGET about_oss_part_text
     HEADER

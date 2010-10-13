@@ -1,4 +1,4 @@
- /*
+/*
 * Copyright (c) 2002 Nokia Corporation and/or its subsidiary(-ies).
 * All rights reserved.
 * This component and the accompanying materials are made available
@@ -26,6 +26,7 @@
 #include "AboutResource.h"
 #include <layoutmetadata.cdl.h>
 #include <about.rsg>
+#include <about_oss_text.rsg>
 #include <about_oss_part_text.rsg>
 #include <about_oss_other_text.rsg>
 #include <eiksbfrm.h>
@@ -55,6 +56,7 @@ const TInt KAboutOSSIndex = 14; // For adding blank break between OSS Text and r
 
 _LIT( KAboutPanicCategory, "About" );
 // Resource files for about application loading real data because this rsc file must be loaded by yourself
+_LIT( KRSCDirAndFileFirst, "Z:\\resource\\apps\\about_oss_text.rsc" );
 _LIT( KRSCDirAndFile, "Z:\\resource\\apps\\about_oss_part_text.rsc" );
 _LIT( KRSCDirAndFileAdd, "Z:\\resource\\apps\\about_oss_other_text.rsc" );
 
@@ -101,14 +103,13 @@ void CAboutContainer::ConstructL( const TRect& aRect )
     CreateWindowL();
     iScrollBarDragged = EFalse;
     iBreakFlag = EFalse;
-    iSkinContext = NULL;
-    iText = NULL;
-    iImages = NULL;
-    iScreenStarts = NULL;
-    iSBFrame = NULL;
-    iHandleFlag = ETrue;
+	iSkinContext = NULL;
+	iText = NULL;
+	iImages = NULL;
+	iScreenStarts = NULL;
+	iSBFrame = NULL;
     iLoader = CAboutResourceLoader::NewL( iEikonEnv, this );
-    CalculateL( aRect ); 
+    CalculateL(aRect); 
     ActivateL();
     }
 
@@ -117,17 +118,17 @@ void CAboutContainer::ConstructL( const TRect& aRect )
 // -----------------------------------------------------------------------------
 CAboutContainer::~CAboutContainer()
     {
-    delete iSkinContext;
+	delete iSkinContext;
     delete iSBFrame;
     delete iScreenStarts;
     delete iIcon;
-    
+
     if ( iText )
         {
         iText->ResetAndDestroy();
         delete iText;
         }
-    
+
     if ( iImages )
         {
         iImages->ResetAndDestroy();
@@ -148,25 +149,25 @@ CAboutContainer::~CAboutContainer()
 // -----------------------------------------------------------------------------
 void CAboutContainer::SizeChanged()
     {
-    TRect parentRect( Rect() );
-    if (iSkinContext)
+    TRect parentRect(Rect());
+	if (iSkinContext)
         {
-        iSkinContext->SetRect( parentRect );
+        iSkinContext->SetRect(parentRect);
         }
-    }
-
+	}
 // -----------------------------------------------------------------------------
 // CAboutContainer::Draw()
 // -----------------------------------------------------------------------------
+
 void CAboutContainer::Draw( const TRect& aRect ) const
     {
     CWindowGc& gc = SystemGc();
-    MAknsSkinInstance* skin = AknsUtils::SkinInstance();
-	if ( iSkinContext )
+	MAknsSkinInstance* skin = AknsUtils::SkinInstance();
+	if (iSkinContext)
 		{
 		//Draw the skin background
 		AknsDrawUtils::Background(
-			skin, iSkinContext, this, gc, aRect );
+			skin, iSkinContext, this, gc, aRect);
 		}
 	else
 		{//  clear the area
@@ -185,7 +186,7 @@ void CAboutContainer::Draw( const TRect& aRect ) const
         {
         if ( ( iScreenStarts ) && (iScreenStarts->Count() >= iCurrentScreen ) )
             {
-            firstLine = ( ( *iScreenStarts )[ iCurrentScreen ] );
+    	    firstLine = ( ( *iScreenStarts )[ iCurrentScreen ] ); 	
             }        
         }
     else
@@ -216,9 +217,9 @@ void CAboutContainer::Draw( const TRect& aRect ) const
 			TInt error = AknsUtils::GetCachedColor( skin, 
 							color, KAknsIIDQsnTextColors, EAknsCIQsnTextColorsCG6 );
 			
-			if( error == KErrNone )
+			if(error == KErrNone)
 				{
-				gc.SetPenColor( color );
+				gc.SetPenColor(color);
 				}		
             gc.DrawText( *text,
                          TRect( topLeft, rectSize ),
@@ -244,7 +245,7 @@ void CAboutContainer::Draw( const TRect& aRect ) const
             position.iY -= iBaseLineDelta - iFont->DescentInPixels();
             // Now iY is the top line of rectangle where the picture is
             // centered in.
-            position.iY += ( ( image->Lines()+1 ) * iBaseLineDelta -
+            position.iY += ( (image->Lines()+1) * iBaseLineDelta -
                              iFont->HeightInPixels() -
                              image->HeightInPixels() ) / 2;
 
@@ -304,11 +305,11 @@ void CAboutContainer::SetTextL( const TDesC& aText , const TInt aItem )
 			default:
 				break;
 			}
-        if( !line->Length() )
+        if(!line->Length())
             {
             iText->AppendL( NULL );
 			
-            CleanupStack::PopAndDestroy( line );  // line
+            CleanupStack::PopAndDestroy(line);  // line
             }
         else
             {
@@ -346,7 +347,7 @@ void CAboutContainer::SetTextL( const TDesC& aText , const TInt aItem )
         iText->AppendL( NULL );
 		}
 
-    CleanupStack::PopAndDestroy( wrappedArray ); // wrappedArray
+    CleanupStack::PopAndDestroy(wrappedArray); // wrappedArray
     delete dataToDestroy;
 
     // update screen scrolling info array
@@ -397,7 +398,7 @@ void CAboutContainer::SetImageL( const TDesC& aFileName, TInt aBitmapId )
         }
 
     iImages->AppendL( image );
-    CleanupStack::Pop( image ); // image
+    CleanupStack::Pop(image); // image
 
     // update screen scrolling info array
 
@@ -550,7 +551,7 @@ void CAboutContainer::UpdateScrollIndicatorL()
 		if (AknLayoutUtils::DefaultScrollBarType(appUi) == CEikScrollBarFrame::EDoubleSpan)
 		{
 			// For EDoubleSpan type scrollbar
-			iSBFrame->CreateDoubleSpanScrollBarsL(ETrue, EFalse); // non-window owning scrollbar
+			iSBFrame->CreateDoubleSpanScrollBarsL(ETrue, EFalse); // non-window owning scrollbar            
 			iSBFrame->SetTypeOfVScrollBar(CEikScrollBarFrame::EDoubleSpan);
 		}
 		else
@@ -608,7 +609,7 @@ void CAboutContainer::UpdateScrollIndicatorL()
 // -----------------------------------------------------------------------------
 // CAboutContainer::CalculateL()
 // -----------------------------------------------------------------------------
-void CAboutContainer::CalculateL( const TRect& aRect )
+void CAboutContainer::CalculateL(const TRect& aRect)
     {
     TRect rect( 0, 0, 0, 0 );
     iCurrentScreen = 0;
@@ -706,45 +707,47 @@ void CAboutContainer::CalculateL( const TRect& aRect )
 // -----------------------------------------------------------------------------
 // CAboutContainer::HandleResourceChange()
 // -----------------------------------------------------------------------------
-void CAboutContainer::HandleResourceChange( TInt aType )
-    {
-    switch ( aType )
-        {
-        case KEikDynamicLayoutVariantSwitch :
-            {
+ void CAboutContainer::HandleResourceChange(TInt aType)
+ {
+
+switch ( aType )
+  {
+  case KEikDynamicLayoutVariantSwitch :
+       {
             TRAP_IGNORE( CalculateL( iAvkonAppUi->ClientRect() ) );
-            DrawNow();
-            }
-        break;
-        case KEikMessageUnfadeWindows :
-        case KAknsMessageSkinChange :
-            {
+       DrawNow();
+       }
+       break;
+  case KEikMessageUnfadeWindows :
+  case KAknsMessageSkinChange :
+       {
             // window owning scrollbar
             TRAP_IGNORE( iSBFrame->CreateDoubleSpanScrollBarsL( ETrue, EFalse ) ); 
-            iSBFrame->SetTypeOfVScrollBar( CEikScrollBarFrame::EDoubleSpan );
+       iSBFrame->SetTypeOfVScrollBar(CEikScrollBarFrame::EDoubleSpan);
             TRAP_IGNORE( iSBFrame->SetScrollBarVisibilityL( 
                     CEikScrollBarFrame::EOff,CEikScrollBarFrame::EOn ) );
-            TRAP_IGNORE( UpdateScrollIndicatorL() );
-            }
-        default:
-            {
-            CCoeControl::HandleResourceChange( aType );
-            }
-        break;
-        }
-}
+	   TRAP_IGNORE(UpdateScrollIndicatorL());
+       }
+        
+  default:
+       {
+       CCoeControl::HandleResourceChange(aType);
+       }
+	   break;
+  }
+}  
 // ---------------------------------------------------------
 // CAboutContainer::MopSupplyObject()
 // Pass skin information if need.
 // ---------------------------------------------------------
 
-TTypeUid::Ptr CAboutContainer::MopSupplyObject( TTypeUid aId )
+TTypeUid::Ptr CAboutContainer::MopSupplyObject(TTypeUid aId)
     {
-    if ( aId.iUid == MAknsControlContext::ETypeId && iSkinContext )
+    if (aId.iUid == MAknsControlContext::ETypeId && iSkinContext)
         {
-        return MAknsControlContext::SupplyMopObject( aId, iSkinContext );
+        return MAknsControlContext::SupplyMopObject(aId, iSkinContext);
         }
-    return CCoeControl::MopSupplyObject( aId );
+    return CCoeControl::MopSupplyObject(aId);
     }
 
 // ---------------------------------------------------------
@@ -755,8 +758,8 @@ void CAboutContainer::HandleScrollEventL( CEikScrollBar* aScrollBar,
         TEikScrollEvent aEventType )
 {
     //Only on page up/down,scroll up/down and drag events
-    if( ( aEventType == EEikScrollPageDown ) || ( aEventType == EEikScrollPageUp ) || 
-       ( aEventType == EEikScrollThumbDragVert ) || ( aEventType == EEikScrollUp ) ||
+    if((aEventType == EEikScrollPageDown) || (aEventType == EEikScrollPageUp) || 
+       (aEventType == EEikScrollThumbDragVert) || (aEventType == EEikScrollUp) ||
        ( aEventType == EEikScrollDown ) )
     {
         //Get the current position from the scroll bar
@@ -781,7 +784,6 @@ void CAboutContainer::HandleItemsLoadedL( TInt aError )
         {
         User::Panic( KAboutPanicCategory, aError );
         }
-    
     // Display loaded texts
     RPointerArray<CAboutResource>* items = iLoader->LoadedResourceItems();
     if ( items )
@@ -793,38 +795,16 @@ void CAboutContainer::HandleItemsLoadedL( TInt aError )
                 {
                 if ( R_ABOUT_MAIN_TEXT == iLoader->CurrentResourceId() )
                     {
-                    // Only one data record for each
-                    if ( iHandleFlag )
-                        {
-                        // Store the count of the current resource
-                        iCurrentCount = iLoader->ItemCount();
-                        iHandleFlag = EFalse;
-                        }
-                    
                     SetTextL( *item->ResourceItem(), item->ResourceIndex() );
-                    
-                    // Set the flag to ETrue
-                    if ( iCurrentCount == item->ResourceIndex() )
+                    if ( iLoader->ItemCount() == item->ResourceIndex() + 1 )
                         {
-                        iHandleFlag = ETrue;
+                        iFinalCount = iLoader->ItemCount() + 1;
                         }
-                    }
-                else if ( R_ABOUT_OSS_TEXT == iLoader->CurrentResourceId() )
-                    {
-                    iFinalCount = iCurrentCount + item->ResourceIndex() + 1;
-                    SetTextL( *item->ResourceItem(), iFinalCount );
                     }
                 else
                     {
-                    // Only one data record for each
-                    if ( iHandleFlag )
-                        {
-                        iCurrentCount = iLoader->ItemCount();
-                        iHandleFlag = EFalse;
-                        }
-                    
-                    iFinalCount = iCurrentCount + item->ResourceIndex() + 1;
                     SetTextL( *item->ResourceItem(), iFinalCount );
+                    iFinalCount++;
                     }
                 }
             else if( item->ResourceType() == EAboutImageItem )
@@ -862,10 +842,16 @@ void CAboutContainer::HandleResourceLoadCompletedL(
     TInt resourceId( aResourceId );
     if( R_ABOUT_MAIN_TEXT == resourceId )
         {
-        // Load the R_ABOUT_OSS_TEXT
+        // Load the R_ABOUT_OSS_TEXT_FIRST
         // Set the resource which you want to load next
-        resourceId = R_ABOUT_OSS_TEXT;
+        resourceId = R_ABOUT_OSS_TEXT_FIRST;
         // Set the resource's path
+        iResourcePath.Copy( KRSCDirAndFileFirst );
+        }
+    else if ( R_ABOUT_OSS_TEXT_FIRST == resourceId )
+        {
+        // Load the R_ABOUT_OSS_TEXT
+        resourceId = R_ABOUT_OSS_TEXT;
         iResourcePath.Copy( KRSCDirAndFile );
         }
     else

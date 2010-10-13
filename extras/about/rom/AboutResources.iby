@@ -24,6 +24,7 @@
 //Resource file(s) for ABOUT
 
 S60_APP_RESOURCE(About)
+S60_APP_RESOURCE(about_oss_text)
 S60_APP_RESOURCE(about_oss_other_text)
 S60_APP_RESOURCE(about_oss_part_text)
 

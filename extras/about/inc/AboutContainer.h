@@ -116,14 +116,8 @@ class CAboutContainer : public CCoeControl,
         // Store the resource path for load the file
         TFileName iResourcePath;
         
-        // Store the item count of the current loading resource.
-        TInt iCurrentCount;
-        
         // Store the the count of the loaded content's items
         TInt iFinalCount;
-        
-        // In order to carry out one operation only for getting iFinalCount
-        TBool iHandleFlag;
     };
 
 #endif

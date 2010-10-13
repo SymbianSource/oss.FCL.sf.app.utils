@@ -77,8 +77,12 @@ enum TCalcControlIndex
 // If const TChar is used, complie error occurs in THUMB build.
 // To avoid this, #define is used.
 #define KCalcAsteriskBtn '*'
-
-
+//define a Comma  as decimal separator
+#define KCommaSeparator ',' 
+//define a dot as decimal separator 
+#define KDotSeparator '.'
+//define a '#' as input decimal separator by conventional 12 phone keypad.
+#define KHashSeparator '#'
 // ================= MEMBER FUNCTIONS =======================
 
 // Two-phased constructor.
@@ -1147,17 +1151,32 @@ void CCalcContainer::SetSeparatorFromTouchL()
 #ifdef RD_INTELLIGENT_TEXT_INPUT  
         if ( iFuncmapPane->GetKeyboardType() == EPtiKeyboardHalfQwerty )
             {
-            eventkey.iScanCode = 126;  //scan code for separator
+            eventkey.iScanCode = EStdKeySingleQuote;  //scan code for separator
+            eventkey.iCode = ( TUint )KDotSeparator; // icode for separator
             }
         else
 #endif
             {
-            eventkey.iScanCode = 122;  //scan code for separator
+            TLocale locale;
+            //Get a decimal separator from system for current phone language.
+            TChar decimalSeparator( locale.DecimalSeparator() );
+            
+            if ( KCommaSeparator == decimalSeparator )
+                {
+                //separator is Comma
+                eventkey.iScanCode = EStdKeyComma; //scan code for separator
+                }
+            else
+                {
+                //separator is dot
+                eventkey.iScanCode = EStdKeyFullStop; //scan code for separator
+                }
+            eventkey.iCode = ( TUint )decimalSeparator;   // icode for separator
             }
 
         // First send Keydown event
         OfferKeyEventL( eventkey, keycode );
-        eventkey.iCode = 46;  // icode for separator
+        
         keycode = EEventKey;
 
         // Next send EventKey
@@ -1169,11 +1188,11 @@ void CCalcContainer::SetSeparatorFromTouchL()
         TKeyEvent eventkey;
         TEventCode keycode = EEventKeyDown;
         eventkey.iCode = 0;
-        eventkey.iScanCode = 127;  // scan code for separator
+        eventkey.iScanCode = EStdKeyHash;  // scan code for separator
 
         // First send Keydown event
         OfferKeyEventL( eventkey, keycode );
-        eventkey.iCode = 35;  // icode for separator
+        eventkey.iCode = ( TUint )KHashSeparator;  // icode for separator
         keycode = EEventKey;
 
         // Next send EventKey

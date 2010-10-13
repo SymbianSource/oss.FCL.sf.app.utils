@@ -50,10 +50,6 @@ RESOURCE ABOUT_ITEM_LIST r_about_oss_text_add
         {
         ABOUT_TEXT
             {
-            txt = r_about_legal_text_426;
-            },
-        ABOUT_TEXT
-            {
             txt = r_about_legal_text_427;
             },
         ABOUT_TEXT
@@ -203,6 +199,14 @@ RESOURCE ABOUT_ITEM_LIST r_about_oss_text_add
         ABOUT_TEXT
             {
             txt = r_about_legal_text_464;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_465;
+            },
+        ABOUT_TEXT
+            {
+            txt = r_about_legal_text_466;
             },
         ABOUT_TEXT
             {
@@ -1015,7 +1019,6 @@ RESOURCE ABOUT_ITEM_LIST r_about_oss_text_add
         };
     }
 
-RESOURCE TBUF r_about_legal_text_426  { buf = qtn_about_legal_text_426; }
 RESOURCE TBUF r_about_legal_text_427  { buf = qtn_about_legal_text_427; }
 RESOURCE TBUF r_about_legal_text_428  { buf = qtn_about_legal_text_428; }
 RESOURCE TBUF r_about_legal_text_429  { buf = qtn_about_legal_text_429; }
@@ -1199,7 +1202,7 @@ RESOURCE TBUF r_about_legal_text_606  { buf = qtn_about_legal_text_606; }
 RESOURCE TBUF r_about_legal_text_607  { buf = qtn_about_legal_text_607; }
 RESOURCE TBUF r_about_legal_text_608  { buf = qtn_about_legal_text_608; }
 RESOURCE TBUF r_about_legal_text_609  { buf = qtn_about_legal_text_609; }
-RESOURCE TBUF r_about_legal_text_610  { buf = qtn_about_legal_text_600; }
+RESOURCE TBUF r_about_legal_text_610  { buf = qtn_about_legal_text_610; }
 RESOURCE TBUF r_about_legal_text_611  { buf = qtn_about_legal_text_611; }
 RESOURCE TBUF r_about_legal_text_612  { buf = qtn_about_legal_text_612; }
 RESOURCE TBUF r_about_legal_text_613  { buf = qtn_about_legal_text_613; }
