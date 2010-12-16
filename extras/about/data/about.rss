@@ -128,12 +128,10 @@ RESOURCE ABOUT_ITEM_LIST r_about_main_text
             {
             txt = r_about_legal_text_5;
             },
-#ifdef FF_VIDEO_AUDIO_BRANDING
         ABOUT_TEXT
             {
             txt = r_about_legal_text_dolby;
             },
-#endif
         ABOUT_TEXT
             {
             txt = r_about_legal_text_6;

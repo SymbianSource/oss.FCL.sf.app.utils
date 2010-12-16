@@ -33,6 +33,9 @@
 #include    <applayout.cdl.h>
 #include    <aknlayoutscalable_apps.cdl.h>
 #include    <csxhelp/calc.hlp.hrh> // for help context of Calculator
+
+#include    <AknFepInternalCRKeys.h>
+
 #include    "CalcApp.h" 
 
 #include    "CalcAppUi.h"
@@ -56,15 +59,29 @@
 #define KEY_CODE_VAL 57 //for all number inputs
 #define ASCII_ZERO 48
 
+// A unicode of zero in abrbic
+const TInt KArabicZero( 0x660 );  
+// A unicode of nine in abrbic
+const TInt KArabicNine( 0x669 );  
+// A unicode of zero in Farsi
+const TInt KFarsiZero( 0x6F0 );   
+// A unicode of nine in Farsi
+const TInt KFarsiNine( 0x6F9 );   
+
+//A Deviation between Arabic number and Latin number
+const TInt KDeviationArabicAndLatinNumber( 0x630 );  
+//A Deviation between Farsi number and Latin number
+const TInt KDeviationFarsiAndLatinNumber( 0x6C0 ); 
+
 //  LOCAL CONSTANTS AND MACROS  
-const TInt KCallBackDelay(1000000); // In microseconds
-const TInt KCallBackInterval(1000000); // In microseconds
-const TInt KCallBackPriority(CActive::EPriorityUserInput);
+const TInt KCallBackDelay( 1000000 ); // In microseconds
+const TInt KCallBackInterval( 1000000 ); // In microseconds
+const TInt KCallBackPriority( CActive::EPriorityUserInput );
 
 // Count of controls in Calculator.
 // Controls are editor pane, output sheet, and function map.
 // Therefore, this count is 3.  
-const TInt KCalcCountOfControls(3);
+const TInt KCalcCountOfControls( 3 );
 
 // Define index of control
 enum TCalcControlIndex
@@ -105,7 +122,12 @@ CCalcContainer::~CCalcContainer()
     delete iSheetPane;
 
     delete iTimeout;
-
+    
+    if ( iFepRepository )
+        {
+         delete iFepRepository;
+         iFepRepository = NULL;
+        }
     if ( iTimeoutChr )
         {
         delete iTimeoutChr;
@@ -385,13 +407,15 @@ void CCalcContainer::ConstructL(
  
     iTimeoutChr = CPeriodic::NewL( KCallBackPriority );
     iTimeoutShift = CPeriodic::NewL( KCallBackPriority );
-
+    
+    iFepRepository = CRepository::NewL( KCRUidAknFep );
+    
     TRect rect(0, 0, 0, 0); 
     // Temporary rect is passed. Correct rect is set in SizeChanged.
     iSkinContext = CAknsBasicBackgroundControlContext::NewL(
         KAknsIIDQsnBgAreaMainCalc, rect, EFalse);
         iValue = 0;
-
+   
     // Set status pane layout usual.
     CEikonEnv::Static()->AppUiFactory()->StatusPane()->SwitchLayoutL( R_AVKON_STATUS_PANE_LAYOUT_USUAL ); 
     }
@@ -765,23 +789,55 @@ TKeyResponse CCalcContainer::OfferKeyEventL
             }
         }
 
-    TKeyResponse keyResponse(iFuncmapPane->OfferKeyEventL(aKeyEvent, aType));
-    if (keyResponse == EKeyWasNotConsumed)
+    TKeyResponse keyResponse( iFuncmapPane->OfferKeyEventL( aKeyEvent, aType ) );
+    TInt inputLanguage = User::Language();
+    iFepRepository->Get( KAknFepInputTxtLang, inputLanguage );
+    //If the current inputlanguage is Arabic, Farsi or Urdu, the numeric key value is wrong,
+    //so need to remap the key for getting right value
+    if ( inputLanguage == ELangArabic || inputLanguage == ELangFarsi || inputLanguage == ELangUrdu ) 
+       {
+       TKeyEvent keyEvent = aKeyEvent;
+       RemapNumericKey( keyEvent, inputLanguage );
+       keyResponse = iEditorPane->OfferKeyEventL( keyEvent, aType );
+       }
+    else
         {
-        if(iFuncmapPane->IsQwertyKeypadActive())
-             {
-             iEditorPane->IsQwertyActive();
-             }
-        else
-            {
-            iEditorPane->IsQwertyNotActive();    
-            }
-        // Edit buffer of line
-        keyResponse = iEditorPane->OfferKeyEventL(aKeyEvent, aType);
+        if ( keyResponse == EKeyWasNotConsumed )
+           {
+           if( iFuncmapPane->IsQwertyKeypadActive() )
+                {
+                iEditorPane->IsQwertyActive();
+                }
+           else
+               {
+               iEditorPane->IsQwertyNotActive();    
+               }
+           // Edit buffer of line
+           keyResponse = iEditorPane->OfferKeyEventL( aKeyEvent, aType );
+           }
         }
     return keyResponse;
     }
 
+// ---------------------------------------------------------
+// CCalcContainer::RemapNumericKey
+// remap a number key in Arabic,Farsi or Urdu
+// 
+// ---------------------------------------------------------
+//
+void CCalcContainer::RemapNumericKey( TKeyEvent& aKeyEvent, TInt aLanguage )
+    {
+    if ( aLanguage == ELangArabic && 
+            ( aKeyEvent.iCode >= KArabicZero && aKeyEvent.iCode <= KArabicNine ) )
+        {
+        aKeyEvent.iCode -= KDeviationArabicAndLatinNumber; //convert to lation number
+        }
+    else if ( ( aLanguage == ELangFarsi || aLanguage == ELangUrdu ) &&
+            ( aKeyEvent.iCode >= KFarsiZero && aKeyEvent.iCode <= KFarsiNine ) )
+        {
+        aKeyEvent.iCode -= KDeviationFarsiAndLatinNumber; //convert to lation number
+        }
+    }
 // ---------------------------------------------------------
 // CCalcContainer::HandleResourceChange
 // Notifier for changing language

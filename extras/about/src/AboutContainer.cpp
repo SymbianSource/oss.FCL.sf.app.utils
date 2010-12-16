@@ -49,10 +49,14 @@
 #include <AknsConstants.h>
 #include <AknDef.h>
 #include <about.mbg>
-#include <StringLoader.h> 
+#include <StringLoader.h>
+#include <featmgr.h>
 
 // CONSTANTS
 const TInt KAboutOSSIndex = 14; // For adding blank break between OSS Text and real Text
+
+// The index of dolby-plus’s information in rss file and is used to decide whether to load dolby-plus’s information in about application
+const TInt KAboutDDPlusInfoIndex = 6;
 
 _LIT( KAboutPanicCategory, "About" );
 // Resource files for about application loading real data because this rsc file must be loaded by yourself
@@ -103,11 +107,12 @@ void CAboutContainer::ConstructL( const TRect& aRect )
     CreateWindowL();
     iScrollBarDragged = EFalse;
     iBreakFlag = EFalse;
-	iSkinContext = NULL;
-	iText = NULL;
-	iImages = NULL;
-	iScreenStarts = NULL;
-	iSBFrame = NULL;
+    iSkinContext = NULL;
+    iText = NULL;
+    iImages = NULL;
+    iScreenStarts = NULL;
+    iSBFrame = NULL;
+    FeatureManager::InitializeLibL();
     iLoader = CAboutResourceLoader::NewL( iEikonEnv, this );
     CalculateL(aRect); 
     ActivateL();
@@ -118,7 +123,8 @@ void CAboutContainer::ConstructL( const TRect& aRect )
 // -----------------------------------------------------------------------------
 CAboutContainer::~CAboutContainer()
     {
-	delete iSkinContext;
+    FeatureManager::UnInitializeLib();
+    delete iSkinContext;
     delete iSBFrame;
     delete iScreenStarts;
     delete iIcon;
@@ -795,7 +801,20 @@ void CAboutContainer::HandleItemsLoadedL( TInt aError )
                 {
                 if ( R_ABOUT_MAIN_TEXT == iLoader->CurrentResourceId() )
                     {
-                    SetTextL( *item->ResourceItem(), item->ResourceIndex() );
+                    // Since the description of this DD-plus in the sixth item(in rss file)
+                    // Here we need to check if it supports DD-plus
+                    if ( KAboutDDPlusInfoIndex == item->ResourceIndex() )
+                        {
+                        // To determine whether the dolby exists by flag KFeatureIdFfVideoAudioBranding
+                        if ( FeatureManager::FeatureSupported( KFeatureIdFfVideoAudioBranding ) )
+                            {
+                            SetTextL( *item->ResourceItem(), item->ResourceIndex() );
+                            }
+                        }
+                    else
+                        {
+                        SetTextL( *item->ResourceItem(), item->ResourceIndex() );
+                        }
                     if ( iLoader->ItemCount() == item->ResourceIndex() + 1 )
                         {
                         iFinalCount = iLoader->ItemCount() + 1;

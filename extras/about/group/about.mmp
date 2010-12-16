@@ -93,5 +93,6 @@ LIBRARY        aknlayout2scalable.lib
 LIBRARY        sysversioninfo.lib
 LIBRARY        commonengine.lib
 LIBRARY        apgrfx.lib
+LIBRARY        featmgr.lib  // feature manager
 
 // End of File

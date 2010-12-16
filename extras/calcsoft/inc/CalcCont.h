@@ -24,7 +24,8 @@
 
 //  INCLUDES
 #include <coecntrl.h>
-
+#include <centralrepository.h>
+#include <cenrepnotifyhandler.h>
 #include "CalcEditline.h"
 #include "CalcView.h"
 
@@ -344,7 +345,13 @@ class   CCalcContainer
         */
         void HandlePointerEventL
                 ( const TPointerEvent& aKeyEvent );
-
+  
+        /**
+        * Converter other language number to Latin number.
+        * @param aKeyEvent: An keyevent from system.
+        * @param aLanguage: Current input Language.
+        */
+        void CCalcContainer::RemapNumericKey( TKeyEvent& aKeyEvent, TInt aLanguage );
     private:    // Data
         CCalcEditorSubPane*  iEditorPane;  // Editor subpane 
         CCalcFuncmapSubPane* iFuncmapPane; // FunctionMap subpane
@@ -359,6 +366,7 @@ class   CCalcContainer
         TUint                iPrevInput;   // Key code of previous input
         CAknsBasicBackgroundControlContext* iSkinContext; // skin data
         TInt iValue ; 
+        CRepository* iFepRepository; //Use to get current input language.
     };
 
 #include "CalcCont.inl"
